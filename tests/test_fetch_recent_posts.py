@@ -75,6 +75,10 @@ class TestParseRssToPosts(unittest.TestCase):
 
 
 class TestRecentPostsJson(unittest.TestCase):
+    ISO8601_REGEX = (
+        r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})?$"
+    )
+
     def test_recent_posts_json_schema(self):
         """Ensure recent-posts.json exists and has valid schema."""
         repo_root = Path(__file__).resolve().parent.parent
@@ -88,6 +92,24 @@ class TestRecentPostsJson(unittest.TestCase):
             self.assertIn("title", post)
             self.assertIn("url", post)
             self.assertIn("description", post)
+
+    def test_recent_posts_updated_format(self):
+        """When 'updated' exists in recent-posts.json, it must be valid ISO 8601."""
+        import re
+        repo_root = Path(__file__).resolve().parent.parent
+        json_path = repo_root / "recent-posts.json"
+        if not json_path.exists():
+            self.skipTest("recent-posts.json not found")
+        data = json.loads(json_path.read_text())
+        if "updated" not in data or not data["updated"]:
+            self.skipTest("recent-posts.json has no 'updated' field")
+        updated = data["updated"]
+        self.assertIsInstance(updated, str, "'updated' must be a string")
+        self.assertRegex(
+            updated,
+            self.ISO8601_REGEX,
+            f"'updated' must be ISO 8601, got: {updated!r}",
+        )
 
 
 if __name__ == "__main__":
