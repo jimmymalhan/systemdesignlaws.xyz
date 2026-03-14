@@ -29,4 +29,6 @@ jobs:
           grep -q 'id="recent-updated"' index.html && echo "Last updated container OK"
           grep -q 'id="subscribe-section"' index.html && echo "Substack email signup section OK"
           grep -q 'newsletter.systemdesignlaws.xyz' index.html && echo "Substack subscribe link OK"
+          grep -q 'newsletter.systemdesignlaws.xyz/subscribe' index.html && echo "Subscribe CTAs use /subscribe path OK"
+          ! grep -q 'systemdesignlaws.substack.com' index.html && echo "No old substack.com links OK"
           grep -q 'guardrail-issue' index.html && echo "Frontend guardrail fallback OK"

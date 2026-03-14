@@ -1,5 +1,6 @@
 """Tests for fetch-recent-posts script."""
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -135,6 +136,22 @@ class TestIndexHtmlStructure(unittest.TestCase):
         html_path = repo_root / "index.html"
         html = html_path.read_text()
         self.assertIn("guardrail-issue", html, "Must have guardrail fallback for fetch failures")
+
+    def test_all_subscribe_links_use_newsletter_subdomain(self):
+        """Every subscribe/email CTA must point to newsletter.systemdesignlaws.xyz - catches regressions."""
+        repo_root = Path(__file__).resolve().parent.parent
+        html_path = repo_root / "index.html"
+        html = html_path.read_text()
+        self.assertNotIn("systemdesignlaws.substack.com", html, "No old Substack URLs - use newsletter subdomain")
+        subscribe_classes = ["nav-cta", "btn-primary", "subscribe-cta", "lock-overlay", "btn-cta"]
+        for cls in subscribe_classes:
+            matches = re.findall(rf'class="[^"]*{re.escape(cls)}[^"]*"[^>]*href="([^"]+)"', html)
+            matches += re.findall(rf'href="([^"]+)"[^>]*class="[^"]*{re.escape(cls)}[^"]*"', html)
+            for url in matches:
+                self.assertIn("newsletter.systemdesignlaws.xyz", url, f"{cls} must use newsletter subdomain")
+                if cls in ("nav-cta", "btn-primary", "subscribe-cta", "lock-overlay", "btn-cta"):
+                    self.assertIn("/subscribe", url, f"{cls} must use /subscribe path")
+        self.assertIn("newsletter.systemdesignlaws.xyz", html, "At least one subscribe link must exist")
 
 
 if __name__ == "__main__":
