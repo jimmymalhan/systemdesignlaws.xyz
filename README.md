@@ -1,6 +1,6 @@
 # SystemDesignLaws.xyz
 
-Landing page for [SystemDesignLaws](https://newsletter.systemdesignlaws.xyz) - a newsletter about the laws that govern every system at scale.
+Landing page for [SystemDesignLaws](https://systemdesignlaws.substack.com) - a newsletter about the laws that govern every system at scale.
 
 **Live:** [systemdesignlaws.xyz](https://systemdesignlaws.xyz)
 

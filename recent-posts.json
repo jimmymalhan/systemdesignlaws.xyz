@@ -2,17 +2,17 @@
   "posts": [
     {
       "title": "I Made Claude Prove its hallucination",
-      "url": "https://newsletter.systemdesignlaws.xyz/p/i-made-claude-prove-its-hallucination",
+      "url": "https://systemdesignlaws.substack.com/p/i-made-claude-prove-its-hallucination",
       "description": "I stopped using 1 clever model and built a local multi-agent debugging workflow that had to earn every answer before I trusted it."
     },
     {
       "title": "Indexes Don\u2019t Make Databases Fast",
-      "url": "https://newsletter.systemdesignlaws.xyz/p/indexes-dont-make-databases-fast",
+      "url": "https://systemdesignlaws.substack.com/p/indexes-dont-make-databases-fast",
       "description": "What I learned the hard way is simple. Most read-scaling pain starts with the wrong lookup path, not the wrong database."
     },
     {
       "title": "You Think Global SQL Is Just Cross\u2011Region Writes\u2026 It Is Not",
-      "url": "https://newsletter.systemdesignlaws.xyz/p/you-think-global-sql-is-just-crossregion",
+      "url": "https://systemdesignlaws.substack.com/p/you-think-global-sql-is-just-crossregion",
       "description": "Global SQL is not broadcasting writes. It is about time control and coordination&#8230; and most engineers fail because they copy the..."
     }
   ],
