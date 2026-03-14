@@ -26,3 +26,4 @@ jobs:
           grep -q '<div class="recent-list" id="recent-list">' index.html && echo "Recent Issues container OK"
           grep -q 'id="recent-posts-data"' index.html && echo "Inline posts data OK"
           grep -q 'recent-posts.json' index.html && echo "Dynamic fetch OK"
+          grep -q 'id="recent-updated"' index.html && echo "Last updated container OK"

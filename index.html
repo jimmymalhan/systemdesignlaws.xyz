@@ -500,6 +500,13 @@
       line-height: 1.4;
     }
 
+    #recent-updated {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
     /* ── FINAL CTA ── */
     .section--accent .section-heading {
       color: #fff;
@@ -723,6 +730,7 @@
         <h2 class="section-heading reveal">Recent Issues</h2>
         <p class="section-subtitle reveal">A taste of what lands in your inbox.</p>
       </header>
+      <div id="recent-updated"></div>
       <script type="application/json" id="recent-posts-data">{"posts":[{"title":"I Made Claude Prove its hallucination","url":"https://systemdesignlaws.substack.com/p/i-made-claude-prove-its-hallucination","description":"I stopped using 1 clever model and built a local multi-agent debugging workflow that had to earn every answer before I trusted it."},{"title":"Indexes Don't Make Databases Fast","url":"https://systemdesignlaws.substack.com/p/indexes-dont-make-databases-fast","description":"What I learned the hard way is simple. Most read-scaling pain starts with the wrong lookup path, not the wrong database."},{"title":"You Think Global SQL Is Just Cross-Region Writes… It Is Not","url":"https://systemdesignlaws.substack.com/p/you-think-global-sql-is-just-crossregion","description":"Global SQL is not broadcasting writes. It is about time control and coordination… and most engineers fail because they copy the API instead of the model."}]}</script>
       <div class="recent-list" id="recent-list"></div>
       </div>
@@ -763,6 +771,16 @@
       return d.innerHTML;
     }
 
+    function humanizeDate(isoStr) {
+      if (!isoStr || typeof isoStr !== 'string') return '';
+      try {
+        var d = new Date(isoStr);
+        if (isNaN(d.getTime())) return '';
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+      } catch (e) { return ''; }
+    }
+
     function renderPosts(list, posts) {
       if (!list || !posts || posts.length === 0) return false;
       list.innerHTML = posts.map(function(post, i) {
@@ -789,6 +807,11 @@
         .then(function(data) {
           var fetched = Array.isArray(data) ? data : (data.posts || []);
           if (fetched.length > 0) renderPosts(list, fetched);
+          var updatedEl = document.getElementById('recent-updated');
+          if (updatedEl && data && data.updated) {
+            var str = humanizeDate(data.updated);
+            if (str) updatedEl.textContent = 'Updated ' + str;
+          }
         }).catch(function() {});
     })();
   </script>
