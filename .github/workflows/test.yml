@@ -28,5 +28,5 @@ jobs:
           grep -q 'recent-posts.json' index.html && echo "Dynamic fetch OK"
           grep -q 'id="recent-updated"' index.html && echo "Last updated container OK"
           grep -q 'id="subscribe-section"' index.html && echo "Substack email signup section OK"
-          grep -q 'systemdesignlaws.substack.com/subscribe' index.html && echo "Substack subscribe link OK"
+          grep -q 'newsletter.systemdesignlaws.xyz' index.html && echo "Substack subscribe link OK"
           grep -q 'guardrail-issue' index.html && echo "Frontend guardrail fallback OK"

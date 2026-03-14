@@ -122,12 +122,12 @@ class TestIndexHtmlStructure(unittest.TestCase):
         self.assertIn('id="subscribe-section"', html, "Must have subscribe section")
 
     def test_has_subscribe_link_not_iframe_embed(self):
-        """Use direct link to avoid 'substack.com refused to connect' iframe errors."""
+        """Use direct link to newsletter subdomain; no iframe embed (causes refused to connect)."""
         repo_root = Path(__file__).resolve().parent.parent
         html_path = repo_root / "index.html"
         html = html_path.read_text()
-        self.assertIn("systemdesignlaws.substack.com/subscribe", html)
-        self.assertNotIn("systemdesignlaws.substack.com/embed", html, "No iframe embed - causes refused to connect")
+        self.assertIn("newsletter.systemdesignlaws.xyz", html, "Subscribe links must use newsletter subdomain")
+        self.assertNotIn("substack.com/embed", html, "No iframe embed - causes refused to connect")
 
     def test_has_guardrail_fallback(self):
         """Frontend guardrail: show fallback when fetch fails."""

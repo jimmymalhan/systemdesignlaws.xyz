@@ -40,7 +40,8 @@ def parse_rss_to_posts(rss_path: Path, limit: int = LIMIT, desc_max: int = DESC_
         if len(desc) > desc_max:
             desc = desc[: desc_max - 3].rsplit(" ", 1)[0] + "..."
         if title and link:
-            posts.append({"title": title, "url": link, "description": desc or "Read more."})
+            url = link.replace("systemdesignlaws.substack.com", "newsletter.systemdesignlaws.xyz")
+            posts.append({"title": title, "url": url, "description": desc or "Read more."})
     return posts
 
 

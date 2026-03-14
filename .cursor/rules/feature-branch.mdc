@@ -19,5 +19,8 @@ All changes must go through a feature branch, not directly to `main`.
 
 ## When Asked to Make Changes
 
-- If no feature branch exists: create one first, then implement.
-- Suggest branch names when appropriate (e.g., `feature/add-mockup` for landing page work).
+**Always create a new branch first — every single time the user asks for changes.**
+
+1. Before any edits: run `git checkout main` (or `git pull` if needed), then `git checkout -b feature/<descriptive-name>` (or `fix/`, `update/` as appropriate).
+2. Make changes only on the new branch.
+3. Suggest branch names based on the task (e.g., `feature/subscribe-links`, `fix/animations`, `update/hero-section`).
