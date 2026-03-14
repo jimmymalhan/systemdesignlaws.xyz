@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Python tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Validate recent-posts.json schema (if exists)
+        run: |
+          if [ -f recent-posts.json ]; then
+            python3 -c "import json; d=json.load(open('recent-posts.json')); assert 'posts' in d and all('title' in p and 'url' in p and 'description' in p for p in d['posts'])"
+          fi
+
+      - name: Validate index.html structure
+        run: |
+          grep -q '<div class="recent-list" id="recent-list">' index.html && echo "Recent Issues container OK"
+          grep -q 'id="recent-posts-data"' index.html && echo "Inline posts data OK"
+          grep -q 'recent-posts.json' index.html && echo "Dynamic fetch OK"
