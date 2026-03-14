@@ -207,6 +207,25 @@
       border-radius: 50%;
     }
 
+    /* Subscribe embed - emails stored in Substack */
+    .subscribe-embed {
+      margin-top: 24px;
+      width: 100%;
+      max-width: 420px;
+    }
+    .subscribe-embed-label {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+    }
+    .subscribe-iframe {
+      width: 100%;
+      min-height: 120px;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      background: #fff;
+    }
+
     /* ── SECTIONS ── */
     /* Apple-style: each section is a compact card band */
     .section {
@@ -617,6 +636,11 @@
       <span>Biweekly</span>
       <div class="dot"></div>
       <span>2,000+ engineers</span>
+    </div>
+    <!-- Email signup - stored in Substack -->
+    <div class="subscribe-embed reveal reveal-delay-3" id="subscribe-section">
+      <p class="subscribe-embed-label">Get the newsletter - emails stored in your Substack list</p>
+      <iframe src="https://systemdesignlaws.substack.com/embed" class="subscribe-iframe" title="Subscribe to SystemDesignLaws" scrolling="no" frameborder="0"></iframe>
     </div>
   </header>
 

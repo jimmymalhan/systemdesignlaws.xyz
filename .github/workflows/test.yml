@@ -27,3 +27,5 @@ jobs:
           grep -q 'id="recent-posts-data"' index.html && echo "Inline posts data OK"
           grep -q 'recent-posts.json' index.html && echo "Dynamic fetch OK"
           grep -q 'id="recent-updated"' index.html && echo "Last updated container OK"
+          grep -q 'id="subscribe-section"' index.html && echo "Substack email signup section OK"
+          grep -q 'systemdesignlaws.substack.com/embed' index.html && echo "Substack embed iframe OK"
