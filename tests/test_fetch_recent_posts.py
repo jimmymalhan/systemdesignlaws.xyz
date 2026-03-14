@@ -112,5 +112,30 @@ class TestRecentPostsJson(unittest.TestCase):
         )
 
 
+class TestIndexHtmlStructure(unittest.TestCase):
+    """Ensure index.html has required structure (subscribe, guardrails, no broken iframe)."""
+
+    def test_has_subscribe_section(self):
+        repo_root = Path(__file__).resolve().parent.parent
+        html_path = repo_root / "index.html"
+        html = html_path.read_text()
+        self.assertIn('id="subscribe-section"', html, "Must have subscribe section")
+
+    def test_has_subscribe_link_not_iframe_embed(self):
+        """Use direct link to avoid 'substack.com refused to connect' iframe errors."""
+        repo_root = Path(__file__).resolve().parent.parent
+        html_path = repo_root / "index.html"
+        html = html_path.read_text()
+        self.assertIn("systemdesignlaws.substack.com/subscribe", html)
+        self.assertNotIn("systemdesignlaws.substack.com/embed", html, "No iframe embed - causes refused to connect")
+
+    def test_has_guardrail_fallback(self):
+        """Frontend guardrail: show fallback when fetch fails."""
+        repo_root = Path(__file__).resolve().parent.parent
+        html_path = repo_root / "index.html"
+        html = html_path.read_text()
+        self.assertIn("guardrail-issue", html, "Must have guardrail fallback for fetch failures")
+
+
 if __name__ == "__main__":
     unittest.main()

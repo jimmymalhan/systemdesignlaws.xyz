@@ -218,13 +218,28 @@
       color: var(--gray-500);
       margin-bottom: 8px;
     }
-    .subscribe-iframe {
-      width: 100%;
-      min-height: 120px;
-      border: 1px solid var(--gray-200);
-      border-radius: 10px;
-      background: #fff;
+    .subscribe-cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
     }
+    .subscribe-cta:hover { background: var(--accent-dark); }
+
+    .guardrail-issue {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      background: #fff8e6;
+      border: 1px solid #f0d000;
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin-top: 6px;
+    }
+    .guardrail-issue a { color: var(--accent); }
 
     /* ── SECTIONS ── */
     /* Apple-style: each section is a compact card band */
@@ -637,10 +652,12 @@
       <div class="dot"></div>
       <span>2,000+ engineers</span>
     </div>
-    <!-- Email signup - stored in Substack -->
+    <!-- Email signup - links to Substack (no iframe: avoids "refused to connect" from embedding) -->
     <div class="subscribe-embed reveal reveal-delay-3" id="subscribe-section">
       <p class="subscribe-embed-label">Get the newsletter - emails stored in your Substack list</p>
-      <iframe src="https://systemdesignlaws.substack.com/embed" class="subscribe-iframe" title="Subscribe to SystemDesignLaws" scrolling="no" frameborder="0"></iframe>
+      <a href="https://systemdesignlaws.substack.com/subscribe" class="subscribe-cta" target="_blank" rel="noopener noreferrer">
+        Enter email on Substack &rarr;
+      </a>
     </div>
   </header>
 
@@ -827,7 +844,7 @@
       }
       var posts = Array.isArray(data) ? data : (data.posts || []);
       if (renderPosts(list, posts)) { /* inline data used */ }
-      fetch('./recent-posts.json').then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+      fetch('./recent-posts.json').then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('fetch ' + r.status)); })
         .then(function(data) {
           var fetched = Array.isArray(data) ? data : (data.posts || []);
           if (fetched.length > 0) renderPosts(list, fetched);
@@ -836,7 +853,12 @@
             var str = humanizeDate(data.updated);
             if (str) updatedEl.textContent = 'Updated ' + str;
           }
-        }).catch(function() {});
+        }).catch(function(err) {
+          console.warn('[Frontend guardrail] recent-posts.json fetch failed:', err);
+          if (list && !list.querySelector('.recent-item')) {
+            list.innerHTML = '<p class="guardrail-issue">Recent issues could not be loaded. <a href="https://systemdesignlaws.substack.com" target="_blank" rel="noopener">View on Substack</a></p>';
+          }
+        });
     })();
   </script>
 
