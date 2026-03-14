@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    branches: [main, 'feature/**']
+    branches: [main, 'feature/**', 'fix/**']
   pull_request:
     branches: [main]
 
@@ -28,4 +28,5 @@ jobs:
           grep -q 'recent-posts.json' index.html && echo "Dynamic fetch OK"
           grep -q 'id="recent-updated"' index.html && echo "Last updated container OK"
           grep -q 'id="subscribe-section"' index.html && echo "Substack email signup section OK"
-          grep -q 'systemdesignlaws.substack.com/embed' index.html && echo "Substack embed iframe OK"
+          grep -q 'systemdesignlaws.substack.com/subscribe' index.html && echo "Substack subscribe link OK"
+          grep -q 'guardrail-issue' index.html && echo "Frontend guardrail fallback OK"
