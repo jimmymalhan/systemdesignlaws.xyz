@@ -692,6 +692,47 @@
       color: var(--gray-900);
     }
 
+    .about-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .about-content ul {
+      list-style: none;
+      text-align: left;
+      max-width: 480px;
+      margin: 0 auto 12px;
+    }
+
+    .about-content li {
+      padding-left: 1.2em;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .about-content li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .about-content .about-intro {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .about-content .about-note {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      margin-top: 16px;
+    }
+
     /* ── RECENT ISSUES ── */
     .recent-loading {
       color: var(--gray-400);
@@ -1013,9 +1054,40 @@
       </header>
       <div class="about-content reveal">
         <blockquote>
-          "I break down how real systems work at scale - the patterns, the failures, and the laws that every engineer should know."
+          The laws that govern every system at scale.
         </blockquote>
-        <p class="author"><strong>Jimmy Malhan</strong> - Technical Leader &amp; System Design Architect</p>
+        <p>This newsletter breaks down the principles behind how systems at Netflix, Uber, Stripe, and Amazon actually run, not just diagrams, but the mental models that separate junior engineers from senior architects.</p>
+
+        <h3>What you&rsquo;ll learn</h3>
+        <ul>
+          <li>Patterns that scale: Caching, queuing, consensus, sharding, and when each one is the right trade-off</li>
+          <li>How systems fail: Single points of failure, eventual consistency, and where real outages come from</li>
+          <li>What you can apply Monday: One law at a time, with enough depth to use it in design reviews and interviews</li>
+        </ul>
+
+        <h3>Stay up-to-date</h3>
+        <p>Every new issue goes straight to your inbox. You won&rsquo;t have to worry about missing anything.</p>
+
+        <h3>Free subscribers</h3>
+        <ul>
+          <li>One issue every Saturday</li>
+          <li>Focused on core system design laws and how they work in practice</li>
+        </ul>
+
+        <h3>Premium members</h3>
+        <ul>
+          <li>One issue every Saturday</li>
+          <li>Extra deep dives on advanced topics</li>
+          <li>A chance to suggest topics</li>
+        </ul>
+
+        <h3>Expensing the newsletter</h3>
+        <p>Your subscription receipt is emailed as soon as you become a paying member and can be used for expensing at work.</p>
+
+        <h3>FAQ</h3>
+        <p>Refund. Subscriptions include a 30-day money-back guarantee. If it&rsquo;s not right for you, cancel and receive a full refund, no questions asked. For refunds, email <a href="mailto:jimmymalhan999@gmail.com">jimmymalhan999@gmail.com</a>.</p>
+
+        <p class="author"><strong>Jimmy Malhan</strong> &ndash; Technical Leader &amp; System Design Architect</p>
       </div>
       </div>
     </div>
