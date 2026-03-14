@@ -123,7 +123,7 @@ class TestIndexHtmlStructure(unittest.TestCase):
         self.assertIn('id="subscribe-section"', html, "Must have subscribe section")
 
     def test_has_subscribe_link_not_iframe_embed(self):
-        """Use direct link to newsletter subdomain; no iframe embed (causes refused to connect)."""
+        """Subscribe links go to newsletter homepage; no iframe embed (causes refused to connect)."""
         repo_root = Path(__file__).resolve().parent.parent
         html_path = repo_root / "index.html"
         html = html_path.read_text()
@@ -149,8 +149,6 @@ class TestIndexHtmlStructure(unittest.TestCase):
             matches += re.findall(rf'href="([^"]+)"[^>]*class="[^"]*{re.escape(cls)}[^"]*"', html)
             for url in matches:
                 self.assertIn("newsletter.systemdesignlaws.xyz", url, f"{cls} must use newsletter subdomain")
-                if cls in ("nav-cta", "btn-primary", "subscribe-cta", "lock-overlay", "btn-cta"):
-                    self.assertIn("/subscribe", url, f"{cls} must use /subscribe path")
         self.assertIn("newsletter.systemdesignlaws.xyz", html, "At least one subscribe link must exist")
 
 
