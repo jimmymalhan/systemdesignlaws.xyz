@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <rect x="0" y="0" width="900" height="420" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+  <text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">The Request Timeout Problem</text>
+  <!-- Timeline -->
+  <line x1="80" y1="80" x2="80" y2="380" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="70" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Client</text>
+  <line x1="300" y1="80" x2="300" y2="380" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="300" y="70" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">API Server</text>
+  <line x1="550" y1="80" x2="550" y2="380" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="550" y="70" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Heavy Task</text>
+  <!-- Request -->
+  <line x1="80" y1="100" x2="300" y2="120" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="180" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">POST /generate-pdf</text>
+  <!-- Server starts task -->
+  <line x1="300" y1="130" x2="550" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="420" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Start processing</text>
+  <!-- Waiting zone -->
+  <rect x="85" y="120" width="200" height="160" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1" stroke-dasharray="5,5" opacity="0.4"/>
+  <text x="185" y="200" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Client waiting...</text>
+  <text x="185" y="220" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">30s... 45s... 60s...</text>
+  <!-- Timeout -->
+  <rect x="40" y="280" width="200" height="40" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="140" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">504 Gateway Timeout</text>
+  <!-- Task still running -->
+  <rect x="505" y="140" width="90" height="200" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="550" y="245" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Still</text>
+  <text x="550" y="260" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">running...</text>
+  <!-- Result lost -->
+  <rect x="505" y="340" width="90" height="35" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="550" y="362" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Done!</text>
+  <line x1="550" y1="375" x2="300" y2="390" stroke="#1B1B1F" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="420" y="400" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Result lost - no one listening</text>
+  <!-- Key insight -->
+  <rect x="650" y="140" width="220" height="60" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="760" y="165" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">HTTP timeouts: 30-60s</text>
+  <text x="760" y="185" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Task duration: minutes</text>
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

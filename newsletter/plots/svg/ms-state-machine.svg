@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+
+<text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">State Machine: AWS Step Functions</text>
+<text x="450" y="50" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Declarative workflow as JSON state machine. Each state is a step.</text>
+<circle cx="100" cy="100" r="25" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="100" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Start</text>
+<line x1="125" y1="100" x2="180" y2="100" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="180" y="75" width="150" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="255" y="95" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">ProcessPayment</text>
+<text x="255" y="113" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Task (Lambda)</text>
+<line x1="330" y1="100" x2="380" y2="100" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<polygon points="450,75 520,100 450,125 380,100" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="104" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Success?</text>
+<line x1="520" y1="100" x2="570" y2="100" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="545" y="92" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Yes</text>
+<rect x="570" y="75" width="160" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="650" y="95" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">ReserveInventory</text>
+<text x="650" y="113" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Task (Lambda)</text>
+<line x1="450" y1="125" x2="450" y2="170" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="460" y="150" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">No</text>
+<rect x="380" y="170" width="140" height="45" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="197" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">PaymentFailed</text>
+<line x1="650" y1="125" x2="650" y2="170" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="570" y="170" width="160" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="650" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">CreateShipping</text>
+<text x="650" y="208" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Task (Lambda)</text>
+<line x1="650" y1="220" x2="650" y2="260" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="570" y="260" width="160" height="50" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="650" y="280" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">SendConfirmation</text>
+<text x="650" y="298" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Task (Lambda)</text>
+<line x1="650" y1="310" x2="650" y2="345" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<circle cx="650" cy="365" r="20" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="650" y="370" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">End</text>
+<rect x="50" y="260" width="400" height="90" rx="10" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+<text x="250" y="285" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Step Functions Characteristics</text>
+<text x="250" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Declarative JSON workflow. Visual diagram built-in.</text>
+<text x="250" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Serverless. Limits: 1 year max, 256KB state.</text>
+<text x="250" y="335" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Good for AWS-heavy environments.</text>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1B1B1F"/></marker></defs>
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

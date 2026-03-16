@@ -16,7 +16,7 @@ jobs:
 
       - name: Fetch Substack feed and update recent-posts.json
         run: |
-          curl -sL "https://newsletter.systemdesignlaws.xyz/feed" -o feed.xml
+          curl -sL "https://systemdesignlaws.substack.com/feed" -o feed.xml
           python3 .github/scripts/fetch_recent_posts.py
 
       - name: Commit and push if changed

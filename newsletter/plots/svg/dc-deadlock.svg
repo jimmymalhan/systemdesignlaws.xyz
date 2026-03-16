@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-dl" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#D32F2F" stroke="#D32F2F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-dl-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Deadlock: Circular Lock Dependency</text>
+
+  <!-- The problem -->
+  <text x="220" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F" font-weight="bold">The Problem: Unordered Locking</text>
+
+  <!-- Txn A -->
+  <rect x="30" y="75" width="180" height="40" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="120" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Txn A: Alice to Bob</text>
+
+  <!-- Txn B -->
+  <rect x="230" y="75" width="180" height="40" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="320" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Txn B: Bob to Alice</text>
+
+  <!-- Step 1 -->
+  <text x="30" y="140" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">1. Txn A locks Alice row</text>
+  <text x="30" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">2. Txn B locks Bob row</text>
+  <text x="30" y="176" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">3. Txn A tries Bob row... BLOCKED</text>
+  <text x="30" y="194" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">4. Txn B tries Alice row... BLOCKED</text>
+
+  <!-- Circular arrows -->
+  <rect x="30" y="210" width="390" height="65" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="225" y="233" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#D32F2F" font-weight="bold">DEADLOCK: Both wait forever</text>
+  <text x="225" y="255" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">A waits for B, B waits for A</text>
+  <text x="225" y="270" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Neither can proceed without the other releasing</text>
+
+  <!-- The solution -->
+  <text x="670" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">The Fix: Ordered Locking</text>
+
+  <rect x="490" y="75" width="380" height="200" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" opacity="0.3"/>
+
+  <text x="510" y="100" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Rule: Always lock lower ID first</text>
+  <text x="510" y="122" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Alice = user 123, Bob = user 456</text>
+
+  <text x="510" y="150" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Txn A (Alice to Bob):</text>
+  <text x="510" y="168" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">1. Lock user 123 (Alice) first</text>
+  <text x="510" y="184" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">2. Lock user 456 (Bob) second</text>
+
+  <text x="510" y="210" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Txn B (Bob to Alice):</text>
+  <text x="510" y="228" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">1. Lock user 123 (Alice) first</text>
+  <text x="510" y="244" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">2. Lock user 456 (Bob) second</text>
+
+  <text x="510" y="270" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Same order = no circular dependency = no deadlock</text>
+
+  <!-- Fallbacks -->
+  <text x="450" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Fallback Defenses</text>
+
+  <rect x="30" y="320" width="270" height="75" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="165" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Transaction timeouts</text>
+  <text x="165" y="360" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Kill long-waiting txns</text>
+  <text x="165" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Retry with correct ordering</text>
+
+  <rect x="315" y="320" width="270" height="75" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="450" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">DB deadlock detection</text>
+  <text x="450" y="360" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">PostgreSQL/MySQL detect cycles</text>
+  <text x="450" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Abort one txn automatically</text>
+
+  <rect x="600" y="320" width="270" height="75" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="735" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Lock wait timeout</text>
+  <text x="735" y="360" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">innodb_lock_wait_timeout</text>
+  <text x="735" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Bounds worst-case wait time</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

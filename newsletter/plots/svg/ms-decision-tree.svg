@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Decision Tree: Choosing a Multi-step Approach</text>
+
+<!-- Root -->
+<rect x="300" y="55" width="300" height="40" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="80" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">How many steps? Do they need durability?</text>
+
+<!-- Level 1 branches -->
+<line x1="350" y1="95" x2="150" y2="130" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="220" y="110" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">1-2 steps</text>
+
+<line x1="450" y1="95" x2="450" y2="130" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="480" y="118" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">3+ steps, no waits</text>
+
+<line x1="550" y1="95" x2="750" y2="130" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="680" y="110" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Long waits or humans</text>
+
+<!-- Level 1 boxes -->
+<rect x="50" y="135" width="200" height="50" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="150" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Message Queue</text>
+<text x="150" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Simple async. No orchestration.</text>
+
+<rect x="340" y="135" width="220" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Need fault tolerance?</text>
+
+<rect x="640" y="135" width="220" height="50" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="750" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Workflow Engine</text>
+<text x="750" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Temporal, Step Functions</text>
+
+<!-- Level 2 from "Need fault tolerance?" -->
+<line x1="400" y1="185" x2="250" y2="220" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="290" y="205" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">No</text>
+
+<line x1="500" y1="185" x2="600" y2="220" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="560" y="205" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Yes</text>
+
+<rect x="140" y="225" width="220" height="50" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="250" y="247" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Single-Server Orchestrator</text>
+<text x="250" y="265" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Sequential calls, simple error handling</text>
+
+<rect x="500" y="225" width="220" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="610" y="247" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Need audit trail?</text>
+
+<!-- Level 3 -->
+<line x1="560" y1="275" x2="400" y2="310" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="450" y="295" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">No</text>
+
+<line x1="660" y1="275" x2="720" y2="310" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="700" y="295" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Yes</text>
+
+<rect x="290" y="315" width="220" height="50" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="400" y="337" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Saga with Compensation</text>
+<text x="400" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Orchestrated rollback on failure</text>
+
+<rect x="600" y="315" width="250" height="50" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="725" y="337" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Event Sourcing / Workflow</text>
+<text x="725" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Full history, replay, durable execution</text>
+
+<!-- Legend -->
+<rect x="40" y="380" width="240" height="25" rx="4" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="55" y="397" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Start simple. Escalate when you need it.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

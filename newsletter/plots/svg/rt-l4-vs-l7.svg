@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect width="800" height="440" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">L4 vs L7 Load Balancer</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="55" x2="400" y2="420" stroke="#dddddd" stroke-width="1.5"/>
+
+  <!-- L4 header -->
+  <rect x="40" y="60" width="330" height="44" rx="8" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="205" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="bold" fill="#1a1a1a" text-anchor="middle">L4 Load Balancer (TCP)</text>
+
+  <!-- L7 header -->
+  <rect x="430" y="60" width="330" height="44" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="595" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="bold" fill="#1a1a1a" text-anchor="middle">L7 Load Balancer (HTTP)</text>
+
+  <!-- L4 properties -->
+  <rect x="40" y="118" width="330" height="190" rx="6" fill="#f9f9f9" stroke="#cccccc" stroke-width="1"/>
+  <text x="60" y="144" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">How it works:</text>
+  <text x="60" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">Routes by IP + TCP port only</text>
+  <text x="60" y="181" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">Passes TCP stream through opaque</text>
+  <text x="60" y="199" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">Persistent connections pinned to backend</text>
+  <text x="60" y="217" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">Cannot inspect HTTP headers or URL</text>
+  <text x="60" y="243" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">Good for:</text>
+  <text x="60" y="262" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60">WebSocket (same-server sticky)</text>
+  <text x="60" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60">SSE persistent connections</text>
+  <text x="60" y="298" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60">Low overhead, high throughput</text>
+
+  <!-- L7 properties -->
+  <rect x="430" y="118" width="330" height="190" rx="6" fill="#f9f9f9" stroke="#cccccc" stroke-width="1"/>
+  <text x="450" y="144" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">How it works:</text>
+  <text x="450" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">Terminates TCP, reads HTTP headers</text>
+  <text x="450" y="181" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">Routes by URL path, headers, cookies</text>
+  <text x="450" y="199" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">Opens new connection to backend</text>
+  <text x="450" y="217" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">Inspects and rewrites requests</text>
+  <text x="450" y="243" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">Good for:</text>
+  <text x="450" y="262" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60">HTTP polling (stateless, round-robin)</text>
+  <text x="450" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60">REST APIs, canary deployments</text>
+  <text x="450" y="298" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#c0392b">Poor for WebSocket (breaks upgrades)</text>
+
+  <!-- L4 diagram -->
+  <rect x="60" y="325" width="80" height="34" rx="5" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="100" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Client</text>
+  <line x1="140" y1="342" x2="185" y2="342" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="185" y="325" width="70" height="34" rx="5" fill="#fdf8e8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="220" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" text-anchor="middle">L4 LB</text>
+  <line x1="255" y1="342" x2="300" y2="342" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="300" y="325" width="60" height="34" rx="5" fill="#e8fde8" stroke="#4ab54a" stroke-width="1.5"/>
+  <text x="330" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Server A</text>
+  <text x="205" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">TCP passthrough - pinned</text>
+
+  <!-- L7 diagram -->
+  <rect x="450" y="325" width="80" height="34" rx="5" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="490" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Client</text>
+  <line x1="530" y1="342" x2="575" y2="342" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="575" y="325" width="70" height="34" rx="5" fill="#fdf8e8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="610" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" text-anchor="middle">L7 LB</text>
+  <line x1="645" y1="330" x2="690" y2="320" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="645" y1="354" x2="690" y2="364" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="690" y="308" width="60" height="24" rx="4" fill="#e8fde8" stroke="#4ab54a" stroke-width="1.5"/>
+  <text x="720" y="324" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Srv A</text>
+  <rect x="690" y="352" width="60" height="24" rx="4" fill="#e8fde8" stroke="#4ab54a" stroke-width="1.5"/>
+  <text x="720" y="368" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Srv B</text>
+  <text x="600" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">Terminates + re-routes</text>
+</svg>

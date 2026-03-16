@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+  </defs>
+  <rect width="800" height="460" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">WebSocket + L4 Load Balancer</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">L4 LB passes TCP through — persistent connections pin clients to specific backends</text>
+
+  <!-- L4 LB box -->
+  <rect x="330" y="75" width="140" height="60" rx="8" fill="#fdf8e8" stroke="#d4a017" stroke-width="2.5"/>
+  <text x="400" y="101" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">L4 Load Balancer</text>
+  <text x="400" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">TCP passthrough</text>
+  <text x="400" y="131" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">Least connections routing</text>
+
+  <!-- Backend Server A -->
+  <rect x="590" y="75" width="150" height="130" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="665" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Server A</text>
+  <text x="665" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">2 connections</text>
+  <rect x="605" y="126" width="120" height="22" rx="4" fill="#c8f0c8" stroke="#4ab54a" stroke-width="1"/>
+  <text x="665" y="141" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" text-anchor="middle">ws: Client 1 (pinned)</text>
+  <rect x="605" y="153" width="120" height="22" rx="4" fill="#c8f0c8" stroke="#4ab54a" stroke-width="1"/>
+  <text x="665" y="168" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" text-anchor="middle">ws: Client 2 (pinned)</text>
+  <text x="665" y="196" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">in-memory state OK</text>
+
+  <!-- Backend Server B -->
+  <rect x="590" y="225" width="150" height="130" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="665" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Server B</text>
+  <text x="665" y="268" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">1 connection</text>
+  <rect x="605" y="276" width="120" height="22" rx="4" fill="#c8f0c8" stroke="#4ab54a" stroke-width="1"/>
+  <text x="665" y="291" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" text-anchor="middle">ws: Client 3 (pinned)</text>
+  <text x="665" y="338" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">(slot available)</text>
+
+  <!-- New connection routing -->
+  <rect x="590" y="370" width="150" height="50" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="665" y="393" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" text-anchor="middle">Client 4 → Server B</text>
+  <text x="665" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">(least connections)</text>
+
+  <!-- Clients on left -->
+  <rect x="50" y="90" width="90" height="30" rx="5" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="95" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Client 1</text>
+
+  <rect x="50" y="135" width="90" height="30" rx="5" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="95" y="155" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Client 2</text>
+
+  <rect x="50" y="248" width="90" height="30" rx="5" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="95" y="268" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Client 3</text>
+
+  <rect x="50" y="380" width="90" height="30" rx="5" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="95" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" text-anchor="middle">Client 4</text>
+  <text x="95" y="415" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">(new)</text>
+
+  <!-- Arrows: clients to LB -->
+  <line x1="140" y1="105" x2="328" y2="105" stroke="#4a90d9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <line x1="140" y1="150" x2="328" y2="115" stroke="#4a90d9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <line x1="140" y1="263" x2="328" y2="120" stroke="#4a90d9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <line x1="140" y1="395" x2="328" y2="130" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-blue)"/>
+
+  <!-- Arrows: LB to servers -->
+  <line x1="470" y1="105" x2="588" y2="120" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="528" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle">pinned TCP</text>
+  <line x1="470" y1="115" x2="588" y2="145" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <line x1="470" y1="120" x2="588" y2="270" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <line x1="470" y1="130" x2="588" y2="395" stroke="#2980b9" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow-green)"/>
+  <text x="528" y="175" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle">least conn</text>
+
+  <!-- Annotation -->
+  <rect x="50" y="425" width="700" height="25" rx="6" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="441" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">Problem: messages for Client 1 from Server B must cross to Server A — solved by Pub/Sub (see next diagram)</text>
+</svg>

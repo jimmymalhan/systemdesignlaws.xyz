@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <rect x="0" y="0" width="900" height="420" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+  <text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Priority Queues for Mixed Workloads</text>
+  <!-- Incoming tasks -->
+  <rect x="30" y="100" width="160" height="220" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="110" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Incoming Tasks</text>
+  <rect x="45" y="140" width="130" height="25" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="110" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">User PDF export</text>
+  <rect x="45" y="175" width="130" height="25" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="110" y="192" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Bulk report gen</text>
+  <rect x="45" y="210" width="130" height="25" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="110" y="227" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Payment receipt</text>
+  <rect x="45" y="245" width="130" height="25" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="110" y="262" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Video transcode</text>
+  <rect x="45" y="280" width="130" height="25" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="110" y="297" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Password reset</text>
+  <!-- Router -->
+  <rect x="240" y="170" width="110" height="70" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="295" y="200" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Router</text>
+  <text x="295" y="220" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">classify priority</text>
+  <line x1="190" y1="205" x2="238" y2="205" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Priority queues -->
+  <rect x="410" y="70" width="200" height="55" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="510" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">High Priority</text>
+  <text x="510" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Password reset, payment receipt</text>
+  <rect x="410" y="145" width="200" height="55" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="510" y="167" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Normal Priority</text>
+  <text x="510" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">User PDF export</text>
+  <rect x="410" y="220" width="200" height="55" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="510" y="242" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Low Priority</text>
+  <text x="510" y="265" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Bulk report, video transcode</text>
+  <!-- Router to queues -->
+  <line x1="350" y1="185" x2="408" y2="97" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="350" y1="205" x2="408" y2="172" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="350" y1="225" x2="408" y2="247" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Workers -->
+  <rect x="680" y="70" width="180" height="55" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="770" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Dedicated Workers (4)</text>
+  <text x="770" y="112" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">always serve high first</text>
+  <rect x="680" y="145" width="180" height="55" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="770" y="167" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Shared Workers (4)</text>
+  <text x="770" y="187" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">high > normal > low</text>
+  <rect x="680" y="220" width="180" height="55" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="770" y="242" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Batch Workers (2)</text>
+  <text x="770" y="262" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">low priority only</text>
+  <!-- Queue to worker arrows -->
+  <line x1="610" y1="97" x2="678" y2="97" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="610" y1="172" x2="678" y2="172" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="610" y1="247" x2="678" y2="247" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Starvation warning -->
+  <rect x="100" y="340" width="700" height="60" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="365" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Watch for starvation: low-priority tasks never run if high-priority queue is always full</text>
+  <text x="450" y="385" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Solution: dedicated worker pools per priority, or weighted fair scheduling</text>
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

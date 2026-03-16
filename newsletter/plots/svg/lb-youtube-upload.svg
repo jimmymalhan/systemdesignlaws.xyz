@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">YouTube Upload Pipeline</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">500+ hours of video uploaded per minute, processed asynchronously</text>
+
+<!-- Phase 1: Upload -->
+<text x="100" y="78" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Phase 1: Upload</text>
+
+<rect x="40" y="90" width="120" height="45" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="100" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Creator uploads</text>
+
+<line x1="160" y1="112" x2="190" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="195" y="85" width="140" height="55" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="265" y="107" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Resumable Upload</text>
+<text x="265" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">256KB chunks</text>
+<text x="265" y="137" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Resume on failure</text>
+
+<line x1="335" y1="112" x2="365" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="370" y="90" width="120" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="430" y="110" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">GCS</text>
+<text x="430" y="127" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Raw file stored</text>
+
+<!-- Phase 2: Process -->
+<text x="650" y="78" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Phase 2: Process</text>
+
+<line x1="490" y1="112" x2="530" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="535" y="85" width="120" height="55" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="595" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Transcode</text>
+<text x="595" y="122" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">1080p, 720p, 480p</text>
+<text x="595" y="135" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">HLS segments</text>
+
+<line x1="655" y1="112" x2="695" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="700" y="85" width="160" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="780" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Post-processing</text>
+<text x="780" y="122" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Thumbnails, captions</text>
+<text x="780" y="135" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Content moderation</text>
+
+<!-- Phase 3: Serve -->
+<text x="450" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Phase 3: Serve</text>
+
+<rect x="200" y="190" width="130" height="45" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="265" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">CDN Edge</text>
+<text x="265" y="227" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Global distribution</text>
+
+<line x1="330" y1="212" x2="370" y2="212" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="375" y="190" width="150" height="45" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Adaptive Bitrate</text>
+<text x="450" y="227" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Auto quality switch</text>
+
+<line x1="525" y1="212" x2="565" y2="212" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="570" y="190" width="130" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="635" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Viewer</text>
+<text x="635" y="227" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Seamless playback</text>
+
+<!-- Scale numbers -->
+<rect x="40" y="260" width="400" height="90" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="240" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">YouTube Scale</text>
+<text x="60" y="302" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">500+ hours uploaded per minute</text>
+<text x="60" y="320" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">1 billion hours watched per day</text>
+<text x="60" y="338" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Each video: 3-5 resolution variants</text>
+
+<!-- Key patterns -->
+<rect x="470" y="260" width="390" height="90" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="665" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Patterns Used</text>
+<text x="490" y="302" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Resumable upload (Google protocol)</text>
+<text x="490" y="320" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Event-driven transcode pipeline</text>
+<text x="490" y="338" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">CDN with adaptive bitrate streaming</text>
+
+<!-- Bottom -->
+<rect x="100" y="370" width="700" height="30" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="390" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Upload is fast. Processing is async. Serving is CDN-cached. Three separate concerns.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

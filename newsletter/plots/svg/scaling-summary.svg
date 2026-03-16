@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="arwUp" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
+      <path d="M0,8 L4,0 L8,8 Z" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="420" y="28" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Scaling Reads: Complete Strategy Stack</text>
+
+  <!-- Layer 1: Indexing (blue) -->
+  <rect x="60" y="48" width="680" height="58" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="72" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Layer 1: Indexing + Denormalization</text>
+  <text x="80" y="92" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">B-tree indexes on hot columns. Denormalize joins into single reads. Composite indexes for multi-column queries.</text>
+  <!-- Capacity badge -->
+  <rect x="600" y="58" width="120" height="28" rx="14" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="660" y="77" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1565C0">~10K RPS</text>
+
+  <!-- Layer 2: Read Replicas (orange) -->
+  <rect x="60" y="118" width="680" height="58" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="142" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Layer 2: Read Replicas</text>
+  <text x="80" y="162" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">WAL-based async replication. Route reads to replicas, writes to primary. Add N replicas = Nx throughput.</text>
+  <rect x="600" y="128" width="120" height="28" rx="14" fill="#FFFFFF" stroke="#E65100" stroke-width="1.5"/>
+  <text x="660" y="147" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#E65100">Nx throughput</text>
+
+  <!-- Layer 3: Sharding (yellow-ish) -->
+  <rect x="60" y="188" width="680" height="58" rx="8" fill="#FFFDE7" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="212" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Layer 3: Sharding</text>
+  <text x="80" y="232" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Partition data by key (user_id, geo). Each shard is independent DB. Enables horizontal data growth.</text>
+  <rect x="600" y="198" width="120" height="28" rx="14" fill="#FFFFFF" stroke="#F9A825" stroke-width="1.5"/>
+  <text x="660" y="217" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#F9A825">Split data</text>
+
+  <!-- Layer 4: Redis Cache (green) -->
+  <rect x="60" y="258" width="680" height="58" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="282" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Layer 4: Redis / Memcached Cache</text>
+  <text x="80" y="302" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">In-memory key-value store. Cache hot queries, sessions, computed feeds. TTL-based invalidation.</text>
+  <rect x="600" y="268" width="120" height="28" rx="14" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="660" y="287" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#2E7D32">~1ms reads</text>
+
+  <!-- Layer 5: CDN (cyan) -->
+  <rect x="60" y="328" width="680" height="58" rx="8" fill="#E0F7FA" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="352" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Layer 5: CDN (Content Delivery Network)</text>
+  <text x="80" y="372" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Edge caching worldwide. Static assets, API responses, pre-rendered pages. Closest to the user.</text>
+  <rect x="600" y="338" width="120" height="28" rx="14" fill="#FFFFFF" stroke="#00838F" stroke-width="1.5"/>
+  <text x="660" y="357" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#00838F">90% offload</text>
+
+  <!-- Right side: Complexity arrow -->
+  <line x1="780" y1="368" x2="780" y2="60" stroke="#1B1B1F" stroke-width="2.5" marker-end="url(#arwUp)"/>
+  <text x="790" y="220" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F" transform="rotate(-90 790 220)">Increasing Complexity</text>
+
+  <!-- Cost labels on right -->
+  <text x="840" y="82" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Free</text>
+  <text x="840" y="152" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">$$</text>
+  <text x="840" y="222" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">$$$</text>
+  <text x="840" y="292" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">$$</text>
+  <text x="840" y="362" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">$$</text>
+
+  <!-- Bottom note -->
+  <text x="420" y="405" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Start at Layer 1 (free). Only add layers when the previous one is exhausted.</text>
+
+  <!-- Watermark -->
+  <text x="878" y="409" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

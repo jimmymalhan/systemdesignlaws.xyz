@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <filter id="shadow2">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3fb950"/>
+    </marker>
+    <marker id="arrYellow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d29922"/>
+    </marker>
+    <marker id="arrCyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg2)"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#e6edf3">Cache-Aside (Lazy Loading) Pattern</text>
+  <text x="400" y="56" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">Application manages cache population on read -- the most common caching strategy</text>
+
+  <!-- Application box (center) -->
+  <rect x="310" y="100" width="180" height="65" rx="12" fill="rgba(88,166,255,0.15)" stroke="#58a6ff" stroke-width="2" filter="url(#shadow2)"/>
+  <text x="400" y="130" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#58a6ff">Application</text>
+  <text x="400" y="150" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Orchestrates read path</text>
+
+  <!-- Cache box (left) -->
+  <rect x="60" y="220" width="160" height="65" rx="12" fill="rgba(63,185,80,0.15)" stroke="#3fb950" stroke-width="2" filter="url(#shadow2)"/>
+  <text x="140" y="250" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#3fb950">Cache</text>
+  <text x="140" y="268" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Redis / Memcached</text>
+
+  <!-- Database box (right) -->
+  <rect x="580" y="220" width="160" height="65" rx="12" fill="rgba(248,81,73,0.15)" stroke="#f85149" stroke-width="2" filter="url(#shadow2)"/>
+  <text x="660" y="250" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f85149">Database</text>
+  <text x="660" y="268" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Source of truth</text>
+
+  <!-- Step 1: App checks cache -->
+  <path d="M 330 165 Q 240 190 200 218" stroke="#58a6ff" stroke-width="2" fill="none" marker-end="url(#arrCyan)"/>
+  <rect x="210" y="178" width="90" height="22" rx="11" fill="rgba(88,166,255,0.2)" stroke="rgba(88,166,255,0.4)" stroke-width="1"/>
+  <text x="255" y="193" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#58a6ff">1. Check</text>
+
+  <!-- CACHE HIT path (green, fast) -->
+  <rect x="30" y="310" width="200" height="120" rx="10" fill="rgba(63,185,80,0.06)" stroke="rgba(63,185,80,0.2)" stroke-width="1"/>
+  <text x="130" y="332" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#3fb950">CACHE HIT (Fast Path)</text>
+  <text x="130" y="354" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Data found in cache.</text>
+  <text x="130" y="372" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Return immediately.</text>
+  <rect x="80" y="385" width="100" height="22" rx="11" fill="rgba(63,185,80,0.2)"/>
+  <text x="130" y="400" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#3fb950">Latency: ~1 ms</text>
+
+  <!-- Arrow from cache to hit box -->
+  <path d="M 140 285 L 140 308" stroke="#3fb950" stroke-width="2" marker-end="url(#arrGreen)"/>
+  <text x="155" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#3fb950">HIT</text>
+
+  <!-- CACHE MISS path -->
+  <rect x="280" y="310" width="480" height="120" rx="10" fill="rgba(210,153,34,0.06)" stroke="rgba(210,153,34,0.2)" stroke-width="1"/>
+  <text x="520" y="332" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#d29922">CACHE MISS (Slow Path)</text>
+
+  <!-- Miss flow steps -->
+  <!-- Step 2: Miss detected -->
+  <rect x="295" y="348" width="110" height="34" rx="8" fill="rgba(210,153,34,0.15)" stroke="rgba(210,153,34,0.4)" stroke-width="1"/>
+  <text x="350" y="369" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#d29922">2. Miss</text>
+
+  <!-- Step 3: Fetch from DB -->
+  <rect x="425" y="348" width="110" height="34" rx="8" fill="rgba(248,81,73,0.15)" stroke="rgba(248,81,73,0.4)" stroke-width="1"/>
+  <text x="480" y="369" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#f85149">3. Fetch DB</text>
+
+  <!-- Step 4: Store in cache -->
+  <rect x="555" y="348" width="110" height="34" rx="8" fill="rgba(63,185,80,0.15)" stroke="rgba(63,185,80,0.4)" stroke-width="1"/>
+  <text x="610" y="369" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#3fb950">4. Store Cache</text>
+
+  <!-- Arrows between miss steps -->
+  <line x1="405" y1="365" x2="423" y2="365" stroke="#d29922" stroke-width="1.5" marker-end="url(#arrYellow)"/>
+  <line x1="535" y1="365" x2="553" y2="365" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrGreen)"/>
+
+  <rect x="435" y="396" width="130" height="22" rx="11" fill="rgba(210,153,34,0.2)"/>
+  <text x="500" y="411" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#d29922">Latency: 5-50 ms</text>
+
+  <!-- Step 2: App fetches from DB on miss -->
+  <path d="M 470 165 Q 560 190 610 218" stroke="#d29922" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arrYellow)"/>
+  <rect x="510" y="178" width="90" height="22" rx="11" fill="rgba(210,153,34,0.2)" stroke="rgba(210,153,34,0.4)" stroke-width="1"/>
+  <text x="555" y="193" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#d29922">On miss</text>
+
+  <!-- Bottom annotation -->
+  <text x="400" y="445" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#484f58">Cache-aside is the default choice for read-heavy workloads -- simple to implement, works with any database</text>
+</svg>

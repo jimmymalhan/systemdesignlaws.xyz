@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">LSM-Tree vs B-Tree</text>
+  <text x="450" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Append-Only Storage for Maximum Write Speed</text>
+  <rect x="30" y="80" width="140" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="100.0" y="110.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Write</text>
+  <line x1="170" y1="105" x2="220" y2="105" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="220" y="80" width="160" height="50" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="300.0" y="102.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">MemTable</text>
+  <text x="300.0" y="120.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">In-Memory</text>
+  <line x1="380" y1="105" x2="430" y2="105" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="430" y="80" width="140" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="500.0" y="102.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">SSTable L0</text>
+  <text x="500.0" y="120.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Flush to disk</text>
+  <rect x="430" y="160" width="140" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="500.0" y="190.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">SSTable L1</text>
+  <rect x="430" y="230" width="140" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="500.0" y="260.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">SSTable L2</text>
+  <line x1="500" y1="130" x2="500" y2="160" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="500" y1="210" x2="500" y2="230" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="600" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#555">Compaction</text>
+  <rect x="30" y="170" width="350" height="100" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="205.0" y="225.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">B-Tree (Traditional)</text>
+  <text x="205" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Random writes: find page, update in-place</text>
+  <text x="205" y="230" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Lock page during write</text>
+  <text x="205" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#B71C1C">~1,000 writes/sec</text>
+  <rect x="30" y="300" width="350" height="80" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="205.0" y="345.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">LSM-Tree (Cassandra, LevelDB)</text>
+  <text x="205" y="335" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Sequential append: no seeking</text>
+  <text x="205" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">No locks on write path</text>
+  <text x="205" y="370" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">~10,000+ writes/sec</text>
+  <rect x="430" y="310" width="440" height="70" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="650.0" y="350.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Trade-off</text>
+  <text x="650" y="345" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Reads check multiple SSTables (slower)</text>
+  <text x="650" y="365" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Compaction uses background I/O</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

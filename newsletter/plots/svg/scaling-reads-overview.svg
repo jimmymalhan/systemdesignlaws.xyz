@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ov" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Scaling Reads: Three-Tier Progression</text>
+
+  <!-- Step labels at top -->
+  <text x="155" y="58" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#999">Step 1</text>
+  <text x="450" y="58" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#999">Step 2</text>
+  <text x="745" y="58" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#999">Step 3</text>
+
+  <!-- Tier 1: Optimize DB (blue) -->
+  <rect x="35" y="70" width="245" height="310" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="157" y="98" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Tier 1: Optimize DB</text>
+
+  <!-- Tier 1 items -->
+  <rect x="60" y="115" width="195" height="35" rx="5" fill="#D0E8FA" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="157" y="138" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Indexing</text>
+
+  <rect x="60" y="160" width="195" height="35" rx="5" fill="#D0E8FA" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="157" y="183" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Better Hardware</text>
+
+  <rect x="60" y="205" width="195" height="35" rx="5" fill="#D0E8FA" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="157" y="228" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Denormalize</text>
+
+  <text x="157" y="270" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#666" font-style="italic">1K - 10K RPS</text>
+
+  <!-- Arrow Tier 1 to Tier 2 -->
+  <path d="M285,190 C300,189 315,188 330,187" stroke="#1B1B1F" stroke-width="2.5" fill="none" marker-end="url(#arr-ov)"/>
+
+  <!-- Tier 2: Scale Horizontally (orange) -->
+  <rect x="335" y="70" width="230" height="310" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="98" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Tier 2: Scale Out</text>
+
+  <rect x="360" y="115" width="180" height="35" rx="5" fill="#FFE0B2" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="450" y="138" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Read Replicas</text>
+
+  <rect x="360" y="160" width="180" height="35" rx="5" fill="#FFE0B2" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="450" y="183" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Sharding</text>
+
+  <text x="450" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#666" font-style="italic">10K - 100K RPS</text>
+
+  <!-- Arrow Tier 2 to Tier 3 -->
+  <path d="M570,190 C585,189 600,188 620,187" stroke="#1B1B1F" stroke-width="2.5" fill="none" marker-end="url(#arr-ov)"/>
+
+  <!-- Tier 3: Add Caching (green) -->
+  <rect x="625" y="70" width="245" height="310" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="747" y="98" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Tier 3: Caching</text>
+
+  <rect x="650" y="115" width="195" height="35" rx="5" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="747" y="138" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Redis / Memcached</text>
+
+  <rect x="650" y="160" width="195" height="35" rx="5" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="747" y="183" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">CDN</text>
+
+  <text x="747" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#666" font-style="italic">100K - 1M+ RPS</text>
+
+  <!-- Bottom progression arrow -->
+  <path d="M75,400 C200,398 400,395 450,394 C500,393 700,390 845,388" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-ov)" stroke-dasharray="8,5"/>
+  <text x="450" y="410" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Scale as traffic grows</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

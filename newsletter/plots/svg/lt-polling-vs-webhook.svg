@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Polling vs Webhook Notification</text>
+
+<!-- Polling side -->
+<text x="225" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Polling</text>
+
+<rect x="40" y="80" width="100" height="35" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="90" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Client</text>
+
+<rect x="280" y="80" width="100" height="35" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="330" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Server</text>
+
+<!-- Polling arrows -->
+<line x1="140" y1="90" x2="275" y2="90" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="207" y="86" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">GET /status?</text>
+<line x1="275" y1="95" x2="140" y2="95" stroke="#1B1B1F" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+<text x="207" y="106" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">pending...</text>
+
+<line x1="140" y1="120" x2="275" y2="120" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="207" y="116" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">GET /status?</text>
+<line x1="275" y1="125" x2="140" y2="125" stroke="#1B1B1F" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+<text x="207" y="136" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">pending...</text>
+
+<line x1="140" y1="150" x2="275" y2="150" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="207" y="146" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">GET /status?</text>
+<line x1="275" y1="155" x2="140" y2="155" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="207" y="166" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#E65100">complete!</text>
+
+<!-- Webhook side -->
+<text x="675" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Webhook</text>
+
+<rect x="490" y="80" width="100" height="35" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="540" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Client</text>
+
+<rect x="730" y="80" width="100" height="35" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="780" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Server</text>
+
+<line x1="590" y1="90" x2="725" y2="90" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="658" y="86" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">POST /submit + callback_url</text>
+<line x1="725" y1="95" x2="590" y2="95" stroke="#1B1B1F" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+<text x="658" y="106" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">202 Accepted</text>
+
+<text x="658" y="132" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F" opacity="0.5">(server processing...)</text>
+
+<line x1="725" y1="145" x2="590" y2="145" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="658" y="160" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#E65100">POST callback_url {result}</text>
+
+<!-- Comparison table -->
+<rect x="40" y="195" width="400" height="130" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="240" y="218" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Polling</text>
+<text x="60" y="240" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">+ Simple. Works with browsers, mobile.</text>
+<text x="60" y="258" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">+ No inbound connections needed.</text>
+<text x="60" y="276" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Wasted requests while waiting.</text>
+<text x="60" y="294" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Delay between polls = stale data.</text>
+<text x="60" y="312" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- N clients x M polls = load on server.</text>
+
+<rect x="460" y="195" width="400" height="130" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="660" y="218" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Webhook</text>
+<text x="480" y="240" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">+ Instant notification on completion.</text>
+<text x="480" y="258" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">+ No wasted requests.</text>
+<text x="480" y="276" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Receiver must have public endpoint.</text>
+<text x="480" y="294" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Must handle retries, idempotency.</text>
+<text x="480" y="312" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Security: verify HMAC signatures.</text>
+
+<!-- Recommendation -->
+<rect x="100" y="345" width="700" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="367" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Interview Default</text>
+<text x="450" y="387" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Submit-and-poll for client-facing. Webhook for server-to-server. Both need idempotency.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

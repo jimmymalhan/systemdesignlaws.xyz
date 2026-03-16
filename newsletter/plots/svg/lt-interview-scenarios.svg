@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Interview Scenarios: Long-Running Tasks</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Common problems and which patterns to apply</text>
+
+<!-- Scenario 1 -->
+<rect x="40" y="70" width="260" height="100" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="170" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Video Transcoding</text>
+<text x="60" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Queue + GPU workers</text>
+<text x="60" y="128" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Priority queues, auto-scaling</text>
+<text x="60" y="144" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Progress tracking, webhook</text>
+<text x="60" y="162" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">YouTube, TikTok</text>
+
+<!-- Scenario 2 -->
+<rect x="320" y="70" width="260" height="100" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">PDF/Report Generation</text>
+<text x="340" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Queue + worker pool</text>
+<text x="340" y="128" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Submit-and-poll or email</text>
+<text x="340" y="144" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Store result in S3</text>
+<text x="340" y="162" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Financial reports, invoices</text>
+
+<!-- Scenario 3 -->
+<rect x="600" y="70" width="260" height="100" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="730" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Data Export</text>
+<text x="620" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Queue + streaming worker</text>
+<text x="620" y="128" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Chunked writes to S3</text>
+<text x="620" y="144" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Email download link</text>
+<text x="620" y="162" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">GDPR export, analytics</text>
+
+<!-- Scenario 4 -->
+<rect x="40" y="190" width="260" height="100" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="170" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Image Processing</text>
+<text x="60" y="232" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Queue + auto-scaled workers</text>
+<text x="60" y="248" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Thumbnail generation pipeline</text>
+<text x="60" y="264" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Event-driven from S3 upload</text>
+<text x="60" y="282" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Instagram, Slack uploads</text>
+
+<!-- Scenario 5 -->
+<rect x="320" y="190" width="260" height="100" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Batch Notifications</text>
+<text x="340" y="232" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Rate-limited worker pool</text>
+<text x="340" y="248" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Backpressure on email API</text>
+<text x="340" y="264" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Dead letter for bounces</text>
+<text x="340" y="282" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Marketing campaigns</text>
+
+<!-- Common pattern -->
+<rect x="40" y="315" width="820" height="60" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="337" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Every Scenario Uses the Same Core Pattern</text>
+<text x="450" y="357" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">1. Accept (return job_id) 2. Queue 3. Worker processes 4. Update status 5. Notify</text>
+<text x="450" y="370" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Differentiate by: processing type, notification method, scaling strategy, and failure handling</text>
+
+<!-- Bottom tip -->
+<rect x="150" y="390" width="600" height="25" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="407" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Start with submit-and-poll. Add complexity only when the scenario demands it.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

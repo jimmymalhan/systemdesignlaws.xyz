@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+
+<text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Workflow Versioning: Updating Running Workflows</text>
+<text x="450" y="50" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">10,000 running loan workflows. You need to add a compliance check. How?</text>
+<rect x="50" y="75" width="380" height="130" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="240" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Option 1: Version Deployment</text>
+<text x="240" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Deploy V2 alongside V1.</text>
+<text x="240" y="138" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Old workflows continue on V1.</text>
+<text x="240" y="156" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">New workflows start on V2.</text>
+<text x="240" y="176" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Simple. Safe. No immediate effect on running.</text>
+<text x="240" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F" opacity="0.6">Downside: change does not apply to existing workflows</text>
+<rect x="470" y="75" width="380" height="130" rx="10" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="660" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Option 2: Workflow Patching</text>
+<text x="660" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Temporal: embed patch conditional.</text>
+<text x="660" y="138" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">if patched("add-compliance"):</text>
+<text x="660" y="156" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">    run complianceCheck()</text>
+<text x="660" y="176" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Already-past workflows: skip. New: run.</text>
+<text x="660" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F" opacity="0.6">Deterministic replay preserved</text>
+<rect x="50" y="230" width="380" height="80" rx="10" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="240" y="255" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Step Functions Versioning</text>
+<text x="240" y="275" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Update state machine definition.</text>
+<text x="240" y="292" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Existing executions follow old path.</text>
+<text x="240" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">New executions follow new definition.</text>
+<rect x="470" y="230" width="380" height="80" rx="10" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+<text x="660" y="255" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Interview Tip</text>
+<text x="660" y="275" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Show awareness of this problem.</text>
+<text x="660" y="292" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Mention version deployment as safe default.</text>
+<text x="660" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Mention patching for Temporal deep-dive.</text>
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

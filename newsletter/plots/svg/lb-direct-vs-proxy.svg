@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-dvp" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-dvp-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#D32F2F" stroke="#D32F2F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-dvp-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Direct Upload vs Proxy Upload</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="50" x2="450" y2="400" stroke="#DDD" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="225" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F" font-weight="bold">Proxy (Bad)</text>
+  <text x="675" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">Direct (Good)</text>
+
+  <!-- LEFT: Proxy path -->
+  <rect x="30" y="100" width="100" height="45" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Client</text>
+
+  <path d="M130,122 L178,122" stroke="#D32F2F" stroke-width="2" fill="none" marker-end="url(#arr-dvp-r)"/>
+  <text x="154" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#D32F2F">500MB</text>
+
+  <rect x="182" y="100" width="100" height="45" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="232" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">App Server</text>
+
+  <path d="M282,122 L328,122" stroke="#D32F2F" stroke-width="2" fill="none" marker-end="url(#arr-dvp-r)"/>
+  <text x="305" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#D32F2F">500MB</text>
+
+  <rect x="332" y="100" width="90" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="377" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">S3</text>
+
+  <!-- Proxy stats -->
+  <rect x="60" y="170" width="340" height="80" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1"/>
+  <text x="80" y="192" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Bandwidth:</text>
+  <text x="165" y="192" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">1GB (in + out)</text>
+  <text x="80" y="210" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Server CPU:</text>
+  <text x="165" y="210" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Blocked during transfer</text>
+  <text x="80" y="228" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Memory:</text>
+  <text x="148" y="228" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Buffering 500MB</text>
+  <text x="80" y="246" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Latency:</text>
+  <text x="145" y="246" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">2x (two hops)</text>
+
+  <!-- RIGHT: Direct path -->
+  <rect x="490" y="100" width="100" height="45" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="540" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Client</text>
+
+  <path d="M540,145 L540,160 C540,185 665,185 740,160 L740,145" stroke="#1565C0" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  <text x="640" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1565C0">presigned URL (tiny)</text>
+
+  <rect x="690" y="100" width="100" height="45" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="740" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">App Server</text>
+
+  <rect x="790" y="100" width="80" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="830" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">S3</text>
+
+  <path d="M590,122 L686,122" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#arr-dvp-g)"/>
+  <text x="638" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">500MB direct</text>
+
+  <!-- Direct stats -->
+  <rect x="510" y="220" width="340" height="80" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="530" y="242" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Bandwidth:</text>
+  <text x="615" y="242" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">0 on app server</text>
+  <text x="530" y="260" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Server CPU:</text>
+  <text x="615" y="260" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Free for other requests</text>
+  <text x="530" y="278" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Memory:</text>
+  <text x="598" y="278" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">0 on app server</text>
+  <text x="530" y="296" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Latency:</text>
+  <text x="595" y="296" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">1x (single hop)</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

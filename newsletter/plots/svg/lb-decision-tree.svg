@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Decision Tree: Choosing an Upload Strategy</text>
+
+<!-- Root -->
+<rect x="300" y="55" width="300" height="40" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="80" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">How large is the file?</text>
+
+<!-- Branch: Small -->
+<line x1="350" y1="95" x2="150" y2="130" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="220" y="110" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Under 5MB</text>
+
+<rect x="50" y="135" width="200" height="50" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="150" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Single PUT Request</text>
+<text x="150" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Presigned URL, one shot</text>
+
+<!-- Branch: Medium -->
+<line x1="450" y1="95" x2="450" y2="130" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="480" y="118" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">5MB - 5GB</text>
+
+<rect x="340" y="135" width="220" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Multipart Upload</text>
+<text x="450" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Parallel chunks, resumable</text>
+
+<!-- Branch: Large -->
+<line x1="550" y1="95" x2="750" y2="130" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="680" y="110" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Over 5GB</text>
+
+<rect x="650" y="135" width="210" height="50" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="755" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Chunked + Resumable</text>
+<text x="755" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Must resume on failure</text>
+
+<!-- Second decision layer: Upload path -->
+<text x="450" y="215" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Upload Path Decision</text>
+
+<rect x="160" y="230" width="250" height="40" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="285" y="255" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Does it need server processing?</text>
+
+<line x1="235" y1="270" x2="140" y2="300" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="160" y="288" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">No</text>
+
+<line x1="340" y1="270" x2="440" y2="300" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="400" y="288" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Yes</text>
+
+<rect x="40" y="305" width="200" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="140" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Direct to Storage</text>
+<text x="140" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Presigned URL, bypass server</text>
+
+<rect x="340" y="305" width="220" height="45" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Upload then Process</text>
+<text x="450" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Store raw, event-driven pipeline</text>
+
+<!-- Download decision -->
+<rect x="490" y="230" width="250" height="40" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="615" y="255" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">High read traffic?</text>
+
+<line x1="565" y1="270" x2="565" y2="300" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="580" y="290" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">No: direct S3</text>
+
+<line x1="665" y1="270" x2="750" y2="300" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="725" y="290" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Yes</text>
+
+<rect x="660" y="305" width="200" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="760" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">CDN + Presigned URL</text>
+<text x="760" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Edge caching, signed cookies</text>
+
+<!-- Bottom -->
+<rect x="100" y="370" width="700" height="30" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="390" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Always start with: "The file should never pass through our application server."</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

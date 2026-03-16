@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ap" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ap-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#D32F2F" stroke="#D32F2F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ap-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Abuse Prevention: Upload Security Layers</text>
+
+  <!-- Layer 1: Authentication -->
+  <rect x="40" y="60" width="820" height="60" rx="6" fill="#E8F4FD" stroke="#1565C0" stroke-width="2"/>
+  <text x="70" y="82" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1565C0" font-weight="bold">Layer 1: Authentication</text>
+  <text x="70" y="102" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Only authenticated users can request presigned URLs. No anonymous uploads. JWT/OAuth validation at API gateway.</text>
+
+  <!-- Layer 2: Rate Limiting -->
+  <rect x="40" y="130" width="820" height="60" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="70" y="152" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#E65100" font-weight="bold">Layer 2: Rate Limiting</text>
+  <text x="70" y="172" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Max 10 uploads per user per hour. Sliding window counter in Redis. Prevents single user from flooding storage.</text>
+
+  <!-- Layer 3: Quotas -->
+  <rect x="40" y="200" width="820" height="60" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="70" y="222" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">Layer 3: Storage Quotas</text>
+  <text x="70" y="242" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Free tier: 2GB. Pro tier: 100GB. Check quota before generating presigned URL. Reject if exceeded.</text>
+
+  <!-- Layer 4: File Validation -->
+  <rect x="40" y="270" width="820" height="60" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="70" y="292" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F" font-weight="bold">Layer 4: File Validation</text>
+  <text x="70" y="312" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Presigned URL enforces max file size and content type. S3 rejects uploads that violate conditions.</text>
+
+  <!-- Layer 5: Post-upload -->
+  <rect x="40" y="340" width="820" height="55" rx="6" fill="#FAFAFA" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="70" y="362" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Layer 5: Post-Upload Scan</text>
+  <text x="70" y="382" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Virus scan, content moderation (NSFW detection), malware check. Quarantine until scan passes.</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

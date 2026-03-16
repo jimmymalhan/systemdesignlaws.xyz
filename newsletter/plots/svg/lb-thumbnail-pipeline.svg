@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Thumbnail Generation Pipeline</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Event-driven processing after blob upload completes</text>
+
+<!-- Step 1: Upload complete -->
+<rect x="40" y="80" width="140" height="55" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="110" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Upload Complete</text>
+<text x="110" y="122" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">S3 event trigger</text>
+
+<line x1="180" y1="107" x2="215" y2="107" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Step 2: Queue -->
+<rect x="220" y="80" width="130" height="55" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="285" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Message Queue</text>
+<text x="285" y="122" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">SQS / Kafka</text>
+
+<line x1="350" y1="107" x2="385" y2="107" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Step 3: Worker -->
+<rect x="390" y="70" width="160" height="75" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="470" y="95" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Image Worker</text>
+<text x="470" y="112" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Generate thumbnails:</text>
+<text x="470" y="127" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">150x150, 300x300, 600x600</text>
+<text x="470" y="142" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">+ WebP conversion</text>
+
+<!-- Output arrows -->
+<line x1="550" y1="95" x2="600" y2="80" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="550" y1="107" x2="600" y2="107" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="550" y1="120" x2="600" y2="135" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Thumbnail outputs -->
+<rect x="605" y="65" width="100" height="30" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="655" y="84" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">150x150</text>
+
+<rect x="605" y="100" width="100" height="30" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="655" y="119" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">300x300</text>
+
+<rect x="605" y="135" width="100" height="30" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="655" y="154" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">600x600</text>
+
+<!-- Arrow to CDN -->
+<line x1="705" y1="115" x2="745" y2="115" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="750" y="85" width="110" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="805" y="107" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">CDN</text>
+<text x="805" y="127" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Edge cached</text>
+
+<!-- Full pipeline view -->
+<text x="450" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Processing Pipeline Options</text>
+
+<rect x="40" y="210" width="250" height="80" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="165" y="232" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Eager (On Upload)</text>
+<text x="60" y="252" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Generate all sizes immediately</text>
+<text x="60" y="270" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Higher storage, faster reads</text>
+<text x="60" y="284" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Good for: Instagram, profiles</text>
+
+<rect x="325" y="210" width="250" height="80" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="232" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Lazy (On Request)</text>
+<text x="345" y="252" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Generate on first request, cache</text>
+<text x="345" y="270" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Lower storage, slower first load</text>
+<text x="345" y="284" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Good for: archival, rarely viewed</text>
+
+<rect x="610" y="210" width="250" height="80" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="735" y="232" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Hybrid</text>
+<text x="630" y="252" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Common sizes eager, rare lazy</text>
+<text x="630" y="270" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Best balance</text>
+<text x="630" y="284" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Good for: most applications</text>
+
+<!-- Key point -->
+<rect x="100" y="315" width="700" height="45" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="338" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Interview Tip</text>
+<text x="450" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Never process images synchronously in the upload request. Always decouple with a queue.</text>
+
+<!-- Metadata update -->
+<rect x="100" y="375" width="700" height="30" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">After processing: update metadata DB with thumbnail URLs so clients can fetch the right size.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

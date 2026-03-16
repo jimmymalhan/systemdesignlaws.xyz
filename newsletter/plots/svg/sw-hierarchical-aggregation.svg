@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Hierarchical Aggregation</text>
+  <text x="450" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Aggregate at Intermediate Nodes</text>
+  <rect x="50" y="320" width="110" height="35" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="105.0" y="341.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Viewer 1</text>
+  <rect x="195" y="320" width="110" height="35" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="250.0" y="341.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Viewer 2</text>
+  <rect x="340" y="320" width="110" height="35" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="395.0" y="341.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Viewer 3</text>
+  <rect x="485" y="320" width="110" height="35" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="540.0" y="341.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Viewer 4</text>
+  <rect x="630" y="320" width="110" height="35" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="685.0" y="341.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Viewer 5</text>
+  <rect x="775" y="320" width="110" height="35" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="830.0" y="341.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Viewer 6</text>
+  <rect x="120" y="230" width="140" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="190.0" y="257.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Broadcast 1</text>
+  <rect x="400" y="230" width="140" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="470.0" y="257.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Broadcast 2</text>
+  <rect x="680" y="230" width="140" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="750.0" y="257.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Broadcast 3</text>
+  <line x1="190" y1="275" x2="105" y2="320" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="190" y1="275" x2="250" y2="320" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="470" y1="275" x2="395" y2="320" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="470" y1="275" x2="540" y2="320" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="750" y1="275" x2="685" y2="320" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="750" y1="275" x2="830" y2="320" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="220" y="140" width="180" height="45" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="310.0" y="167.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Write Processor 1</text>
+  <rect x="500" y="140" width="180" height="45" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="590.0" y="167.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Write Processor 2</text>
+  <rect x="330" y="65" width="240" height="45" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450.0" y="92.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Root Aggregator</text>
+  <line x1="450" y1="110" x2="310" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="450" y1="110" x2="590" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="190" y1="230" x2="310" y2="185" stroke="#1B1B1F" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+  <line x1="470" y1="230" x2="310" y2="185" stroke="#1B1B1F" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+  <line x1="470" y1="230" x2="590" y2="185" stroke="#1B1B1F" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+  <line x1="750" y1="230" x2="590" y2="185" stroke="#1B1B1F" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+  <text x="450" y="400" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#555" font-style="italic">Fan-in at processors, fan-out at broadcast nodes</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

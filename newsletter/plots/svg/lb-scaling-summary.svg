@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Handling Large Blobs: Summary</text>
+
+<!-- Core pattern -->
+<rect x="40" y="55" width="820" height="55" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="77" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Core Rule: Files never pass through your application server</text>
+<text x="450" y="97" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Presigned URLs for upload. CDN for download. Server handles metadata only.</text>
+
+<!-- Upload column -->
+<rect x="40" y="125" width="260" height="140" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="170" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Upload Path</text>
+<text x="60" y="170" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Presigned URL (bypass server)</text>
+<text x="60" y="188" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Multipart for files over 5MB</text>
+<text x="60" y="206" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Resumable for unreliable networks</text>
+<text x="60" y="224" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Progress: chunks_done / total</text>
+<text x="60" y="242" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Quotas + abuse prevention</text>
+<text x="60" y="258" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Virus scan pipeline</text>
+
+<!-- Process column -->
+<rect x="320" y="125" width="260" height="140" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Processing</text>
+<text x="340" y="170" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Event-driven (S3 notification)</text>
+<text x="340" y="188" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Thumbnails (eager or lazy)</text>
+<text x="340" y="206" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Video transcode (multiple res)</text>
+<text x="340" y="224" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Content moderation</text>
+<text x="340" y="242" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Deduplication (CAS)</text>
+<text x="340" y="258" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Metadata extraction</text>
+
+<!-- Download column -->
+<rect x="600" y="125" width="260" height="140" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="730" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Download Path</text>
+<text x="620" y="170" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">CDN edge caching</text>
+<text x="620" y="188" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Presigned URLs (private files)</text>
+<text x="620" y="206" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Adaptive bitrate (video)</text>
+<text x="620" y="224" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Signed cookies (streaming)</text>
+<text x="620" y="242" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Range requests (partial)</text>
+<text x="620" y="258" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Thumbnail serving</text>
+
+<!-- Key patterns to mention -->
+<rect x="40" y="280" width="820" height="55" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Key Patterns for Interviews</text>
+<text x="60" y="322" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Direct upload (presigned URL)</text>
+<text x="280" y="322" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Chunked + resumable</text>
+<text x="460" y="322" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Content addressing</text>
+<text x="640" y="322" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">CDN delivery</text>
+
+<!-- Interview default -->
+<rect x="100" y="350" width="700" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="372" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Default Interview Answer</text>
+<text x="450" y="392" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">"Client gets a presigned URL, uploads directly to S3 in chunks. S3 event triggers processing.</text>
+<text x="450" y="404" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Downloads go through CDN. My server only handles metadata and authorization."</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

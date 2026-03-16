@@ -1,0 +1,12 @@
+{
+  "rate_limit_window_hours": 4,
+  "max_calls_per_window": 30,
+  "throttle_at_pct": 90,
+  "base_delay_seconds": 120,
+  "slow_mode": {
+    "base_delay_seconds": 300,
+    "inter_article_delay_seconds": 600,
+    "rate_limit_wait_max_hours": 4,
+    "checkpoint_expiry_hours": 24
+  }
+}

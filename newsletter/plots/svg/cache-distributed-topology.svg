@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-dt" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Distributed Cache: Consistent Hashing</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Keys distributed across nodes using a hash ring</text>
+
+  <!-- Hash Ring (circle) -->
+  <circle cx="400" cy="230" r="140" fill="none" stroke="#DDD" stroke-width="3"/>
+
+  <!-- Node positions on ring -->
+  <!-- Node A (top) -->
+  <circle cx="400" cy="90" r="22" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="400" y="94" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" font-weight="bold">N1</text>
+
+  <!-- Node B (right) -->
+  <circle cx="540" cy="230" r="22" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="540" y="234" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" font-weight="bold">N2</text>
+
+  <!-- Node C (bottom) -->
+  <circle cx="400" cy="370" r="22" fill="#FFF8E8" stroke="#d4a017" stroke-width="2"/>
+  <text x="400" y="374" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#d4a017" font-weight="bold">N3</text>
+
+  <!-- Node D (left) -->
+  <circle cx="260" cy="230" r="22" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2"/>
+  <text x="260" y="234" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#7B1FA2" font-weight="bold">N4</text>
+
+  <!-- Keys placed on ring -->
+  <circle cx="460" cy="120" r="10" fill="#E8F4FD" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="460" y="124" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#2980b9">k1</text>
+
+  <circle cx="530" cy="310" r="10" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="530" y="314" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#27ae60">k2</text>
+
+  <circle cx="310" cy="340" r="10" fill="#FFF8E8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="310" y="344" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#d4a017">k3</text>
+
+  <circle cx="280" cy="140" r="10" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="280" y="144" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#7B1FA2">k4</text>
+
+  <!-- Arrows from keys to their nodes (clockwise) -->
+  <path d="M455,111 C445,100 420,93 422,92" stroke="#2980b9" stroke-width="1" fill="none" stroke-dasharray="3,2" marker-end="url(#arr-dt)"/>
+  <path d="M527,320 C500,355 420,375 422,372" stroke="#d4a017" stroke-width="1" fill="none" stroke-dasharray="3,2" marker-end="url(#arr-dt)"/>
+
+  <!-- Node failure scenario -->
+  <rect x="590" y="75" width="180" height="105" rx="8" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="680" y="98" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#c0392b" font-weight="bold">Node Failure</text>
+  <text x="610" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">N2 goes down</text>
+  <text x="610" y="136" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">N2's keys move to N3</text>
+  <text x="610" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">Only 1/N keys remapped</text>
+  <text x="610" y="172" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">(not all keys!)</text>
+
+  <!-- Why consistent hashing -->
+  <rect x="590" y="200" width="180" height="90" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="680" y="222" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60" font-weight="bold">Why Consistent?</text>
+  <text x="610" y="242" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Naive hash mod N:</text>
+  <text x="610" y="258" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">  N changes = all keys move</text>
+  <text x="610" y="278" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Consistent hash:</text>
+  <text x="610" y="294" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">  N changes = 1/N keys move</text>
+
+  <!-- Virtual nodes note -->
+  <rect x="30" y="75" width="180" height="80" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="120" y="98" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#2980b9" font-weight="bold">Virtual Nodes</text>
+  <text x="50" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Each physical node gets</text>
+  <text x="50" y="134" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">100-200 virtual positions</text>
+  <text x="50" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">Ensures even distribution</text>
+
+  <!-- Client routing -->
+  <rect x="30" y="400" width="740" height="60" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="425" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">Client-Side Routing</text>
+  <text x="50" y="445" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Client computes hash(key), walks ring clockwise to find owning node. No central coordinator needed.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

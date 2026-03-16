@@ -138,11 +138,10 @@ class TestIndexHtmlStructure(unittest.TestCase):
         self.assertIn("guardrail-issue", html, "Must have guardrail fallback for fetch failures")
 
     def test_all_subscribe_links_use_newsletter_subdomain(self):
-        """Every subscribe/email CTA must point to newsletter.systemdesignlaws.xyz - catches regressions."""
+        """Every subscribe/email CTA must point to newsletter.systemdesignlaws.xyz. Post links use systemdesignlaws.substack.com (newsletter.* returns 404 for /p/ paths)."""
         repo_root = Path(__file__).resolve().parent.parent
         html_path = repo_root / "index.html"
         html = html_path.read_text()
-        self.assertNotIn("systemdesignlaws.substack.com", html, "No old Substack URLs - use newsletter subdomain")
         subscribe_classes = ["nav-cta", "btn-primary", "subscribe-cta", "lock-overlay", "btn-cta"]
         for cls in subscribe_classes:
             matches = re.findall(rf'class="[^"]*{re.escape(cls)}[^"]*"[^>]*href="([^"]+)"', html)

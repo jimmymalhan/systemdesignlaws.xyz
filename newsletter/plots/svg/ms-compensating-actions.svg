@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+  <marker id="arr-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#D32F2F" stroke="#D32F2F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Compensating Actions: Undoing Completed Steps</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Each forward step must have a defined reverse action</text>
+
+<!-- Forward steps -->
+<text x="40" y="78" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Forward Actions</text>
+
+<rect x="40" y="90" width="150" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="115" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Charge Payment</text>
+<line x1="190" y1="112" x2="215" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="220" y="90" width="150" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="295" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Reserve Inventory</text>
+<line x1="370" y1="112" x2="395" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="400" y="90" width="150" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="475" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Create Shipping</text>
+<line x1="550" y1="112" x2="575" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="580" y="90" width="150" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="655" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Send Email</text>
+<line x1="730" y1="112" x2="755" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="760" y="90" width="100" height="45" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="810" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Done</text>
+
+<!-- Compensation arrows -->
+<text x="40" y="165" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#D32F2F">Compensating Actions (Reverse)</text>
+
+<rect x="40" y="177" width="150" height="45" rx="8" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+<text x="115" y="204" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">Refund Payment</text>
+
+<rect x="220" y="177" width="150" height="45" rx="8" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+<text x="295" y="204" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">Release Inventory</text>
+
+<rect x="400" y="177" width="150" height="45" rx="8" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+<text x="475" y="204" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">Cancel Shipment</text>
+
+<rect x="580" y="177" width="150" height="45" rx="8" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+<text x="655" y="204" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">Send Apology</text>
+
+<!-- Vertical dotted connections -->
+<line x1="115" y1="135" x2="115" y2="177" stroke="#D32F2F" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="295" y1="135" x2="295" y2="177" stroke="#D32F2F" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="475" y1="135" x2="475" y2="177" stroke="#D32F2F" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="655" y1="135" x2="655" y2="177" stroke="#D32F2F" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+<!-- Example: failure at step 3 -->
+<text x="450" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Example: Shipping Service Fails</text>
+
+<rect x="40" y="265" width="150" height="40" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="115" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Charge: OK</text>
+
+<rect x="220" y="265" width="150" height="40" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="295" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Reserve: OK</text>
+
+<rect x="400" y="265" width="150" height="40" rx="8" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+<text x="475" y="287" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Ship: FAIL</text>
+<text x="475" y="300" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#D32F2F">X</text>
+
+<!-- Reverse arrows -->
+<line x1="400" y1="290" x2="370" y2="325" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-r)"/>
+
+<rect x="220" y="320" width="150" height="35" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+<text x="295" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Release Inventory</text>
+
+<line x1="220" y1="337" x2="190" y2="345" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-r)"/>
+
+<rect x="40" y="340" width="150" height="35" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+<text x="115" y="362" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Refund Payment</text>
+
+<!-- Key rule -->
+<rect x="500" y="320" width="360" height="60" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="680" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Compensation Rules</text>
+<text x="520" y="360" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Run in reverse order of completed steps</text>
+<text x="520" y="376" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Each must be idempotent (safe to retry)</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

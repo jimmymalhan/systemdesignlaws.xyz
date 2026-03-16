@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-bt" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Full Table Scan vs B-Tree Index</text>
+
+  <!-- Divider -->
+  <path d="M440,50 L440,390" stroke="#DDD" stroke-width="1" fill="none" stroke-dasharray="6,4"/>
+
+  <!-- LEFT SIDE: Full Table Scan -->
+  <text x="195" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="17" fill="#1B1B1F" font-weight="bold">Full Table Scan</text>
+
+  <!-- Stacked rows (10M rows) -->
+  <rect x="100" y="80" width="190" height="26" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="195" y="98" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Row 1</text>
+
+  <rect x="100" y="110" width="190" height="26" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="195" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Row 2</text>
+
+  <rect x="100" y="140" width="190" height="26" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="195" y="158" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Row 3</text>
+
+  <rect x="100" y="170" width="190" height="26" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="195" y="188" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Row 4</text>
+
+  <!-- Dots indicating more rows -->
+  <text x="195" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F">. . .</text>
+
+  <rect x="100" y="222" width="190" height="26" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="195" y="240" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Row 9,999,999</text>
+
+  <rect x="100" y="252" width="190" height="26" rx="4" fill="#FFCDD2" stroke="#D32F2F" stroke-width="2"/>
+  <text x="195" y="270" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Row 10,000,000 (found!)</text>
+
+  <!-- Red scanning arrow down left side -->
+  <path d="M85,85 C83,120 82,170 83,220 C83,240 84,255 85,270" stroke="#D32F2F" stroke-width="2" fill="none" marker-end="url(#arr-bt)" stroke-dasharray="5,3"/>
+  <text x="72" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F" transform="rotate(-90 72 180)">scanning every row</text>
+
+  <!-- Stats: Full table scan -->
+  <text x="195" y="310" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">10M rows scanned</text>
+  <text x="195" y="335" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">O(n) complexity</text>
+  <text x="195" y="365" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="28" fill="#D32F2F" font-weight="bold">X</text>
+  <text x="195" y="390" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#D32F2F" font-weight="bold">100 - 500ms</text>
+  <text x="195" y="407" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#888">Reads every row sequentially</text>
+
+  <!-- CENTER: Big arrow -->
+  <path d="M360,200 C380,198 410,196 440,195" stroke="#1B1B1F" stroke-width="3" fill="none" marker-end="url(#arr-bt)"/>
+  <text x="408" y="178" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">50,000x</text>
+  <text x="408" y="196" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">faster</text>
+
+  <!-- RIGHT SIDE: B-Tree Index -->
+  <text x="680" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="17" fill="#1B1B1F" font-weight="bold">B-Tree Index Lookup</text>
+
+  <!-- Level 0: Root -->
+  <rect x="635" y="80" width="90" height="35" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="680" y="103" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Root</text>
+
+  <!-- Arrow root to level 1 -->
+  <path d="M660,115 C655,125 620,138 610,145" stroke="#2E7D32" stroke-width="1.8" fill="none"/>
+  <path d="M700,115 C705,125 740,138 750,145" stroke="#BBB" stroke-width="1" fill="none" stroke-dasharray="3,3"/>
+
+  <!-- Level 1 -->
+  <rect x="560" y="148" width="95" height="32" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="608" y="169" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Internal</text>
+
+  <rect x="705" y="148" width="95" height="32" rx="5" fill="#F5F5F5" stroke="#BBB" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="752" y="169" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#BBB">Internal</text>
+
+  <!-- Arrow level 1 to level 2 -->
+  <path d="M590,180 C585,191 565,203 558,212" stroke="#2E7D32" stroke-width="1.8" fill="none"/>
+  <path d="M630,180 C635,191 650,203 655,212" stroke="#BBB" stroke-width="1" fill="none" stroke-dasharray="3,3"/>
+
+  <!-- Level 2 -->
+  <rect x="505" y="215" width="95" height="32" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="553" y="236" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Internal</text>
+
+  <rect x="613" y="215" width="95" height="32" rx="5" fill="#F5F5F5" stroke="#BBB" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="660" y="236" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#BBB">Internal</text>
+
+  <!-- Arrow level 2 to leaf -->
+  <path d="M553,247 C553,258 555,268 558,278" stroke="#2E7D32" stroke-width="1.8" fill="none"/>
+
+  <!-- Level 3: Leaf (found) -->
+  <rect x="510" y="280" width="100" height="35" rx="5" fill="#C8E6C9" stroke="#2E7D32" stroke-width="2.5"/>
+  <text x="560" y="303" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Leaf: Found!</text>
+
+  <!-- Labels for levels -->
+  <text x="830" y="100" text-anchor="start" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#999">Level 0</text>
+  <text x="830" y="167" text-anchor="start" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#999">Level 1</text>
+  <text x="830" y="234" text-anchor="start" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#999">Level 2</text>
+  <text x="830" y="300" text-anchor="start" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#999">Level 3</text>
+
+  <!-- Stats: B-Tree -->
+  <text x="680" y="340" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">4 levels traversed</text>
+  <text x="680" y="360" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">O(log n) complexity</text>
+  <text x="680" y="385" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="28" fill="#2E7D32" font-weight="bold">&#10003;</text>
+  <text x="680" y="405" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#2E7D32" font-weight="bold">1 - 5ms</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

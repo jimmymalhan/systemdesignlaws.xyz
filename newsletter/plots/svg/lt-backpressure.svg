@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <rect x="0" y="0" width="900" height="420" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+  <text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Queue Backpressure</text>
+  <!-- Without backpressure -->
+  <text x="225" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Without Backpressure</text>
+  <rect x="40" y="80" width="120" height="45" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="100" y="107" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">1000 req/s</text>
+  <line x1="160" y1="102" x2="198" y2="102" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="200" y="80" width="140" height="45" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="270" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Queue grows</text>
+  <text x="270" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">unbounded!</text>
+  <line x1="340" y1="102" x2="378" y2="102" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="380" y="80" width="70" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="415" y="107" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">OOM</text>
+  <!-- With backpressure -->
+  <text x="225" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">With Backpressure</text>
+  <rect x="40" y="190" width="120" height="45" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="100" y="217" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">1000 req/s</text>
+  <line x1="160" y1="212" x2="198" y2="212" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="200" y="190" width="140" height="45" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="270" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Queue bounded</text>
+  <text x="270" y="228" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">max: 10,000</text>
+  <line x1="340" y1="212" x2="378" y2="212" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="380" y="190" width="70" height="45" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="415" y="217" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Stable</text>
+  <!-- Rejection signal -->
+  <path d="M 270 190 Q 270 170 100 170 Q 40 170 40 190" stroke="#FFEBEE" stroke-width="2" marker-end="url(#arrow)" fill="none" stroke-dasharray="6,3"/>
+  <text x="170" y="163" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">429 / reject when full</text>
+  <!-- Strategies -->
+  <rect x="50" y="270" width="250" height="120" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="175" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Reject</text>
+  <text x="175" y="318" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Return 429 Too Many Requests</text>
+  <text x="175" y="338" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Client retries with backoff</text>
+  <text x="175" y="358" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Protects downstream services</text>
+  <text x="175" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Simple, predictable</text>
+  <rect x="330" y="270" width="250" height="120" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="455" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Throttle</text>
+  <text x="455" y="318" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Accept but slow down</text>
+  <text x="455" y="338" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Rate limit per tenant</text>
+  <text x="455" y="358" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Queue with bounded capacity</text>
+  <text x="455" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Better UX, more complex</text>
+  <rect x="610" y="270" width="250" height="120" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="735" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Scale Up</text>
+  <text x="735" y="318" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Auto-scale workers</text>
+  <text x="735" y="338" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Trigger on queue depth</text>
+  <text x="735" y="358" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Combines with throttle</text>
+  <text x="735" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Best for elastic load</text>
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

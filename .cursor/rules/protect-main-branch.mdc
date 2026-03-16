@@ -1,0 +1,22 @@
+---
+description: Keep main protected with the checked-in GitHub ruleset before new work or merges
+alwaysApply: true
+---
+
+# Protect Main Branch
+
+Before new work starts, make sure the checked-in ruleset is active on GitHub.
+
+## Requirement
+
+The `main` branch must have the `Protect main` ruleset applied:
+- Block branch deletion
+- Block force pushes
+- Require pull requests before merge
+- Require `test` and `e2e-website` to pass
+
+## Workflow
+
+1. Run `./.github/scripts/sync_main_ruleset.sh`
+2. Verify `gh api repos/jimmymalhan/systemdesignlaws.xyz/rulesets --jq '.[].name'` includes `Protect main`
+3. Never push directly to `main`

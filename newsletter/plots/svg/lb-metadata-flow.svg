@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-mf" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-mf-b" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Metadata vs File Storage: Two Separate Paths</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="50" x2="450" y2="400" stroke="#DDD" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="225" y="66" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1565C0" font-weight="bold">Metadata (SQL Database)</text>
+  <text x="675" y="66" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#E65100" font-weight="bold">File Bytes (Object Storage)</text>
+
+  <!-- Left: Metadata path -->
+  <rect x="40" y="90" width="120" height="40" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="100" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">App Server</text>
+
+  <path d="M160,110 L218,110" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-mf-b)"/>
+
+  <rect x="222" y="90" width="200" height="40" rx="6" fill="#E8F4FD" stroke="#1565C0" stroke-width="2"/>
+  <text x="322" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">PostgreSQL / MySQL</text>
+
+  <!-- Schema table -->
+  <rect x="50" y="155" width="370" height="220" rx="6" fill="#FAFAFA" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="235" y="178" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">files_metadata table</text>
+
+  <line x1="50" y1="188" x2="420" y2="188" stroke="#DDD" stroke-width="1"/>
+
+  <text x="70" y="208" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">file_id</text>
+  <text x="180" y="208" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">UUID, primary key</text>
+
+  <text x="70" y="228" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">user_id</text>
+  <text x="180" y="228" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">FK to users</text>
+
+  <text x="70" y="248" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">filename</text>
+  <text x="180" y="248" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">Original name</text>
+
+  <text x="70" y="268" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">content_type</text>
+  <text x="180" y="268" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">MIME type</text>
+
+  <text x="70" y="288" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">size_bytes</text>
+  <text x="180" y="288" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">File size</text>
+
+  <text x="70" y="308" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">s3_key</text>
+  <text x="180" y="308" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">Pointer to object storage</text>
+
+  <text x="70" y="328" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">upload_status</text>
+  <text x="180" y="328" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">pending/uploading/done</text>
+
+  <text x="70" y="348" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">checksum</text>
+  <text x="180" y="348" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">SHA256 hash</text>
+
+  <text x="70" y="368" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">created_at</text>
+  <text x="180" y="368" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">Timestamp</text>
+
+  <!-- Right: File storage -->
+  <rect x="480" y="90" width="380" height="290" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="670" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#E65100" font-weight="bold">S3 / Object Storage</text>
+
+  <rect x="510" y="135" width="320" height="40" rx="4" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="520" y="160" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">bucket/users/abc/file-123.mp4</text>
+
+  <rect x="510" y="185" width="320" height="40" rx="4" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="520" y="210" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">bucket/users/abc/photo-456.jpg</text>
+
+  <rect x="510" y="235" width="320" height="40" rx="4" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="520" y="260" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">bucket/users/def/doc-789.pdf</text>
+
+  <!-- Key insight -->
+  <rect x="510" y="300" width="320" height="60" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="530" y="320" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Key Insight</text>
+  <text x="530" y="340" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">SQL stores metadata (queryable)</text>
+  <text x="530" y="355" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">S3 stores bytes (not queryable)</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

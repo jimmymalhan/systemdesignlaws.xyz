@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-cc" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Cache Consistency Models</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">How cache and database stay in sync (or don't)</text>
+
+  <!-- Strong Consistency -->
+  <rect x="30" y="70" width="230" height="260" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="145" y="98" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#27ae60" font-weight="bold">Strong Consistency</text>
+  <text x="145" y="115" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888">Write-Through</text>
+
+  <!-- Flow -->
+  <rect x="55" y="130" width="80" height="30" rx="6" fill="#FFFFFF" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="95" y="150" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">Write</text>
+
+  <path d="M135,145 L155,145" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arr-cc)"/>
+
+  <rect x="160" y="130" width="80" height="30" rx="6" fill="#FFFFFF" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="200" y="150" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">Cache+DB</text>
+
+  <text x="50" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Both updated atomically</text>
+  <text x="50" y="205" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Read always sees latest</text>
+
+  <rect x="50" y="225" width="190" height="40" rx="6" fill="#E8F5E9" stroke="#27ae60" stroke-width="1"/>
+  <text x="145" y="245" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">Staleness: 0</text>
+  <text x="145" y="258" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">Cost: slower writes (2x)</text>
+
+  <text x="50" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Never stale</text>
+  <text x="50" y="308" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">- Write latency doubled</text>
+  <text x="50" y="323" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888" font-style="italic">Financial data, inventory</text>
+
+  <!-- Eventual Consistency -->
+  <rect x="280" y="70" width="230" height="260" rx="8" fill="#FFF3E0" stroke="#d4a017" stroke-width="2"/>
+  <text x="395" y="98" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#d4a017" font-weight="bold">Eventual Consistency</text>
+  <text x="395" y="115" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888">Write-Behind</text>
+
+  <!-- Flow -->
+  <rect x="305" y="130" width="80" height="30" rx="6" fill="#FFFFFF" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="345" y="150" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Write</text>
+
+  <path d="M385,145 L405,145" stroke="#d4a017" stroke-width="1.5" fill="none" marker-end="url(#arr-cc)"/>
+
+  <rect x="410" y="130" width="80" height="30" rx="6" fill="#FFFFFF" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="450" y="150" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Cache</text>
+
+  <path d="M450,160 L450,172" stroke="#d4a017" stroke-width="1" fill="none" stroke-dasharray="3,2" marker-end="url(#arr-cc)"/>
+  <text x="465" y="172" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#d4a017">async</text>
+
+  <text x="300" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Cache updated first</text>
+  <text x="300" y="218" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">DB batched async</text>
+
+  <rect x="300" y="235" width="190" height="40" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1"/>
+  <text x="395" y="255" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Staleness: ms to seconds</text>
+  <text x="395" y="268" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">Cost: fast writes</text>
+
+  <text x="300" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Fast writes</text>
+  <text x="300" y="318" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">- Data loss if cache dies</text>
+  <text x="300" y="333" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888" font-style="italic">Social feeds, analytics</text>
+
+  <!-- Stale with TTL -->
+  <rect x="530" y="70" width="230" height="260" rx="8" fill="#FFEBEE" stroke="#c0392b" stroke-width="2"/>
+  <text x="645" y="98" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#c0392b" font-weight="bold">Stale Reads (TTL)</text>
+  <text x="645" y="115" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888">Cache-Aside + TTL</text>
+
+  <!-- Flow -->
+  <rect x="555" y="130" width="80" height="30" rx="6" fill="#FFFFFF" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="595" y="150" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">Write DB</text>
+
+  <rect x="660" y="130" width="80" height="30" rx="6" fill="#FFFFFF" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="700" y="150" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">Cache stale</text>
+
+  <text x="550" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Write goes to DB only</text>
+  <text x="550" y="205" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Cache expires via TTL</text>
+  <text x="550" y="225" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Stale until expiry</text>
+
+  <rect x="550" y="240" width="190" height="40" rx="6" fill="#FFEBEE" stroke="#c0392b" stroke-width="1"/>
+  <text x="645" y="260" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">Staleness: up to TTL duration</text>
+  <text x="645" y="273" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">Cost: simplest to implement</text>
+
+  <text x="550" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Simplest pattern</text>
+  <text x="550" y="318" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">- Stale for TTL window</text>
+  <text x="550" y="333" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888" font-style="italic">User profiles, search results</text>
+
+  <!-- Spectrum -->
+  <rect x="30" y="355" width="730" height="50" rx="8" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="400" y="375" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">Consistency vs Performance Spectrum</text>
+  <rect x="50" y="388" width="230" height="8" rx="4" fill="#E8F5E9"/>
+  <rect x="280" y="388" width="230" height="8" fill="#FFF3E0"/>
+  <rect x="510" y="388" width="230" height="8" rx="4" fill="#FFEBEE"/>
+  <text x="50" y="408" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">Strong (slowest writes)</text>
+  <text x="740" y="408" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">Stale (fastest writes)</text>
+
+  <!-- Tradeoffs -->
+  <rect x="30" y="420" width="730" height="40" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="445" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" font-weight="bold">No perfect consistency without distributed transactions. Choose based on your staleness tolerance.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

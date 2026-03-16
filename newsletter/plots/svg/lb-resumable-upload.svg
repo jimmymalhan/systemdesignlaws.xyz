@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ru" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ru-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ru-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#D32F2F" stroke="#D32F2F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Resumable Upload: Failure Recovery</text>
+
+  <!-- Timeline bar -->
+  <rect x="60" y="70" width="780" height="30" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="450" y="90" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#666">Upload Timeline</text>
+
+  <!-- Chunk progress -->
+  <rect x="60" y="115" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="120" y="137" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Chunk 1 OK</text>
+
+  <rect x="190" y="115" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="250" y="137" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Chunk 2 OK</text>
+
+  <rect x="320" y="115" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="380" y="137" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Chunk 3 OK</text>
+
+  <!-- Failure point -->
+  <rect x="450" y="115" width="120" height="35" rx="4" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="510" y="137" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Chunk 4 FAIL</text>
+
+  <!-- Lightning bolt failure -->
+  <text x="510" y="108" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#D32F2F">X</text>
+  <text x="510" y="170" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Network dropped</text>
+
+  <!-- Resume arrow -->
+  <path d="M510,180 C510,210 510,220 510,230" stroke="#2E7D32" stroke-width="2.5" fill="none" marker-end="url(#arr-ru-g)"/>
+  <text x="540" y="215" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32" font-weight="bold">Resume</text>
+
+  <!-- Resumed chunks -->
+  <rect x="450" y="240" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="510" y="262" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Chunk 4 Retry OK</text>
+
+  <rect x="580" y="240" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="640" y="262" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Chunk 5 OK</text>
+
+  <rect x="710" y="240" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="770" y="262" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Complete!</text>
+
+  <!-- Key insight box -->
+  <rect x="60" y="200" width="350" height="90" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="222" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">How Resumable Upload Works</text>
+  <text x="80" y="242" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">1. Server tracks which chunks received</text>
+  <text x="80" y="258" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">2. Client queries: "which chunks do you have?"</text>
+  <text x="80" y="274" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">3. Client resends only missing chunks</text>
+
+  <!-- Without resumable -->
+  <rect x="60" y="310" width="350" height="75" rx="8" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1"/>
+  <text x="80" y="332" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Without Resumable Upload</text>
+  <text x="80" y="352" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Failure at 80% = restart from 0%</text>
+  <text x="80" y="370" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">5GB upload on flaky connection = never completes</text>
+
+  <!-- With resumable -->
+  <rect x="470" y="310" width="370" height="75" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="490" y="332" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">With Resumable Upload</text>
+  <text x="490" y="352" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Failure at 80% = resume from 80%</text>
+  <text x="490" y="370" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Only re-upload the failed chunk (100MB vs 5GB)</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

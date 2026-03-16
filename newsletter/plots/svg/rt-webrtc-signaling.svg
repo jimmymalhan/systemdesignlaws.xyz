@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8e44ad"/>
+    </marker>
+  </defs>
+  <rect width="800" height="440" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">WebRTC Signaling Flow</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Signaling server brokers connection setup — then steps aside for direct P2P</text>
+
+  <!-- Client A -->
+  <rect x="30" y="80" width="150" height="60" rx="8" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="105" y="107" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Client A</text>
+  <text x="105" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">caller</text>
+  <line x1="105" y1="140" x2="105" y2="360" stroke="#4a90d9" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Signaling Server -->
+  <rect x="305" y="80" width="190" height="60" rx="8" fill="#fdf8e8" stroke="#d4a017" stroke-width="2"/>
+  <text x="400" y="107" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Signaling Server</text>
+  <text x="400" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">WebSocket or HTTP</text>
+  <line x1="400" y1="140" x2="400" y2="360" stroke="#d4a017" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Client B -->
+  <rect x="620" y="80" width="150" height="60" rx="8" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="695" y="107" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Client B</text>
+  <text x="695" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">callee</text>
+  <line x1="695" y1="140" x2="695" y2="360" stroke="#4a90d9" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Step 1: A sends offer -->
+  <text x="22" y="158" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">1</text>
+  <line x1="115" y1="157" x2="388" y2="165" stroke="#2980b9" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="250" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" text-anchor="middle" font-weight="bold">SDP Offer (codec, ICE candidates)</text>
+
+  <!-- Step 2: Server forwards offer to B -->
+  <text x="375" y="190" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">2</text>
+  <line x1="412" y1="188" x2="683" y2="196" stroke="#2980b9" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="550" y="183" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" text-anchor="middle">Forward offer to B</text>
+
+  <!-- Step 3: B sends answer -->
+  <text x="375" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">3</text>
+  <line x1="683" y1="218" x2="412" y2="226" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="550" y="213" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" text-anchor="middle">SDP Answer</text>
+
+  <!-- Step 4: Server forwards answer to A -->
+  <text x="22" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">4</text>
+  <line x1="388" y1="246" x2="115" y2="254" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="250" y="241" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" text-anchor="middle">Forward answer to A</text>
+
+  <!-- Step 5: ICE candidate exchange -->
+  <text x="22" y="278" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">5</text>
+  <line x1="115" y1="275" x2="388" y2="280" stroke="#e67e22" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="683" y1="280" x2="412" y2="278" stroke="#e67e22" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="250" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#e67e22" text-anchor="middle">ICE candidates A</text>
+  <text x="550" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#e67e22" text-anchor="middle">ICE candidates B</text>
+  <text x="400" y="292" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">(all relayed through signaling server)</text>
+
+  <!-- Step 6: Direct P2P -->
+  <rect x="105" y="310" width="590" height="36" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="400" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Direct P2P Connection Established (audio/video/data)</text>
+  <text x="400" y="343" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">Signaling server no longer involved</text>
+
+  <!-- Arrow from timeline to P2P box -->
+  <line x1="105" y1="360" x2="105" y2="310" stroke="#4ab54a" stroke-width="2"/>
+  <line x1="695" y1="360" x2="695" y2="346" stroke="#4ab54a" stroke-width="2"/>
+
+  <!-- Key insight box -->
+  <rect x="30" y="370" width="740" height="56" rx="8" fill="#f9f9f9" stroke="#cccccc" stroke-width="1.5"/>
+  <text x="400" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Key Design Point</text>
+  <text x="400" y="407" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">Signaling server is lightweight — just routes setup messages. Scale it easily (stateless, tiny payloads).</text>
+  <text x="400" y="422" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">Media bandwidth stays peer-to-peer — no server cost for the actual audio/video stream.</text>
+</svg>

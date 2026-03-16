@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="480" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Consistent Hashing for WebSocket Connections</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Hash user ID to server — same user always lands on same server (stateful routing)</text>
+
+  <!-- Hash ring circle -->
+  <circle cx="260" cy="230" r="140" fill="none" stroke="#cccccc" stroke-width="2"/>
+
+  <!-- Ring label -->
+  <text x="260" y="225" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Hash Ring</text>
+  <text x="260" y="243" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888888" text-anchor="middle">0 ... 2^32</text>
+
+  <!-- Server nodes on ring -->
+  <!-- S1 at top (270 deg = top) -->
+  <circle cx="260" cy="90" r="18" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="260" y="95" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">S1</text>
+
+  <!-- S2 at right -->
+  <circle cx="400" cy="230" r="18" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="400" y="235" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">S2</text>
+
+  <!-- S3 at bottom-right -->
+  <circle cx="348" cy="354" r="18" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="348" y="359" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">S3</text>
+
+  <!-- S4 at bottom-left -->
+  <circle cx="172" cy="354" r="18" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="172" y="359" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">S4</text>
+
+  <!-- User nodes on ring -->
+  <!-- User A near S2 (just before clockwise) -->
+  <circle cx="385" cy="148" r="14" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="385" y="153" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="bold" fill="#1a1a1a" text-anchor="middle">UA</text>
+
+  <!-- User B between S2 and S3 -->
+  <circle cx="398" cy="295" r="14" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="398" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="bold" fill="#1a1a1a" text-anchor="middle">UB</text>
+
+  <!-- Clockwise arrows from users to servers -->
+  <path d="M 393 157 Q 405 193 395 218" fill="none" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="420" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2980b9" text-anchor="middle">→ S2</text>
+
+  <path d="M 398 309 Q 390 330 358 354" fill="none" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="408" y="335" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2980b9" text-anchor="middle">→ S3</text>
+
+  <!-- Right side: routing explanation -->
+  <rect x="500" y="70" width="270" height="180" rx="8" fill="#f9f9f9" stroke="#cccccc" stroke-width="1.5"/>
+  <text x="635" y="94" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">How routing works</text>
+
+  <text x="515" y="116" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#2980b9">1. Connect:</text>
+  <text x="515" y="133" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">hash(user_id) % ring</text>
+  <text x="515" y="149" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">→ next clockwise server</text>
+
+  <text x="515" y="172" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#8e44ad">2. Push update:</text>
+  <text x="515" y="189" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">hash(user_id) → server</text>
+  <text x="515" y="205" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">→ look up WS connection</text>
+  <text x="515" y="221" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">→ push to that socket</text>
+  <text x="515" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">No cross-server lookup needed</text>
+
+  <!-- Add server box -->
+  <rect x="500" y="270" width="270" height="120" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="1.5"/>
+  <text x="635" y="292" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Adding a Server</text>
+  <text x="515" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">New server S5 inserted in ring.</text>
+  <text x="515" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">Only users between S4 and S5</text>
+  <text x="515" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">need to reconnect to S5.</text>
+  <text x="515" y="364" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60">Min disruption: only ~1/N users</text>
+  <text x="515" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60">affected per new node added.</text>
+
+  <!-- Tradeoff box -->
+  <rect x="30" y="400" width="440" height="60" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="250" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Interview Tradeoff</text>
+  <text x="250" y="438" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">+ No Pub/Sub needed. State stays local per server.</text>
+  <text x="250" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">- Server failure re-routes ~1/N users (need graceful reconnect).</text>
+</svg>

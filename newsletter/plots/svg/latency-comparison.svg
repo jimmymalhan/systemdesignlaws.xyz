@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#238636"/>
+      <stop offset="100%" stop-color="#3fb950"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2ea043"/>
+      <stop offset="100%" stop-color="#56d364"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6e7f1a"/>
+      <stop offset="100%" stop-color="#9ece3a"/>
+    </linearGradient>
+    <linearGradient id="bar4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9e6a03"/>
+      <stop offset="100%" stop-color="#d29922"/>
+    </linearGradient>
+    <linearGradient id="bar5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#bd561d"/>
+      <stop offset="100%" stop-color="#db6d28"/>
+    </linearGradient>
+    <linearGradient id="bar6" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c93c37"/>
+      <stop offset="100%" stop-color="#f85149"/>
+    </linearGradient>
+    <linearGradient id="bar7" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a0153e"/>
+      <stop offset="100%" stop-color="#da3633"/>
+    </linearGradient>
+    <filter id="sh5">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg5)"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#e6edf3">Latency Numbers Every Engineer Should Know</text>
+  <text x="400" y="56" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">Logarithmic scale -- each step is roughly 10x slower</text>
+
+  <!-- Chart area -->
+  <!-- Using logarithmic visual scale: 1ns=base, widths proportional to log10 -->
+  <!-- log10(1)=0, log10(10)=1, log10(100)=2, log10(100000)=5, log10(500000)=5.7, log10(1000000)=6, log10(50000000)=7.7 -->
+  <!-- Scale: max width ~520px for the longest bar, mapped to log range 0-7.7 -->
+
+  <!-- Labels column: x=40-170, Bars start at x=185 -->
+  <!-- Bar max width = 520px, log max = 7.7 -->
+  <!-- width = (log10(ns) / 7.7) * 520 -->
+
+  <!-- Row 1: L1 Cache - 1ns, log10(1)=0 => tiny bar, let's use min 18px -->
+  <text x="175" y="98" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#e6edf3">L1 Cache</text>
+  <rect x="185" y="85" width="20" height="22" rx="4" fill="url(#bar1)" filter="url(#sh5)"/>
+  <text x="212" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#3fb950">1 ns</text>
+  <text x="250" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#484f58">Reference point</text>
+
+  <!-- Row 2: L2/L3 Cache - 10ns, log10(10)=1 => 1/7.7 * 520 = 67px -->
+  <text x="175" y="138" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#e6edf3">L2/L3 Cache</text>
+  <rect x="185" y="125" width="67" height="22" rx="4" fill="url(#bar2)" filter="url(#sh5)"/>
+  <text x="259" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#56d364">10 ns</text>
+  <text x="305" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#484f58">10x slower</text>
+
+  <!-- Row 3: Main Memory (RAM) - 100ns, log10(100)=2 => 135px -->
+  <text x="175" y="178" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#e6edf3">RAM</text>
+  <rect x="185" y="165" width="135" height="22" rx="4" fill="url(#bar3)" filter="url(#sh5)"/>
+  <text x="327" y="180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#9ece3a">100 ns</text>
+  <text x="381" y="180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#484f58">100x slower</text>
+
+  <!-- Row 4: SSD Random Read - 100us=100000ns, log10(100000)=5 => 338px -->
+  <text x="175" y="218" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#e6edf3">SSD Read</text>
+  <rect x="185" y="205" width="338" height="22" rx="4" fill="url(#bar4)" filter="url(#sh5)"/>
+  <text x="530" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#d29922">100 us</text>
+  <text x="582" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#484f58">100,000x slower</text>
+
+  <!-- Row 5: Network Round Trip - 500us=500000ns, log10(500000)=5.7 => 385px -->
+  <text x="175" y="258" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#e6edf3">Network RT</text>
+  <rect x="185" y="245" width="385" height="22" rx="4" fill="url(#bar5)" filter="url(#sh5)"/>
+  <text x="577" y="260" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#db6d28">500 us</text>
+  <text x="630" y="260" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#484f58">500,000x</text>
+
+  <!-- Row 6: Redis GET - 1ms=1000000ns, log10(1000000)=6 => 405px -->
+  <text x="175" y="298" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#e6edf3">Redis GET</text>
+  <rect x="185" y="285" width="405" height="22" rx="4" fill="url(#bar6)" filter="url(#sh5)"/>
+  <text x="597" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#f85149">1 ms</text>
+  <text x="632" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#484f58">1,000,000x</text>
+
+  <!-- Row 7: Postgres Query - 1-50ms, use 50ms=50000000ns, log10(50000000)=7.7 => 520px -->
+  <text x="175" y="338" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#e6edf3">Postgres</text>
+  <rect x="185" y="325" width="520" height="22" rx="4" fill="url(#bar7)" filter="url(#sh5)"/>
+  <text x="712" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#da3633">1-50 ms</text>
+
+  <!-- Scale markers along bottom -->
+  <line x1="185" y1="360" x2="185" y2="370" stroke="#484f58" stroke-width="1"/>
+  <text x="185" y="382" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">1 ns</text>
+
+  <line x1="252" y1="360" x2="252" y2="370" stroke="#484f58" stroke-width="1"/>
+  <text x="252" y="382" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">10 ns</text>
+
+  <line x1="320" y1="360" x2="320" y2="370" stroke="#484f58" stroke-width="1"/>
+  <text x="320" y="382" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">100 ns</text>
+
+  <line x1="387" y1="360" x2="387" y2="370" stroke="#484f58" stroke-width="1"/>
+  <text x="387" y="382" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">1 us</text>
+
+  <line x1="455" y1="360" x2="455" y2="370" stroke="#484f58" stroke-width="1"/>
+  <text x="455" y="382" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">10 us</text>
+
+  <line x1="523" y1="360" x2="523" y2="370" stroke="#484f58" stroke-width="1"/>
+  <text x="523" y="382" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">100 us</text>
+
+  <line x1="590" y1="360" x2="590" y2="370" stroke="#484f58" stroke-width="1"/>
+  <text x="590" y="382" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">1 ms</text>
+
+  <line x1="658" y1="360" x2="658" y2="370" stroke="#484f58" stroke-width="1"/>
+  <text x="658" y="382" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">10 ms</text>
+
+  <!-- Bottom key insight -->
+  <rect x="40" y="398" width="720" height="40" rx="8" fill="rgba(88,166,255,0.06)" stroke="rgba(88,166,255,0.15)" stroke-width="1"/>
+  <text x="400" y="418" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#58a6ff">Key Insight for System Design Interviews</text>
+  <text x="400" y="432" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">A Redis cache hit (1ms) is 10-50x faster than a Postgres query -- this is why caching matters at scale.</text>
+</svg>

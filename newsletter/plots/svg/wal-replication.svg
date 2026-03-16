@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1B1B1F"/>
+    </marker>
+    <marker id="blueArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1565C0"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Write-Ahead Log (WAL) Replication</text>
+
+  <!-- Step 1: Write arrives -->
+  <rect x="20" y="55" width="100" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="70" y="76" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Client</text>
+  <text x="70" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">INSERT/UPDATE</text>
+
+  <!-- Arrow to primary -->
+  <line x1="120" y1="80" x2="160" y2="80" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: Primary DB -->
+  <rect x="165" y="48" width="130" height="65" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="230" y="70" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Primary DB</text>
+  <text x="230" y="88" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Handles all writes</text>
+  <text x="230" y="104" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Single source of truth</text>
+
+  <!-- Arrow to WAL -->
+  <line x1="230" y1="113" x2="230" y2="148" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="250" y="135" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">1. Log first</text>
+
+  <!-- Step 3: WAL (append-only sequential log) -->
+  <rect x="80" y="152" width="300" height="120" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="230" y="172" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Write-Ahead Log (WAL)</text>
+  <text x="230" y="188" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Append-only sequential file</text>
+
+  <!-- WAL entries -->
+  <rect x="95" y="196" width="270" height="20" rx="3" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="100" y="210" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">LSN:001 | INSERT users (id=42, name='Alice')</text>
+  <rect x="95" y="218" width="270" height="20" rx="3" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="100" y="232" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">LSN:002 | UPDATE orders SET status='shipped' WHERE id=99</text>
+  <rect x="95" y="240" width="270" height="20" rx="3" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="100" y="254" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">LSN:003 | INSERT products (id=7, price=29.99)</text>
+
+  <!-- Arrow: WAL streams to replicas -->
+  <line x1="380" y1="195" x2="480" y2="100" stroke="#1565C0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#blueArrow)"/>
+  <line x1="380" y1="212" x2="480" y2="212" stroke="#1565C0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#blueArrow)"/>
+  <line x1="380" y1="230" x2="480" y2="320" stroke="#1565C0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#blueArrow)"/>
+
+  <!-- Stream label -->
+  <text x="435" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0" transform="rotate(-28 435 155)">WAL stream</text>
+
+  <!-- Replica 1 -->
+  <rect x="490" y="65" width="150" height="65" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="565" y="87" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Replica 1</text>
+  <text x="565" y="104" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Replaying WAL entries...</text>
+  <text x="565" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Read-only queries</text>
+
+  <!-- Replica 2 -->
+  <rect x="490" y="180" width="150" height="65" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="565" y="202" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Replica 2</text>
+  <text x="565" y="219" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Replaying WAL entries...</text>
+  <text x="565" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Read-only queries</text>
+
+  <!-- Replica 3 -->
+  <rect x="490" y="294" width="150" height="65" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="565" y="316" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Replica 3</text>
+  <text x="565" y="333" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Replaying WAL entries...</text>
+  <text x="565" y="349" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Read-only queries</text>
+
+  <!-- Lag indicator -->
+  <rect x="680" y="176" width="200" height="72" rx="8" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="780" y="196" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Replication Lag</text>
+  <text x="780" y="216" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#6A1B9A">100 - 300ms (async)</text>
+  <text x="780" y="236" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Eventual consistency tradeoff</text>
+
+  <!-- Key benefit box -->
+  <rect x="680" y="65" width="200" height="55" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="780" y="84" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Key Benefit</text>
+  <text x="780" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">3x read throughput</text>
+  <text x="780" y="113" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Zero write overhead</text>
+
+  <!-- Bottom note -->
+  <rect x="80" y="300" width="300" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="230" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Why WAL?</text>
+  <text x="230" y="336" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Sequential writes are 100x faster than random writes.</text>
+  <text x="230" y="348" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Crash recovery: replay WAL to restore state.</text>
+
+  <!-- Watermark -->
+  <text x="878" y="409" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

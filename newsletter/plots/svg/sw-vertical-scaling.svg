@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Vertical Scaling + Write Optimization</text>
+  <text x="450" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Exhaust Hardware Before Adding Complexity</text>
+  <rect x="50" y="80" width="350" height="130" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="225.0" y="142.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Before</text>
+  <text x="225.0" y="160.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Standard Hardware</text>
+  <rect x="70" y="130" width="140" height="30" rx="4" fill="#FFD5D5" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="140.0" y="149.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">4 cores</text>
+  <rect x="230" y="130" width="150" height="30" rx="4" fill="#FFD5D5" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="305.0" y="149.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">HDD, 16GB RAM</text>
+  <text x="225" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#B71C1C">~1,000 writes/sec</text>
+  <line x1="420" y1="145" x2="480" y2="145" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="500" y="80" width="370" height="130" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="685.0" y="142.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">After</text>
+  <text x="685.0" y="160.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Modern Hardware</text>
+  <rect x="520" y="130" width="150" height="30" rx="4" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="595.0" y="149.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">200 cores</text>
+  <rect x="690" y="130" width="160" height="30" rx="4" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="770.0" y="149.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">NVMe SSD, 512GB</text>
+  <text x="685" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32">~50,000 writes/sec</text>
+  <rect x="150" y="250" width="600" height="100" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450.0" y="305.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Database Tuning</text>
+  <rect x="170" y="285" width="160" height="40" rx="4" fill="#D0E8FA" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="250.0" y="309.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Disable FK/Triggers</text>
+  <rect x="370" y="285" width="160" height="40" rx="4" fill="#D0E8FA" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="450.0" y="309.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Tune WAL Batching</text>
+  <rect x="570" y="285" width="160" height="40" rx="4" fill="#D0E8FA" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="650.0" y="309.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Reduce Indexes</text>
+  <text x="450" y="390" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#555" font-style="italic">50x improvement possible before sharding</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

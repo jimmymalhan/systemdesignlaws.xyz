@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Progress Tracking for Long-Running Tasks</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">How clients know what percentage is complete</text>
+
+<!-- Worker updates progress -->
+<rect x="40" y="80" width="160" height="60" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="120" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Worker</text>
+<text x="120" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Processing job</text>
+
+<line x1="200" y1="110" x2="255" y2="110" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="228" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Update</text>
+
+<!-- Progress store -->
+<rect x="260" y="75" width="200" height="70" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="360" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Progress Store</text>
+<text x="360" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Redis or DB</text>
+<text x="360" y="135" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">job_id: {status, progress, msg}</text>
+
+<line x1="460" y1="110" x2="515" y2="110" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="488" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Read</text>
+
+<!-- API server -->
+<rect x="520" y="80" width="150" height="60" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="595" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">API Server</text>
+<text x="595" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">GET /jobs/{id}/status</text>
+
+<line x1="670" y1="110" x2="725" y2="110" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Client -->
+<rect x="730" y="80" width="130" height="60" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="795" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Client</text>
+<text x="795" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Progress bar</text>
+
+<!-- Progress data -->
+<text x="450" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Progress Data Model</text>
+
+<rect x="150" y="195" width="600" height="75" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="170" y="218" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">job_id:</text>
+<text x="250" y="218" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">"transcode-abc123"</text>
+<text x="170" y="238" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">status:</text>
+<text x="250" y="238" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">"processing"</text>
+<text x="400" y="218" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">progress:</text>
+<text x="480" y="218" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">67</text>
+<text x="400" y="238" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">message:</text>
+<text x="480" y="238" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">"Encoding 720p..."</text>
+<text x="400" y="258" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">eta:</text>
+<text x="480" y="258" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">"2m 30s remaining"</text>
+
+<!-- Three approaches -->
+<text x="450" y="300" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">How the Client Gets Updates</text>
+
+<rect x="40" y="315" width="260" height="70" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="170" y="337" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Polling</text>
+<text x="60" y="357" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">GET /jobs/{id} every 2 seconds</text>
+<text x="60" y="375" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Simple, works everywhere</text>
+
+<rect x="320" y="315" width="260" height="70" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="337" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Server-Sent Events</text>
+<text x="340" y="357" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Server pushes updates to client</text>
+<text x="340" y="375" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Efficient, one-way stream</text>
+
+<rect x="600" y="315" width="260" height="70" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="730" y="337" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">WebSocket</text>
+<text x="620" y="357" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Bidirectional real-time channel</text>
+<text x="620" y="375" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Most complex, most capable</text>
+
+<!-- Bottom note -->
+<rect x="150" y="395" width="600" height="20" rx="4" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="409" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Default: polling. Upgrade to SSE or WebSocket when real-time matters.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

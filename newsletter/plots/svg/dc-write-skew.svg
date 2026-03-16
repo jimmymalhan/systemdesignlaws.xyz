@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ws" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Write Skew: The Subtle Anomaly</text>
+
+  <!-- Scenario -->
+  <rect x="30" y="50" width="840" height="40" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="450" y="75" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#7B1FA2" font-weight="bold">Hospital rule: At least 1 doctor on call at all times. Currently: Alice and Bob both on call.</text>
+
+  <!-- Timeline -->
+  <line x1="150" y1="105" x2="150" y2="360" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="450" y1="105" x2="450" y2="360" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="750" y1="105" x2="750" y2="360" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <rect x="70" y="100" width="160" height="26" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="150" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Alice</text>
+  <rect x="370" y="100" width="160" height="26" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Database</text>
+  <rect x="670" y="100" width="160" height="26" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="750" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Bob</text>
+
+  <!-- Initial state -->
+  <rect x="380" y="140" width="140" height="22" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="450" y="156" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">on_call: Alice=Y, Bob=Y</text>
+
+  <!-- Alice reads -->
+  <line x1="150" y1="178" x2="438" y2="178" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-ws)"/>
+  <text x="294" y="174" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">SELECT COUNT on_call</text>
+  <text x="150" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Sees 2 doctors on call</text>
+  <text x="150" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">"2 > 1, safe to leave"</text>
+
+  <!-- Bob reads -->
+  <line x1="750" y1="195" x2="462" y2="195" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-ws)"/>
+  <text x="606" y="191" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">SELECT COUNT on_call</text>
+  <text x="750" y="215" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Sees 2 doctors on call</text>
+  <text x="750" y="229" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">"2 > 1, safe to leave"</text>
+
+  <!-- Both update different rows -->
+  <line x1="150" y1="250" x2="438" y2="250" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-ws)"/>
+  <text x="294" y="246" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">UPDATE Alice.on_call = N</text>
+
+  <line x1="750" y1="268" x2="462" y2="268" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-ws)"/>
+  <text x="606" y="264" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">UPDATE Bob.on_call = N</text>
+
+  <!-- Result -->
+  <rect x="300" y="285" width="300" height="35" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="450" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F" font-weight="bold">0 doctors on call!</text>
+  <text x="450" y="316" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">Invariant violated: different rows updated</text>
+
+  <!-- Why other levels fail -->
+  <rect x="30" y="335" width="410" height="70" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+  <text x="235" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100" font-weight="bold">Why REPEATABLE READ misses this</text>
+  <text x="235" y="375" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Each txn reads same data consistently</text>
+  <text x="235" y="392" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">But they write DIFFERENT rows. No row-level conflict.</text>
+
+  <rect x="460" y="335" width="410" height="70" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="665" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Fix: SERIALIZABLE or explicit lock</text>
+  <text x="665" y="375" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">SERIALIZABLE detects read-write dependency</text>
+  <text x="665" y="392" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Or: SELECT FOR UPDATE on all on_call rows</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

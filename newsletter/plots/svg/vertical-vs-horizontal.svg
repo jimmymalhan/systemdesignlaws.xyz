@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-vh" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-vh-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Vertical vs Horizontal Scaling</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="50" x2="450" y2="400" stroke="#E0E0E0" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- LEFT: Vertical Scaling -->
+  <text x="225" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#1B1B1F" font-weight="bold">Vertical Scaling</text>
+  <text x="225" y="86" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#666">(Scale Up - bigger machine)</text>
+
+  <!-- Small server -->
+  <rect x="80" y="100" width="90" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="125" y="123" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Server</text>
+  <text x="125" y="141" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">4 CPU, 8GB</text>
+
+  <!-- Arrow: small to medium -->
+  <path d="M170,125 C195,125 215,125 238,125" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-vh)"/>
+  <text x="205" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#888">upgrade</text>
+
+  <!-- Medium server -->
+  <rect x="245" y="93" width="130" height="65" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2.5"/>
+  <text x="310" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Server</text>
+  <text x="310" y="137" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">64 CPU, 512GB</text>
+  <text x="310" y="153" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">$$$ expensive</text>
+
+  <!-- Ceiling line (red dashed) -->
+  <path d="M50,200 L430,200" stroke="#D32F2F" stroke-width="2.5" fill="none" stroke-dasharray="8,4"/>
+  <rect x="110" y="207" width="230" height="26" rx="5" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="225" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F" font-weight="bold">CEILING: ~100K RPS limit</text>
+
+  <!-- Annotations -->
+  <text x="225" y="260" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#888">Cost grows exponentially</text>
+  <text x="225" y="278" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#888">Single point of failure</text>
+
+  <!-- Pros/Cons left -->
+  <text x="225" y="310" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">+ Simple architecture</text>
+  <text x="225" y="330" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">+ No code changes needed</text>
+  <text x="225" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">- Expensive at scale</text>
+  <text x="225" y="375" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">- Hard upper limit</text>
+
+  <!-- CENTER: VS -->
+  <circle cx="450" cy="155" r="28" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="162" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">vs</text>
+
+  <!-- RIGHT: Horizontal Scaling -->
+  <text x="675" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#1B1B1F" font-weight="bold">Horizontal Scaling</text>
+  <text x="675" y="86" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#666">(Scale Out - more machines)</text>
+
+  <!-- Load Balancer -->
+  <rect x="625" y="96" width="100" height="35" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="675" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Load Balancer</text>
+
+  <!-- Fan-out lines -->
+  <path d="M640,131 C615,140 545,152 535,158" stroke="#1B1B1F" stroke-width="1.5" fill="none" marker-end="url(#arr-vh)"/>
+  <path d="M660,131 C645,142 623,152 620,158" stroke="#1B1B1F" stroke-width="1.5" fill="none" marker-end="url(#arr-vh)"/>
+  <path d="M695,131 C710,142 727,152 730,158" stroke="#1B1B1F" stroke-width="1.5" fill="none" marker-end="url(#arr-vh)"/>
+  <path d="M710,131 C735,140 810,152 823,158" stroke="#1B1B1F" stroke-width="1.5" fill="none" marker-end="url(#arr-vh)"/>
+
+  <!-- Row 1: 4 servers -->
+  <rect x="495" y="162" width="80" height="42" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="535" y="184" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F" font-weight="bold">Node 1</text>
+  <text x="535" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#666">4 CPU</text>
+
+  <rect x="583" y="162" width="80" height="42" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="623" y="184" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F" font-weight="bold">Node 2</text>
+  <text x="623" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#666">4 CPU</text>
+
+  <rect x="693" y="162" width="80" height="42" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="733" y="184" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F" font-weight="bold">Node 3</text>
+  <text x="733" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#666">4 CPU</text>
+
+  <rect x="785" y="162" width="80" height="42" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="825" y="184" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F" font-weight="bold">Node 4</text>
+  <text x="825" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#666">4 CPU</text>
+
+  <!-- Arrow: add more -->
+  <path d="M675,215 C675,222 675,230 675,243" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-vh-g)"/>
+  <text x="700" y="236" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">add more</text>
+
+  <!-- Row 2: dotted servers (growth) -->
+  <rect x="495" y="250" width="80" height="36" rx="5" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="535" y="273" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Node 5</text>
+
+  <rect x="583" y="250" width="80" height="36" rx="5" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="623" y="273" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Node 6</text>
+
+  <rect x="693" y="250" width="80" height="36" rx="5" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="733" y="273" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Node 7</text>
+
+  <rect x="785" y="250" width="80" height="36" rx="5" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="825" y="273" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Node N...</text>
+
+  <!-- No ceiling label -->
+  <rect x="545" y="300" width="260" height="26" rx="5" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="675" y="318" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">NO CEILING: scales linearly</text>
+
+  <!-- Pros/Cons right -->
+  <text x="675" y="350" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">+ Unlimited scaling</text>
+  <text x="675" y="368" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">+ Fault tolerant</text>
+  <text x="675" y="390" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">- More complex architecture</text>
+  <text x="675" y="408" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">- Consistency challenges</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

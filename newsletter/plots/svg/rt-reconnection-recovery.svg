@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="460" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Reconnection and Message Recovery</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Client tracks sequence number. Server buffers in Redis. No gaps on reconnect.</text>
+
+  <!-- Client column -->
+  <rect x="40" y="75" width="120" height="44" rx="8" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="100" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Client</text>
+  <line x1="100" y1="119" x2="100" y2="400" stroke="#4a90d9" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Server column -->
+  <rect x="380" y="75" width="120" height="44" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="440" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Server</text>
+  <line x1="440" y1="119" x2="440" y2="400" stroke="#4ab54a" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Redis column -->
+  <rect x="630" y="75" width="130" height="44" rx="8" fill="#fdf8e8" stroke="#d4a017" stroke-width="2"/>
+  <text x="695" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Redis Stream</text>
+  <line x1="695" y1="119" x2="695" y2="400" stroke="#d4a017" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Phase 1: Connected -->
+  <rect x="165" y="118" width="240" height="18" rx="3" fill="#e8fde8"/>
+  <text x="285" y="131" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle" font-weight="bold">Phase 1: Connected (seq 0-100 received)</text>
+
+  <!-- Messages flowing -->
+  <line x1="440" y1="148" x2="110" y2="155" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="270" y="143" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">seq:98 data: event X</text>
+
+  <line x1="440" y1="168" x2="110" y2="175" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="270" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">seq:99 data: event Y</text>
+
+  <line x1="440" y1="188" x2="110" y2="195" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="270" y="183" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">seq:100 data: event Z  (last seen)</text>
+
+  <!-- Phase 2: Disconnection -->
+  <rect x="40" y="202" width="720" height="22" rx="3" fill="#fde8e8"/>
+  <text x="400" y="217" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="bold">Connection drops</text>
+
+  <!-- Events buffered in Redis while client is gone -->
+  <line x1="440" y1="234" x2="683" y2="238" stroke="#d4a017" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="560" y="228" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle">seq:101 buffered</text>
+
+  <line x1="440" y1="252" x2="683" y2="256" stroke="#d4a017" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="560" y="246" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle">seq:102 buffered</text>
+
+  <line x1="440" y1="270" x2="683" y2="274" stroke="#d4a017" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="560" y="264" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle">seq:103 buffered</text>
+
+  <!-- Redis buffer box -->
+  <rect x="640" y="228" width="115" height="60" rx="5" fill="#fff8e8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="697" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle" font-weight="bold">Buffered:</text>
+  <text x="697" y="263" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">seq 101, 102, 103</text>
+  <text x="697" y="278" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">TTL: 24 hours</text>
+
+  <!-- Phase 3: Reconnect -->
+  <rect x="165" y="298" width="240" height="18" rx="3" fill="#e8f4fd"/>
+  <text x="285" y="311" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#2980b9" text-anchor="middle" font-weight="bold">Phase 3: Reconnect with last seq</text>
+
+  <!-- Reconnect request -->
+  <line x1="110" y1="326" x2="428" y2="333" stroke="#2980b9" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="270" y="321" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" text-anchor="middle" font-weight="bold">CONNECT  Last-Seq: 100</text>
+
+  <!-- Server reads Redis -->
+  <line x1="452" y1="340" x2="638" y2="265" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <text x="555" y="322" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle">XRANGE seq 101 +</text>
+
+  <!-- Replay missed messages -->
+  <line x1="428" y1="355" x2="110" y2="362" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="270" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">seq:101 (replayed)</text>
+
+  <line x1="428" y1="372" x2="110" y2="379" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="270" y="367" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">seq:102 (replayed)</text>
+
+  <line x1="428" y1="389" x2="110" y2="396" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="270" y="384" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">seq:103 (replayed)</text>
+
+  <!-- Summary note -->
+  <rect x="40" y="415" width="720" height="36" rx="6" fill="#e8fde8" stroke="#4ab54a" stroke-width="1.5"/>
+  <text x="400" y="431" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Zero gap recovery: client sends last known seq, server replays from Redis stream</text>
+  <text x="400" y="446" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">Redis Streams (XRANGE) are perfect for this — ordered, TTL-based, O(N) replay. Same pattern as SSE Last-Event-ID.</text>
+</svg>

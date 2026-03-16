@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Interview Scenarios: Pattern Matching</text>
+
+  <!-- Scenario 1 -->
+  <rect x="30" y="50" width="270" height="100" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="165" y="72" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Online Auction</text>
+  <text x="165" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Optimistic concurrency</text>
+  <text x="165" y="108" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Current bid as version</text>
+  <text x="165" y="124" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">(bids only go up = no ABA)</text>
+  <text x="165" y="142" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#7B1FA2">WHERE current_bid = expected</text>
+
+  <!-- Scenario 2 -->
+  <rect x="315" y="50" width="270" height="100" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="72" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Ticketmaster</text>
+  <text x="450" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Temporary reservations</text>
+  <text x="450" y="108" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">10-min TTL on seat selection</text>
+  <text x="450" y="124" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Shrinks contention window</text>
+  <text x="450" y="142" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#7B1FA2">Redis lock or DB status column</text>
+
+  <!-- Scenario 3 -->
+  <rect x="600" y="50" width="270" height="100" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="735" y="72" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Banking / Payments</text>
+  <text x="735" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Sagas for resilience</text>
+  <text x="735" y="108" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">2PC if strict consistency</text>
+  <text x="735" y="124" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Cross-shard transfers</text>
+  <text x="735" y="142" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#7B1FA2">Compensating transactions</text>
+
+  <!-- Scenario 4 -->
+  <rect x="30" y="165" width="270" height="100" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="165" y="187" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Ride Sharing Dispatch</text>
+  <text x="165" y="207" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Status reservations</text>
+  <text x="165" y="223" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Driver = "pending_request"</text>
+  <text x="165" y="239" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Cache with TTL or DB status</text>
+  <text x="165" y="257" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#7B1FA2">Cleanup job for expired holds</text>
+
+  <!-- Scenario 5 -->
+  <rect x="315" y="165" width="270" height="100" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="187" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Flash Sale / Inventory</text>
+  <text x="450" y="207" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">OCC (version column)</text>
+  <text x="450" y="223" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">+ cart "holds" (dist. locks)</text>
+  <text x="450" y="239" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Hot items: queue serialization</text>
+  <text x="450" y="257" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#7B1FA2">Single worker per SKU</text>
+
+  <!-- Scenario 6 -->
+  <rect x="600" y="165" width="270" height="100" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="735" y="187" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Yelp / Reviews</text>
+  <text x="735" y="207" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Optimistic concurrency</text>
+  <text x="735" y="223" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Dedicated version column</text>
+  <text x="735" y="239" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">(Avg rating can go up/down)</text>
+  <text x="735" y="257" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#7B1FA2">Avoid ABA with explicit version</text>
+
+  <!-- Recognition signals -->
+  <text x="450" y="292" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Recognition Signals in Interviews</text>
+
+  <rect x="30" y="305" width="410" height="90" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="235" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Say this proactively:</text>
+  <text x="235" y="345" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">"Multiple users competing for limited resources"</text>
+  <text x="235" y="362" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">"Prevent double-booking or double-charging"</text>
+  <text x="235" y="379" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">"Race conditions across servers"</text>
+
+  <rect x="460" y="305" width="410" height="90" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="665" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Do NOT overcomplicate when:</text>
+  <text x="665" y="345" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Low contention (admin edits)</text>
+  <text x="665" y="362" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Single-user operations (todo lists)</text>
+  <text x="665" y="379" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Read-heavy with rare writes</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

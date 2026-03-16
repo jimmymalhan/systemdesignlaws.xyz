@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Contention Solutions: Complete Summary</text>
+
+  <!-- Single DB tier -->
+  <rect x="20" y="50" width="860" height="120" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2" opacity="0.3"/>
+  <text x="450" y="70" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">TIER 1: Single Database (start here)</text>
+
+  <rect x="35" y="80" width="195" height="78" rx="4" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="133" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Atomicity</text>
+  <text x="133" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Transactions, check row count</text>
+  <text x="133" y="133" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Complexity: Low</text>
+  <text x="133" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Contention: Any</text>
+
+  <rect x="245" y="80" width="195" height="78" rx="4" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="343" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Pessimistic Lock</text>
+  <text x="343" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">FOR UPDATE, row lock</text>
+  <text x="343" y="133" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Complexity: Low</text>
+  <text x="343" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Contention: High</text>
+
+  <rect x="455" y="80" width="195" height="78" rx="4" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="553" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Optimistic (OCC)</text>
+  <text x="553" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Version column, CAS</text>
+  <text x="553" y="133" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Complexity: Medium</text>
+  <text x="553" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Contention: Low</text>
+
+  <rect x="665" y="80" width="195" height="78" rx="4" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="763" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">SERIALIZABLE</text>
+  <text x="763" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Auto conflict detection</text>
+  <text x="763" y="133" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Complexity: Low</text>
+  <text x="763" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Contention: Medium</text>
+
+  <!-- Multi DB tier -->
+  <rect x="20" y="182" width="860" height="110" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2" opacity="0.3"/>
+  <text x="450" y="202" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#E65100" font-weight="bold">TIER 2: Multiple Databases (only when needed)</text>
+
+  <rect x="35" y="212" width="260" height="68" rx="4" fill="#FFFFFF" stroke="#E65100" stroke-width="1.5"/>
+  <text x="165" y="232" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#E65100" font-weight="bold">2PC</text>
+  <text x="165" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Strict atomicity, blocking risk</text>
+  <text x="165" y="265" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Complexity: Very High</text>
+
+  <rect x="310" y="212" width="280" height="68" rx="4" fill="#FFFFFF" stroke="#E65100" stroke-width="1.5"/>
+  <text x="450" y="232" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#E65100" font-weight="bold">Saga Pattern</text>
+  <text x="450" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Compensating txns, eventual consistency</text>
+  <text x="450" y="265" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Complexity: High</text>
+
+  <rect x="605" y="212" width="260" height="68" rx="4" fill="#FFFFFF" stroke="#E65100" stroke-width="1.5"/>
+  <text x="735" y="232" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#E65100" font-weight="bold">Distributed Locks</text>
+  <text x="735" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Redis, ZK, DB columns, TTL</text>
+  <text x="735" y="265" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Complexity: Medium</text>
+
+  <!-- Advanced tier -->
+  <rect x="20" y="305" width="860" height="65" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2" opacity="0.3"/>
+  <text x="450" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#7B1FA2" font-weight="bold">DEEP DIVES (what interviewers ask next)</text>
+
+  <text x="140" y="350" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Deadlocks: ordered locking</text>
+  <text x="370" y="350" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">ABA: dedicated version column</text>
+  <text x="600" y="350" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Hot partition: queue serialization</text>
+  <text x="800" y="350" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Write skew</text>
+
+  <!-- Golden rule -->
+  <rect x="100" y="383" width="700" height="28" rx="4" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="450" y="402" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#E65100" font-weight="bold">Exhaust Tier 1 before reaching for Tier 2. Most apps never need distributed coordination.</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-rr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#D32F2F" stroke="#D32F2F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-grn" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Read Replicas with WAL Replication</text>
+
+  <!-- App Server -->
+  <rect x="56" y="55" width="130" height="50" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="121" y="85" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">App Server</text>
+
+  <!-- Write arrow: App to Primary -->
+  <path d="M188,80 C230,80 290,80 340,80" stroke="#D32F2F" stroke-width="2.5" fill="none" marker-end="url(#arr-red)"/>
+  <text x="264" y="70" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">WRITES</text>
+
+  <!-- Primary DB -->
+  <rect x="346" y="50" width="195" height="65" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2.5"/>
+  <text x="443" y="78" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Primary DB</text>
+  <text x="443" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">(Read + Write)</text>
+
+  <!-- WAL arrows from Primary to Replicas -->
+  <path d="M395,118 C380,145 310,170 270,195" stroke="#FF9800" stroke-width="2" fill="none" marker-end="url(#arr-rr)" stroke-dasharray="6,3"/>
+  <path d="M443,118 C443,150 443,170 443,195" stroke="#FF9800" stroke-width="2" fill="none" marker-end="url(#arr-rr)" stroke-dasharray="6,3"/>
+  <path d="M493,118 C508,145 578,170 618,195" stroke="#FF9800" stroke-width="2" fill="none" marker-end="url(#arr-rr)" stroke-dasharray="6,3"/>
+
+  <!-- WAL labels -->
+  <text x="330" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#FF9800" font-weight="bold">WAL</text>
+  <text x="465" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#FF9800" font-weight="bold">WAL</text>
+  <text x="565" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#FF9800" font-weight="bold">WAL</text>
+
+  <!-- Replica 1 -->
+  <rect x="169" y="200" width="170" height="55" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="254" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Replica 1</text>
+  <text x="254" y="244" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">(Read Only)</text>
+
+  <!-- Replica 2 -->
+  <rect x="359" y="200" width="170" height="55" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="444" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Replica 2</text>
+  <text x="444" y="244" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">(Read Only)</text>
+
+  <!-- Replica 3 -->
+  <rect x="549" y="200" width="170" height="55" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="634" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Replica 3</text>
+  <text x="634" y="244" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">(Read Only)</text>
+
+  <!-- Load Balancer -->
+  <rect x="369" y="310" width="150" height="45" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="444" y="338" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Load Balancer</text>
+
+  <!-- Green read arrows: LB to Replicas -->
+  <path d="M390,310 C370,290 310,270 275,258" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-grn)"/>
+  <path d="M444,310 C444,295 444,275 444,258" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-grn)"/>
+  <path d="M498,310 C518,290 578,270 615,258" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-grn)"/>
+
+  <text x="310" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32" font-weight="bold">READS</text>
+  <text x="580" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32" font-weight="bold">READS</text>
+
+  <!-- App reads from LB -->
+  <path d="M100,107 C100,180 100,280 368,332" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-grn)" stroke-dasharray="6,3"/>
+  <text x="155" y="240" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">READS via LB</text>
+
+  <!-- Replication lag annotation -->
+  <line x1="745" y1="90" x2="745" y2="250" stroke="#FF9800" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="735" y1="90" x2="755" y2="90" stroke="#FF9800" stroke-width="1.5"/>
+  <line x1="735" y1="250" x2="755" y2="250" stroke="#FF9800" stroke-width="1.5"/>
+  <line x1="745" y1="90" x2="745" y2="250" stroke="#FF9800" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="828" y="160" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#FF9800" font-weight="bold">100-300ms</text>
+  <text x="828" y="178" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#FF9800">replication lag</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

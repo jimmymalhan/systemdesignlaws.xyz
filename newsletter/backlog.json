@@ -1,0 +1,526 @@
+{
+  "topics": [
+    {
+      "slug": "introduction",
+      "title": "Introduction",
+      "section": "Introduction",
+      "curriculum_path": "in-a-hurry/introduction",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "how-to-prepare",
+      "title": "How to Prepare",
+      "section": "Introduction",
+      "curriculum_path": "in-a-hurry/how-to-prepare",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "delivery-framework",
+      "title": "Delivery Framework",
+      "section": "Introduction",
+      "curriculum_path": "in-a-hurry/delivery",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "networking-essentials-for-system-design-interviews",
+      "title": "Networking Essentials",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/networking-essentials",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "api-design-for-system-design-interviews",
+      "title": "API Design",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/api-design",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "data-modeling-for-system-design-interviews",
+      "title": "Data Modeling",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/data-modeling",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "caching-for-system-design-interviews",
+      "title": "Caching",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/caching",
+      "status": "published",
+      "draft_file": "caching-for-system-design-interviews.md",
+      "published_url": "https://jimmymalhan.substack.com/p/caching-for-system-design-interviews"
+    },
+    {
+      "slug": "sharding-for-system-design-interviews",
+      "title": "Sharding",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/sharding",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "consistent-hashing-for-system-design-interviews",
+      "title": "Consistent Hashing",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/consistent-hashing",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "cap-theorem-for-system-design-interviews",
+      "title": "CAP Theorem",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/cap-theorem",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "database-indexing-for-system-design-interviews",
+      "title": "Database Indexing",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/database-indexing",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "numbers-to-know-for-system-design-interviews",
+      "title": "Numbers to Know",
+      "section": "Core Concepts",
+      "curriculum_path": "core-concepts/numbers-to-know",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "redis-for-system-design-interviews",
+      "title": "Redis",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/redis",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "elasticsearch-for-system-design-interviews",
+      "title": "Elasticsearch",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/elasticsearch",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "kafka-for-system-design-interviews",
+      "title": "Kafka",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/kafka",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "api-gateway-for-system-design-interviews",
+      "title": "API Gateway",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/api-gateway",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "cassandra-for-system-design-interviews",
+      "title": "Cassandra",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/cassandra",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "dynamodb-for-system-design-interviews",
+      "title": "DynamoDB",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/dynamodb",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "postgresql-for-system-design-interviews",
+      "title": "PostgreSQL",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/postgresql",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "flink-for-system-design-interviews",
+      "title": "Flink",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/flink",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "zookeeper-for-system-design-interviews",
+      "title": "ZooKeeper",
+      "section": "Key Technologies",
+      "curriculum_path": "deep-dives/zookeeper",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "bitly-system-design",
+      "title": "Bit.ly",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/bitly",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "dropbox-system-design",
+      "title": "Dropbox",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/dropbox",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "local-delivery-service-system-design",
+      "title": "Local Delivery Service",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/local-delivery-service",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "ticketmaster-system-design",
+      "title": "Ticketmaster",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/ticketmaster",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "fb-news-feed-system-design",
+      "title": "FB News Feed",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/facebook-news-feed",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "tinder-system-design",
+      "title": "Tinder",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/tinder",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "whatsapp-system-design",
+      "title": "WhatsApp",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/whatsapp",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "rate-limiter-system-design",
+      "title": "Rate Limiter",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/distributed-rate-limiter",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "uber-system-design",
+      "title": "Uber",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/uber",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "youtube-system-design",
+      "title": "YouTube",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/youtube",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "news-aggregator-system-design",
+      "title": "News Aggregator",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/news-aggregator",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "yelp-system-design",
+      "title": "Yelp",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/yelp",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "strava-system-design",
+      "title": "Strava",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/strava",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "instagram-system-design",
+      "title": "Instagram",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/instagram",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "robinhood-system-design",
+      "title": "Robinhood",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/robinhood",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "google-docs-system-design",
+      "title": "Google Docs",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/google-docs",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "distributed-cache-system-design",
+      "title": "Distributed Cache",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/distributed-cache",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "job-scheduler-system-design",
+      "title": "Job Scheduler",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/job-scheduler",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "web-crawler-system-design",
+      "title": "Web Crawler",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/web-crawler",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "ad-click-aggregator-system-design",
+      "title": "Ad Click Aggregator",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/ad-click-aggregator",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "payment-system-system-design",
+      "title": "Payment System",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/payment-system",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "metrics-monitoring-system-design",
+      "title": "Metrics Monitoring",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/metrics-monitoring",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "fb-live-comments-system-design",
+      "title": "FB Live Comments",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/facebook-live-comments",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "fb-post-search-system-design",
+      "title": "FB Post Search",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/facebook-post-search",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "youtube-top-k-system-design",
+      "title": "YouTube Top K",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/youtube-top-k",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "online-auction-system-design",
+      "title": "Online Auction",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/online-auction",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "price-tracking-service-system-design",
+      "title": "Price Tracking Service",
+      "section": "Question Breakdowns",
+      "curriculum_path": "problem-breakdowns/price-tracking-service",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "real-time-updates-for-system-design-interviews",
+      "title": "Real-time Updates",
+      "section": "Patterns",
+      "curriculum_path": "patterns/realtime-updates",
+      "status": "published",
+      "draft_file": "real-time-updates-for-system-design-interviews.md",
+      "published_url": "https://jimmymalhan.substack.com/p/real-time-updates"
+    },
+    {
+      "slug": "dealing-with-contention-for-system-design-interviews",
+      "title": "Dealing with Contention",
+      "section": "Patterns",
+      "curriculum_path": "patterns/dealing-with-contention",
+      "status": "published",
+      "draft_file": "dealing-with-contention-for-system-design-interviews.md",
+      "published_url": "https://jimmymalhan.substack.com/p/dealing-with-contention"
+    },
+    {
+      "slug": "multi-step-processes-for-system-design-interviews",
+      "title": "Multi-step Processes",
+      "section": "Patterns",
+      "curriculum_path": "patterns/multi-step-processes",
+      "status": "published",
+      "draft_file": "multi-step-processes-for-system-design-interviews.md",
+      "published_url": "https://jimmymalhan.substack.com/p/multi-step-processes"
+    },
+    {
+      "slug": "scaling-reads-for-system-design-interviews",
+      "title": "Scaling Reads",
+      "section": "Patterns",
+      "curriculum_path": "patterns/scaling-reads",
+      "status": "published",
+      "draft_file": "scaling-reads-for-system-design-interviews.md",
+      "published_url": "https://jimmymalhan.substack.com/p/scaling-reads-for-system-design-interviews"
+    },
+    {
+      "slug": "scaling-writes-for-system-design-interviews",
+      "title": "Scaling Writes",
+      "section": "Patterns",
+      "curriculum_path": "patterns/scaling-writes",
+      "status": "published",
+      "draft_file": "scaling-writes-for-system-design-interviews.md",
+      "published_url": "https://jimmymalhan.substack.com/p/scaling-writes"
+    },
+    {
+      "slug": "handling-large-blobs-for-system-design-interviews",
+      "title": "Handling Large Blobs",
+      "section": "Patterns",
+      "curriculum_path": "patterns/handling-large-blobs",
+      "status": "published",
+      "draft_file": "handling-large-blobs-for-system-design-interviews.md",
+      "published_url": "https://jimmymalhan.substack.com/p/handling-large-blobs"
+    },
+    {
+      "slug": "managing-long-running-tasks-for-system-design-interviews",
+      "title": "Managing Long Running Tasks",
+      "section": "Patterns",
+      "curriculum_path": "patterns/managing-long-running-tasks",
+      "status": "published",
+      "draft_file": "managing-long-running-tasks-for-system-design-interviews.md",
+      "published_url": "https://jimmymalhan.substack.com/p/managing-long-running-tasks"
+    },
+    {
+      "slug": "time-series-databases-for-system-design-interviews",
+      "title": "Time Series Databases",
+      "section": "Advanced Topics",
+      "curriculum_path": "deep-dives/time-series-databases",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "data-structures-for-big-data-for-system-design-interviews",
+      "title": "Data Structures for Big Data",
+      "section": "Advanced Topics",
+      "curriculum_path": "deep-dives/data-structures-for-big-data",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    },
+    {
+      "slug": "vector-databases-for-system-design-interviews",
+      "title": "Vector Databases",
+      "section": "Advanced Topics",
+      "curriculum_path": "deep-dives/vector-databases",
+      "status": "queued",
+      "draft_file": null,
+      "published_url": null
+    }
+  ]
+}

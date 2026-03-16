@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-2pc" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Two-Phase Commit (2PC)</text>
+
+  <!-- Coordinator -->
+  <rect x="340" y="45" width="220" height="45" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Coordinator</text>
+  <text x="450" y="82" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#7B1FA2">(Transfer Service)</text>
+
+  <!-- Participants -->
+  <rect x="40" y="45" width="200" height="45" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="140" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Database A</text>
+  <text x="140" y="82" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1565C0">(Alice's account)</text>
+
+  <rect x="660" y="45" width="200" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="760" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Database B</text>
+  <text x="760" y="82" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">(Bob's account)</text>
+
+  <!-- Phase 1 label -->
+  <rect x="15" y="105" width="870" height="125" rx="6" fill="#E8F4FD" stroke="#1565C0" stroke-width="1.5" opacity="0.3"/>
+  <text x="450" y="122" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1565C0" font-weight="bold">Phase 1: PREPARE</text>
+
+  <!-- Prepare messages -->
+  <line x1="340" y1="140" x2="242" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-2pc)"/>
+  <text x="291" y="136" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">PREPARE (debit $100)</text>
+
+  <line x1="560" y1="140" x2="658" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-2pc)"/>
+  <text x="609" y="136" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">PREPARE (credit $100)</text>
+
+  <!-- Prepare responses -->
+  <rect x="60" y="155" width="160" height="22" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="140" y="170" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Verifies funds, holds lock</text>
+
+  <rect x="680" y="155" width="160" height="22" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="760" y="170" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Checks account exists</text>
+
+  <line x1="240" y1="192" x2="338" y2="192" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-2pc)"/>
+  <text x="289" y="188" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">PREPARED OK</text>
+
+  <line x1="660" y1="192" x2="562" y2="192" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-2pc)"/>
+  <text x="611" y="188" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">PREPARED OK</text>
+
+  <!-- Coordinator log -->
+  <rect x="360" y="210" width="180" height="22" rx="3" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="450" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#7B1FA2" font-weight="bold">Write to durable log: COMMIT</text>
+
+  <!-- Phase 2 -->
+  <rect x="15" y="240" width="870" height="90" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" opacity="0.3"/>
+  <text x="450" y="257" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">Phase 2: COMMIT</text>
+
+  <line x1="340" y1="275" x2="242" y2="275" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-2pc)"/>
+  <text x="291" y="271" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">COMMIT</text>
+
+  <line x1="560" y1="275" x2="658" y2="275" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-2pc)"/>
+  <text x="609" y="271" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">COMMIT</text>
+
+  <line x1="240" y1="305" x2="338" y2="305" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-2pc)"/>
+  <text x="289" y="301" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">ACK</text>
+
+  <line x1="660" y1="305" x2="562" y2="305" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-2pc)"/>
+  <text x="611" y="301" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">ACK</text>
+
+  <!-- Warning -->
+  <rect x="60" y="345" width="380" height="50" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="250" y="365" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Blocking risk:</text>
+  <text x="250" y="383" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Coordinator crash after PREPARE holds locks</text>
+
+  <rect x="460" y="345" width="400" height="50" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="660" y="365" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Recovery:</text>
+  <text x="660" y="383" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">New coordinator reads log, completes txn</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

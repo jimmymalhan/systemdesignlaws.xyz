@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-cdn2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-cdn2-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#27ae60" stroke="#27ae60" stroke-width="1"/>
+    </marker>
+    <marker id="arr-cdn2-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#c0392b" stroke="#c0392b" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">CDN Edge Caching Flow</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Serve content from the closest edge server to reduce latency</text>
+
+  <!-- User -->
+  <rect x="40" y="130" width="110" height="55" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="95" y="155" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#1a1a1a" font-weight="bold">User</text>
+  <text x="95" y="172" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2980b9">Tokyo, Japan</text>
+
+  <!-- Arrow User to Edge -->
+  <path d="M150,157 L230,157" stroke="#27ae60" stroke-width="2.5" fill="none" marker-end="url(#arr-cdn2-g)"/>
+  <text x="190" y="148" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" font-weight="bold">~20ms</text>
+
+  <!-- Edge Server -->
+  <rect x="240" y="110" width="150" height="90" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="315" y="138" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#1a1a1a" font-weight="bold">Edge Server</text>
+  <text x="315" y="155" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">Tokyo POP</text>
+
+  <!-- Cache Hit path -->
+  <rect x="260" y="165" width="55" height="24" rx="6" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="287" y="181" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" font-weight="bold">HIT</text>
+
+  <!-- Cache Miss path -->
+  <rect x="325" y="165" width="55" height="24" rx="6" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="352" y="181" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b" font-weight="bold">MISS</text>
+
+  <!-- Hit: fast return -->
+  <path d="M260,175 C220,185 170,185 150,170" stroke="#27ae60" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-cdn2-g)"/>
+  <text x="200" y="198" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">20-40ms total</text>
+
+  <!-- Miss: go to origin -->
+  <path d="M380,180 C450,200 530,200 590,165" stroke="#c0392b" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arr-cdn2-r)"/>
+  <text x="490" y="210" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">~250ms round trip</text>
+
+  <!-- Origin Server -->
+  <rect x="590" y="120" width="150" height="70" rx="8" fill="#FFF8E8" stroke="#d4a017" stroke-width="2"/>
+  <text x="665" y="148" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#1a1a1a" font-weight="bold">Origin Server</text>
+  <text x="665" y="168" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017">Virginia, US</text>
+  <text x="665" y="183" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Source of truth</text>
+
+  <!-- Global edge nodes -->
+  <text x="400" y="260" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#1a1a1a" font-weight="bold">Global Edge Network</text>
+
+  <!-- Edge nodes row -->
+  <rect x="40" y="280" width="110" height="45" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="95" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" font-weight="bold">US-East</text>
+  <text x="95" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">~5ms</text>
+
+  <rect x="170" y="280" width="110" height="45" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="225" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" font-weight="bold">US-West</text>
+  <text x="225" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">~30ms</text>
+
+  <rect x="300" y="280" width="110" height="45" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="355" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" font-weight="bold">Europe</text>
+  <text x="355" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">~80ms</text>
+
+  <rect x="430" y="280" width="110" height="45" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="485" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" font-weight="bold">Asia</text>
+  <text x="485" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">~20ms</text>
+
+  <rect x="560" y="280" width="110" height="45" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="615" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" font-weight="bold">S. America</text>
+  <text x="615" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">~120ms</text>
+
+  <rect x="690" y="280" width="70" height="45" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="725" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#1a1a1a" font-weight="bold">Africa</text>
+  <text x="725" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">~150ms</text>
+
+  <!-- Stats -->
+  <rect x="60" y="350" width="300" height="55" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="210" y="372" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60" font-weight="bold">With CDN (Edge Hit)</text>
+  <text x="210" y="393" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">20-40ms, 90%+ requests served at edge</text>
+
+  <rect x="420" y="350" width="320" height="55" rx="8" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="580" y="372" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#c0392b" font-weight="bold">Without CDN (Direct to Origin)</text>
+  <text x="580" y="393" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">250-300ms per request from Asia to US</text>
+
+  <!-- Tradeoffs -->
+  <rect x="60" y="420" width="680" height="40" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="445" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" font-weight="bold">Best for: static assets, images, videos, API responses shared across users</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

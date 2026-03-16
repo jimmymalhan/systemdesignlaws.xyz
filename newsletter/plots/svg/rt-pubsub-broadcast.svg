@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e67e22"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+  </defs>
+  <rect width="800" height="440" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Pub/Sub Broadcast Architecture</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Decouples sources from endpoint servers — stateless horizontal scaling</text>
+
+  <!-- Source -->
+  <rect x="30" y="170" width="110" height="60" rx="8" fill="#fdf8e8" stroke="#d4a017" stroke-width="2"/>
+  <text x="85" y="196" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Source</text>
+  <text x="85" y="212" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">(DB change,</text>
+  <text x="85" y="226" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle"> app event)</text>
+
+  <!-- Pub/Sub -->
+  <rect x="270" y="155" width="170" height="90" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="2.5"/>
+  <text x="355" y="182" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Pub/Sub</text>
+  <text x="355" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b" text-anchor="middle">Kafka / Redis</text>
+  <text x="355" y="218" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">topic: user-events</text>
+  <text x="355" y="233" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">durable, replicated</text>
+
+  <!-- Source to Pub/Sub -->
+  <line x1="140" y1="200" x2="268" y2="200" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="205" y="193" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">publish</text>
+
+  <!-- Endpoint Servers -->
+  <rect x="530" y="75" width="145" height="54" rx="7" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="602" y="97" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Endpoint Server 1</text>
+  <text x="602" y="113" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">subscribed to topic</text>
+  <text x="602" y="125" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">1000 WS connections</text>
+
+  <rect x="530" y="160" width="145" height="54" rx="7" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="602" y="182" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Endpoint Server 2</text>
+  <text x="602" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">subscribed to topic</text>
+  <text x="602" y="210" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">1000 WS connections</text>
+
+  <rect x="530" y="245" width="145" height="54" rx="7" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="602" y="267" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Endpoint Server 3</text>
+  <text x="602" y="283" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">subscribed to topic</text>
+  <text x="602" y="295" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">1000 WS connections</text>
+
+  <!-- Pub/Sub to servers (fan-out) -->
+  <line x1="440" y1="185" x2="528" y2="102" stroke="#e67e22" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <line x1="440" y1="195" x2="528" y2="187" stroke="#e67e22" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <line x1="440" y1="205" x2="528" y2="272" stroke="#e67e22" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <text x="490" y="175" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#e67e22" text-anchor="middle">fan-out</text>
+  <text x="490" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#e67e22" text-anchor="middle">(each server</text>
+  <text x="490" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#e67e22" text-anchor="middle">gets message)</text>
+
+  <!-- Clients -->
+  <rect x="700" y="85" width="80" height="25" rx="4" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="740" y="101" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333" text-anchor="middle">Clients 1-1000</text>
+  <rect x="700" y="170" width="80" height="25" rx="4" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="740" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333" text-anchor="middle">Clients 1001-2000</text>
+  <rect x="700" y="255" width="80" height="25" rx="4" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="740" y="271" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333" text-anchor="middle">Clients 2001-3000</text>
+
+  <line x1="675" y1="102" x2="698" y2="97" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <line x1="675" y1="187" x2="698" y2="182" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <line x1="675" y1="272" x2="698" y2="267" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- LB for inbound -->
+  <rect x="30" y="320" width="200" height="60" rx="8" fill="#f0f0f0" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="130" y="342" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Inbound LB</text>
+  <text x="130" y="358" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">"Least connections"</text>
+  <text x="130" y="373" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">routes new clients to servers</text>
+
+  <line x1="230" y1="350" x2="528" y2="187" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+  <!-- Tradeoffs box -->
+  <rect x="250" y="320" width="500" height="100" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="1.5"/>
+  <text x="500" y="342" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Why Pub/Sub over Pull Polling?</text>
+  <text x="265" y="362" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60">+ Stateless servers — any server can serve any client</text>
+  <text x="265" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60">+ No DB polling — event-driven push model</text>
+  <text x="265" y="398" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60">+ Scale endpoint servers horizontally without coordination</text>
+  <text x="265" y="414" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b">- Each server gets ALL messages, filters for its connected users</text>
+</svg>

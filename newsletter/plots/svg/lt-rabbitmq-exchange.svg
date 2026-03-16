@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <rect x="0" y="0" width="900" height="420" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+  <text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">RabbitMQ Exchange and Queue Model</text>
+  <!-- Producer -->
+  <rect x="30" y="155" width="120" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="90" y="185" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Producer</text>
+  <!-- Exchange -->
+  <rect x="220" y="120" width="160" height="120" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="300" y="150" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Exchange</text>
+  <text x="300" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Routes messages</text>
+  <text x="300" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Direct / Topic /</text>
+  <text x="300" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Fanout / Headers</text>
+  <!-- Arrow to Exchange -->
+  <line x1="150" y1="180" x2="218" y2="180" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Queues -->
+  <rect x="470" y="70" width="180" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="560" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">pdf-generation-queue</text>
+  <text x="560" y="110" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">routing: task.pdf</text>
+  <rect x="470" y="140" width="180" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="560" y="162" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">video-transcode-queue</text>
+  <text x="560" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">routing: task.video</text>
+  <rect x="470" y="210" width="180" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="560" y="232" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">email-queue</text>
+  <text x="560" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">routing: task.email</text>
+  <!-- Arrows Exchange to Queues -->
+  <line x1="380" y1="155" x2="468" y2="95" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="380" y1="180" x2="468" y2="165" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="380" y1="205" x2="468" y2="235" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Consumers -->
+  <rect x="740" y="70" width="120" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="800" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">PDF Workers</text>
+  <rect x="740" y="140" width="120" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="800" y="170" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Video Workers</text>
+  <rect x="740" y="210" width="120" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="800" y="240" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Email Workers</text>
+  <!-- Queue to Consumer arrows -->
+  <line x1="650" y1="95" x2="738" y2="95" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="650" y1="165" x2="738" y2="165" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="650" y1="235" x2="738" y2="235" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Features -->
+  <rect x="50" y="300" width="800" height="80" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="450" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">RabbitMQ Built-in Features</text>
+  <text x="200" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Message acknowledgment</text>
+  <text x="450" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Dead letter exchanges</text>
+  <text x="700" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">TTL and priority</text>
+  <text x="200" y="375" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Publisher confirms</text>
+  <text x="450" y="375" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Retry with delay</text>
+  <text x="700" y="375" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Consumer prefetch</text>
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

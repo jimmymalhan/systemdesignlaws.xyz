@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-zk" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">ZooKeeper / etcd: Consensus-Based Locks</text>
+
+  <!-- ZK cluster -->
+  <rect x="280" y="50" width="340" height="55" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="450" y="72" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#2E7D32" font-weight="bold">ZooKeeper Ensemble (3-5 nodes)</text>
+  <text x="450" y="94" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Consensus via ZAB protocol (like Raft for etcd)</text>
+
+  <!-- How it works -->
+  <text x="450" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Lock Recipe: Ephemeral Sequential Nodes</text>
+
+  <!-- Steps -->
+  <rect x="30" y="142" width="410" height="38" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="40" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">1.</text>
+  <text x="60" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Create ephemeral sequential node: /locks/seat-42/lock-0001</text>
+  <text x="60" y="175" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0">Ephemeral = auto-deleted when session ends (client crashes)</text>
+
+  <rect x="30" y="186" width="410" height="38" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="40" y="202" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">2.</text>
+  <text x="60" y="202" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">List children of /locks/seat-42/</text>
+  <text x="60" y="219" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">Get all lock contenders sorted by sequence number</text>
+
+  <rect x="30" y="230" width="410" height="38" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="40" y="246" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">3.</text>
+  <text x="60" y="246" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">If your node is lowest number: you hold the lock</text>
+  <text x="60" y="263" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Otherwise: watch the node just before yours</text>
+
+  <rect x="30" y="274" width="410" height="28" rx="4" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="40" y="293" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">4.</text>
+  <text x="60" y="293" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">When predecessor deleted, check again (you may be next)</text>
+
+  <!-- Visualization -->
+  <rect x="475" y="142" width="395" height="160" rx="6" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="672" y="162" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">/locks/seat-42/</text>
+
+  <rect x="500" y="175" width="180" height="26" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="590" y="193" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">lock-0001 (Alice) HOLDER</text>
+
+  <rect x="500" y="208" width="180" height="26" rx="4" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+  <text x="590" y="226" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">lock-0002 (Bob) waiting</text>
+
+  <rect x="500" y="241" width="180" height="26" rx="4" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="590" y="259" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">lock-0003 (Carol) waiting</text>
+
+  <text x="760" y="205" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#2E7D32">*</text>
+  <text x="730" y="230" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">watches 0001</text>
+  <text x="730" y="263" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">watches 0002</text>
+
+  <!-- Comparison -->
+  <text x="450" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">ZooKeeper/etcd vs Redis</text>
+
+  <rect x="30" y="340" width="410" height="65" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="235" y="360" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">ZooKeeper / etcd</text>
+  <text x="235" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Strong consistency (consensus), session-based</text>
+  <text x="235" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Auto-cleanup on crash, more operational overhead</text>
+
+  <rect x="460" y="340" width="410" height="65" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="665" y="360" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Redis</text>
+  <text x="665" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Fast, simple, TTL-based, single point of failure</text>
+  <text x="665" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">No auto-cleanup (relies on expiry), less safe under partitions</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

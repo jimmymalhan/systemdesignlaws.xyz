@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ol" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Optimistic Concurrency: Version Check</text>
+
+  <!-- Timeline columns -->
+  <line x1="120" y1="50" x2="120" y2="390" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="450" y1="50" x2="450" y2="390" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="750" y1="50" x2="750" y2="390" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- Headers -->
+  <rect x="50" y="48" width="140" height="30" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="120" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Alice</text>
+  <rect x="380" y="48" width="140" height="30" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Database</text>
+  <rect x="680" y="48" width="140" height="30" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="750" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Bob</text>
+
+  <!-- Both read v=42 -->
+  <line x1="120" y1="100" x2="438" y2="100" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-ol)"/>
+  <text x="280" y="95" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">SELECT (version=42)</text>
+  <line x1="750" y1="115" x2="462" y2="115" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-ol)"/>
+  <text x="610" y="110" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">SELECT (version=42)</text>
+
+  <!-- State -->
+  <rect x="50" y="135" width="160" height="24" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="130" y="152" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Reads: v=42, seats=1</text>
+  <rect x="670" y="135" width="160" height="24" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="750" y="152" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Reads: v=42, seats=1</text>
+
+  <!-- Alice updates first -->
+  <line x1="120" y1="185" x2="438" y2="185" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-ol)"/>
+  <text x="280" y="178" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">UPDATE WHERE version=42</text>
+
+  <!-- Alice success -->
+  <rect x="355" y="198" width="190" height="28" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="450" y="217" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">1 row affected, v=43</text>
+
+  <!-- Bob tries same version -->
+  <line x1="750" y1="250" x2="462" y2="250" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-ol)"/>
+  <text x="610" y="243" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">UPDATE WHERE version=42</text>
+
+  <!-- Bob fails -->
+  <rect x="355" y="263" width="190" height="28" rx="4" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="450" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">0 rows affected!</text>
+
+  <!-- Bob detects -->
+  <rect x="650" y="300" width="200" height="40" rx="4" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="750" y="318" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">App checks row count</text>
+  <text x="750" y="334" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">ROLLBACK + retry</text>
+
+  <!-- Key insight -->
+  <rect x="140" y="360" width="620" height="35" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="450" y="378" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#7B1FA2">No locks held. Conflicts detected at write time. Low contention = fast.</text>
+  <text x="450" y="393" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#7B1FA2">High contention = many retries (use pessimistic instead).</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

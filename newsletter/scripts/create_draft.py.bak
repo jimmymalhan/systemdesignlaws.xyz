@@ -1,0 +1,673 @@
+#!/usr/bin/env python3
+"""
+Create or update a Substack draft from a markdown file.
+Checks for existing posts first - updates if found, creates only if new.
+Uses cookie-based session (no password). Session persists across restarts.
+
+Usage:
+  python create_draft.py              # Create or update draft on Substack
+  python create_draft.py --dry-run   # Validate session + draft file, no API create
+  python create_draft.py --force-new # Skip duplicate check, always create new
+"""
+import argparse
+import logging
+import os
+import sys
+import time
+from pathlib import Path
+from typing import Optional
+
+# Add parent for imports
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+
+LOG = logging.getLogger(__name__)
+
+MAX_RETRIES = 3
+RATE_LIMIT_WAIT = 30  # seconds to wait on 429
+CHECKPOINT_FILE = ".upload_checkpoint.json"
+
+
+# ---------------------------------------------------------------------------
+# Progress bar utility (no external deps)
+# ---------------------------------------------------------------------------
+def progress_bar(current: int, total: int, prefix: str = "", suffix: str = "", length: int = 40):
+    """Print an in-place ASCII progress bar to stdout."""
+    if total <= 0:
+        return
+    filled = int(length * current / total)
+    bar = "\u2588" * filled + "\u2591" * (length - filled)
+    pct = current / total * 100
+    line = f"\r  {prefix} |{bar}| {pct:5.1f}% ({current}/{total}) {suffix}"
+    print(line, end="", flush=True)
+    if current >= total:
+        print()  # newline when done
+
+
+def step_banner(step: int, total: int, msg: str):
+    """Print a numbered step banner for the overall pipeline."""
+    print(f"\n[{step}/{total}] {msg}")
+    print("-" * (len(msg) + 8))
+
+
+# ---------------------------------------------------------------------------
+# Adaptive rate limiter: slows at 90%, pauses before 100%, checkpoint/resume
+# ---------------------------------------------------------------------------
+class AdaptiveRateLimiter:
+    """Tracks API call timing and adaptively slows down to avoid rate limits.
+
+    Uses a 4-hour rate limit window. When approaching limits:
+    - 75%: moderate slowdown (3x delay)
+    - 90%: significant slowdown (5x delay)
+    - 95%: heavy pause (wait for half the window)
+    - After 429 errors: exponential backoff + wait for 4-hour renewal
+    Never hits 100%. Saves state for resume on pause/failure.
+    """
+
+    FOUR_HOURS = 4 * 60 * 60  # 14400 seconds
+
+    def __init__(self, base_delay: int = 2, window: int = 60, max_calls_per_window: int = 20):
+        self.base_delay = base_delay
+        self.window = window  # short-term window in seconds
+        self.max_calls = max_calls_per_window
+        self.call_times: list[float] = []
+        self.consecutive_errors = 0
+        self.total_calls_this_session = 0
+        self.session_start = time.time()
+        self.hit_rate_limit = False
+        self.rate_limit_hit_time = 0.0
+
+    def _calls_in_window(self) -> int:
+        """Count API calls within the current rate limit window."""
+        now = time.time()
+        cutoff = now - self.window
+        self.call_times = [t for t in self.call_times if t > cutoff]
+        return len(self.call_times)
+
+    def _usage_pct(self) -> float:
+        """Current rate limit usage as a percentage."""
+        return (self._calls_in_window() / self.max_calls) * 100 if self.max_calls > 0 else 0
+
+    def _time_since_rate_limit(self) -> float:
+        """Seconds since last rate limit hit."""
+        if not self.hit_rate_limit:
+            return float("inf")
+        return time.time() - self.rate_limit_hit_time
+
+    def _is_rate_limit_renewed(self) -> bool:
+        """Check if 4-hour rate limit window has passed since last 429."""
+        return self._time_since_rate_limit() >= self.FOUR_HOURS
+
+    def record_call(self):
+        """Record an API call timestamp."""
+        self.call_times.append(time.time())
+        self.total_calls_this_session += 1
+
+    def record_error(self):
+        """Record a rate-limit error and increase backoff."""
+        self.consecutive_errors += 1
+        self.hit_rate_limit = True
+        self.rate_limit_hit_time = time.time()
+
+    def record_success(self):
+        """Record a successful call."""
+        self.consecutive_errors = max(0, self.consecutive_errors - 1)
+
+    def wait_for_renewal(self):
+        """Wait for 4-hour rate limit window to renew after hitting 429."""
+        remaining = self.FOUR_HOURS - self._time_since_rate_limit()
+        if remaining <= 0:
+            print("\n  [Rate limiter] 4-hour window renewed. Resuming.")
+            self.hit_rate_limit = False
+            self.consecutive_errors = 0
+            return
+
+        hours = remaining / 3600
+        mins = (remaining % 3600) / 60
+        print(f"\n  [Rate limiter] Rate limit hit. Waiting for 4-hour renewal ({hours:.0f}h {mins:.0f}m remaining)...")
+        print(f"  [Rate limiter] Will auto-resume at {time.strftime('%H:%M', time.localtime(self.rate_limit_hit_time + self.FOUR_HOURS))}")
+
+        # Check every 5 minutes if renewed
+        while not self._is_rate_limit_renewed():
+            remaining = self.FOUR_HOURS - self._time_since_rate_limit()
+            mins_left = remaining / 60
+            progress_bar(
+                int(self.FOUR_HOURS - remaining), self.FOUR_HOURS,
+                prefix="Renewal wait",
+                suffix=f"{mins_left:.0f}m remaining",
+            )
+            time.sleep(300)  # check every 5 minutes
+
+        print("\n  [Rate limiter] 4-hour window renewed! Resuming operations.")
+        self.hit_rate_limit = False
+        self.consecutive_errors = 0
+
+    def wait_if_needed(self, label: str = ""):
+        """Adaptive wait: slow at 90%, pause longer near 100%. Never hit 100%."""
+        # If we previously hit a rate limit, wait for 4-hour renewal
+        if self.hit_rate_limit and self.consecutive_errors >= MAX_RETRIES:
+            self.wait_for_renewal()
+            return
+
+        usage = self._usage_pct()
+        delay = self.base_delay
+
+        if self.consecutive_errors > 0:
+            # Exponential backoff after errors
+            delay = min(self.base_delay * (2 ** self.consecutive_errors), 120)
+            print(f"\n  [Rate limiter] Backoff after {self.consecutive_errors} error(s): {delay}s")
+        elif usage >= 95:
+            # Near limit - wait for window to clear. NEVER hit 100%.
+            delay = self.window // 2
+            print(f"\n  [Rate limiter] {usage:.0f}% capacity - heavy pause: {delay}s (NEVER hit 100%)")
+        elif usage >= 90:
+            # Approaching limit - slow down very significantly
+            delay = self.base_delay * 8
+            print(f"\n  [Rate limiter] {usage:.0f}% capacity - ultra-slow: {delay}s")
+        elif usage >= 75:
+            # Getting warm - moderate slowdown
+            delay = self.base_delay * 4
+        elif usage >= 50:
+            # Halfway - slight slowdown
+            delay = self.base_delay * 2
+
+        time.sleep(delay)
+
+    def status(self) -> str:
+        """Return a human-readable status string."""
+        usage = self._usage_pct()
+        calls = self._calls_in_window()
+        total = self.total_calls_this_session
+        elapsed = time.time() - self.session_start
+        mins = elapsed / 60
+        return f"Usage: {usage:.0f}% ({calls}/{self.max_calls} in window) | Total: {total} calls in {mins:.1f}m"
+
+
+def save_checkpoint(checkpoint_path: Path, image_cache: dict, last_idx: int):
+    """Save upload checkpoint for resume on failure."""
+    import json
+    checkpoint_path.write_text(json.dumps({
+        "image_cache": image_cache,
+        "last_completed_idx": last_idx,
+        "timestamp": time.time(),
+    }, indent=2))
+
+
+def load_checkpoint(checkpoint_path: Path) -> tuple[dict, int]:
+    """Load checkpoint. Returns (image_cache, last_completed_idx) or ({}, -1)."""
+    import json
+    if not checkpoint_path.exists():
+        return {}, -1
+    try:
+        data = json.loads(checkpoint_path.read_text())
+        # Expire checkpoints older than 24 hours (survives 4-hour rate limit waits)
+        if time.time() - data.get("timestamp", 0) > 86400:
+            checkpoint_path.unlink()
+            return {}, -1
+        print(f"  Resuming from checkpoint (completed {data.get('last_completed_idx', 0) + 1} uploads)")
+        return data.get("image_cache", {}), data.get("last_completed_idx", -1)
+    except Exception:
+        return {}, -1
+
+
+def api_call_with_retry(func, *args, rate_limiter: Optional[AdaptiveRateLimiter] = None, **kwargs):
+    """Wrap API calls with rate limit retry, adaptive slowdown, and verification."""
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            if rate_limiter:
+                rate_limiter.wait_if_needed()
+            result = func(*args, **kwargs)
+            if rate_limiter:
+                rate_limiter.record_call()
+                rate_limiter.record_success()
+            return result
+        except Exception as e:
+            err_str = str(e)
+            if "429" in err_str or "Too Many Requests" in err_str:
+                if rate_limiter:
+                    rate_limiter.record_error()
+                wait = RATE_LIMIT_WAIT * attempt
+                print(f"\n  Rate limited (429). Waiting {wait}s before retry {attempt}/{MAX_RETRIES}...")
+                time.sleep(wait)
+                continue
+            if attempt < MAX_RETRIES:
+                print(f"\n  API error: {e}. Retry {attempt}/{MAX_RETRIES}...")
+                time.sleep(2)
+                continue
+            raise
+    raise RuntimeError(f"API call failed after {MAX_RETRIES} retries")
+
+
+def _scripts_dir():
+    return Path(__file__).resolve().parent
+
+
+def _drafts_dir():
+    return _scripts_dir().parent / "drafts"
+
+
+def parse_draft_content(content: str, draft_path: Path) -> tuple:
+    """Parse draft markdown into title, subtitle. Returns (title, subtitle)."""
+    lines = content.strip().split("\n")
+    title = (
+        lines[0].lstrip("#").strip()
+        if lines and lines[0].startswith("#")
+        else draft_path.stem.replace("-", " ").title()
+    )
+    subtitle = ""
+    for line in lines[1:10]:
+        if line.startswith("**TL;DR**"):
+            subtitle = line.replace("**TL;DR**", "").replace("—", "-").strip()
+            break
+    return (title, subtitle)
+
+
+def clean_draft_body(body: dict) -> dict:
+    """
+    Clean ProseMirror body for Substack: remove empty marks, strip null attrs.
+    """
+    def walk(n):
+        if isinstance(n, dict):
+            if n.get("marks") == []:
+                del n["marks"]
+            # Remove null values from attrs (Substack rejects them)
+            if "attrs" in n and isinstance(n["attrs"], dict):
+                n["attrs"] = {k: v for k, v in n["attrs"].items() if v is not None}
+            for k, v in list(n.items()):
+                if isinstance(v, (dict, list)):
+                    walk(v)
+        elif isinstance(n, list):
+            for x in n:
+                walk(x)
+    walk(body)
+    return body
+
+
+def prepare_body_markdown(content: str, title: str) -> str:
+    """
+    Prepare markdown body for Substack. Strips metadata, fixes compatibility.
+    - Removes # Title and **TL;DR** (already in draft_title/draft_subtitle)
+    - Replaces --- with blank lines (avoids '---' as paragraph which can break Substack)
+    - Replaces problematic Unicode (em dash, multiplication sign) for editor compatibility
+    """
+    lines = content.strip().split("\n")
+    out = []
+    skip_until_content = True
+    
+    for line in lines:
+        stripped = line.strip()
+        # Skip first # heading (title)
+        if skip_until_content and stripped.startswith("#") and not stripped.startswith("##"):
+            skip_until_content = False
+            continue
+        # Skip **TL;DR** line
+        if stripped.startswith("**TL;DR**"):
+            skip_until_content = False
+            continue
+        # Replace --- with blank line (horizontal rules as paragraphs break Substack)
+        if stripped == "---":
+            out.append("")
+            continue
+        # Replace problematic Unicode for Substack editor
+        line = line.replace("\u2014", "-").replace("\u2013", "-")  # em/en dash
+        line = line.replace("\u00d7", "x")  # multiplication sign
+        out.append(line)
+        skip_until_content = False
+    
+    return "\n".join(out).strip()
+
+
+def get_publication_from_env(env_path: Path):
+    """Read SUBSTACK_PUBLICATION from .env. Returns None if unset."""
+    if not env_path.exists():
+        return None
+    with open(env_path) as f:
+        for line in f:
+            line = line.strip()
+            if "SUBSTACK_PUBLICATION" in line and "=" in line and not line.startswith("#"):
+                k, v = line.split("=", 1)
+                if k.strip() == "SUBSTACK_PUBLICATION" and v.strip():
+                    return v.strip().strip('"').strip("'")
+    return None
+
+
+def load_session():
+    """Load session from .env or persisted cookies. Prefer persisted."""
+    env_path = Path(__file__).parent / ".env"
+    cookies_path = Path(__file__).parent / ".substack-cookies.json"
+    
+    # Try persisted cookies first (survives restarts)
+    if cookies_path.exists():
+        try:
+            return {"cookies_path": str(cookies_path)}
+        except Exception:
+            pass
+    
+    # Fall back to .env
+    if not env_path.exists():
+        print("No session found. Create newsletter/scripts/.env and paste your cookies.")
+        print("See newsletter/scripts/.env.example for format.")
+        sys.exit(1)
+    
+    # Load .env manually (no external dep)
+    env = {}
+    with open(env_path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if "=" in line:
+                k, v = line.split("=", 1)
+                env[k.strip()] = v.strip().strip('"').strip("'")
+    
+    cookies_str = env.get("SUBSTACK_COOKIES")
+    if not cookies_str and env.get("SUBSTACK_SID") and env.get("CONNECT_SID"):
+        cookies_str = f"substack.sid={env['SUBSTACK_SID']}; connect.sid={env['CONNECT_SID']}"
+    
+    if not cookies_str:
+        print("Missing SUBSTACK_COOKIES or SUBSTACK_SID+CONNECT_SID in .env")
+        sys.exit(1)
+    
+    return {"cookies_string": cookies_str}
+
+
+def main():
+    import json
+    import re as _re
+    REPO = Path(__file__).resolve().parent.parent.parent
+    TOTAL_STEPS = 7  # total pipeline steps
+
+    parser = argparse.ArgumentParser(description="Create or update Substack draft from markdown")
+    parser.add_argument("--dry-run", action="store_true", help="Validate session + draft, no API create")
+    parser.add_argument("--draft", type=str, help="Draft filename (e.g. scaling-reads-for-system-design-interviews.md)")
+    parser.add_argument("--update", action="store_true", help="Update existing draft (requires published/slug.json with draft_id)")
+    parser.add_argument("--force-new", action="store_true", help="Skip duplicate check, always create new draft")
+    parser.add_argument("--batch-delay", type=int, default=2, help="Seconds between API calls for rate limiting (default: 2)")
+    args = parser.parse_args()
+    dry_run = args.dry_run
+
+    # ── Step 1: Load dependencies ──────────────────────────────────────
+    step_banner(1, TOTAL_STEPS, "Loading dependencies")
+    try:
+        from substack import Api
+        from substack.post import Post
+    except ImportError:
+        print("Install: pip install python-substack")
+        sys.exit(1)
+    progress_bar(1, 1, prefix="Dependencies", suffix="OK")
+
+    # ── Step 2: Authenticate session ───────────────────────────────────
+    step_banner(2, TOTAL_STEPS, "Authenticating session")
+    try:
+        session = load_session()
+    except SystemExit:
+        if dry_run:
+            print("Dry-run skipped: no credentials (create .env for full validation)")
+            sys.exit(0)
+        raise
+    progress_bar(1, 3, prefix="Session")
+
+    # Use primary publication (avoids subdomain mismatch); override via SUBSTACK_PUBLICATION in .env
+    publication = None
+    env_path = Path(__file__).parent / ".env"
+    if env_path.exists():
+        with open(env_path) as f:
+            for line in f:
+                if "SUBSTACK_PUBLICATION" in line and "=" in line and not line.strip().startswith("#"):
+                    k, v = line.split("=", 1)
+                    if k.strip() == "SUBSTACK_PUBLICATION" and v.strip():
+                        publication = v.strip().strip('"').strip("'")
+                        break
+    progress_bar(2, 3, prefix="Session")
+
+    api = Api(**session) if publication is None else Api(publication_url=publication, **session)
+    cookies_path = Path(__file__).parent / ".substack-cookies.json"
+
+    try:
+        user_id = api.get_user_id()
+    except Exception as e:
+        # Session expired: try .env fallback
+        if "cookies_path" in session:
+            session = load_session()
+            if "cookies_string" in session:
+                api = Api(publication_url=publication, **session)
+                user_id = api.get_user_id()
+            else:
+                print("\nSession expired. Paste fresh cookies into newsletter/scripts/.env")
+                print("See PASTE_CREDENTIALS.md for instructions.")
+                raise SystemExit(1)
+        else:
+            raise
+
+    # Persist session for next run (survives restarts)
+    try:
+        api.export_cookies(str(cookies_path))
+    except Exception:
+        pass
+    progress_bar(3, 3, prefix="Session", suffix="Authenticated")
+
+    # ── Step 3: Load draft file ────────────────────────────────────────
+    step_banner(3, TOTAL_STEPS, "Loading draft file")
+    drafts_dir = Path(__file__).resolve().parent.parent / "drafts"
+    if args.draft:
+        draft_file = drafts_dir / args.draft
+    else:
+        draft_file = drafts_dir / "caching-for-system-design-interviews.md"
+    if not draft_file.exists():
+        draft_file = next(drafts_dir.glob("*.md"), None) if not args.draft else None
+    if not draft_file or not draft_file.exists():
+        print("No draft file in newsletter/drafts/")
+        sys.exit(1)
+
+    content = draft_file.read_text()
+    title, subtitle = parse_draft_content(content, draft_file)
+    print(f"  Title: {title}")
+    print(f"  File:  {draft_file.name}")
+    progress_bar(1, 1, prefix="Draft loaded", suffix="OK")
+
+    if dry_run:
+        print("\nDry-run OK: session valid, draft ready")
+        sys.exit(0)
+
+    # ── Step 4: Duplicate detection (check existing posts) ─────────────
+    step_banner(4, TOTAL_STEPS, "Checking for existing articles (anti-duplicate)")
+    existing_id = None
+    existing_type = None
+    if not args.force_new and not args.update:
+        progress_bar(0, 2, prefix="Duplicate check")
+        try:
+            from list_posts import find_existing_post
+            progress_bar(1, 2, prefix="Duplicate check", suffix="Searching...")
+            existing_id, existing_type, existing_title = find_existing_post(api, title)
+            if existing_id:
+                progress_bar(2, 2, prefix="Duplicate check", suffix="FOUND - will update")
+                print(f"  Found existing {existing_type}: [{existing_id}] {existing_title}")
+                print(f"  -> Updating existing post instead of creating duplicate.")
+                args.update = True
+                # Save to published JSON so --update path works
+                published_dir = Path(__file__).resolve().parent.parent / "published"
+                published_dir.mkdir(exist_ok=True)
+                slug = draft_file.stem
+                output_file = published_dir / f"{slug}.json"
+                if not output_file.exists():
+                    output_file.write_text(json.dumps({"draft_id": existing_id, "title": existing_title}))
+            else:
+                progress_bar(2, 2, prefix="Duplicate check", suffix="No duplicate - will create new")
+        except ImportError:
+            progress_bar(2, 2, prefix="Duplicate check", suffix="SKIPPED (list_posts.py not found)")
+        except Exception as e:
+            progress_bar(2, 2, prefix="Duplicate check", suffix=f"SKIPPED ({e})")
+    else:
+        skip_reason = "force-new" if args.force_new else "update mode"
+        progress_bar(1, 1, prefix="Duplicate check", suffix=f"Skipped ({skip_reason})")
+
+    # ── Step 5: Convert markdown to ProseMirror ────────────────────────
+    step_banner(5, TOTAL_STEPS, "Converting markdown to ProseMirror JSON")
+    body_md = prepare_body_markdown(content, title)
+    progress_bar(1, 3, prefix="Convert", suffix="Body prepared")
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from markdown_to_prosemirror import markdown_to_prosemirror
+    body_obj = markdown_to_prosemirror(body_md)
+    progress_bar(2, 3, prefix="Convert", suffix="ProseMirror built")
+    clean_draft_body(body_obj)
+    progress_bar(3, 3, prefix="Convert", suffix="Cleaned")
+
+    # Count images in body
+    image_nodes = [n for n in body_obj.get("content", []) if n.get("type") == "captionedImage"]
+    print(f"  Diagrams found: {len(image_nodes)}")
+
+    # ── Step 6: Upload images to Substack CDN ──────────────────────────
+    step_banner(6, TOTAL_STEPS, "Uploading images to Substack CDN (adaptive rate limiting)")
+    plots_dir = Path(__file__).resolve().parent.parent / "plots"
+    png_dir = plots_dir / "png"
+    checkpoint_path = Path(__file__).parent / CHECKPOINT_FILE
+    rate_limiter = AdaptiveRateLimiter(base_delay=args.batch_delay)
+
+    # Load checkpoint if resuming from a previous failure
+    image_cache, resume_from_idx = load_checkpoint(checkpoint_path)
+
+    # Apply cached URLs to already-uploaded images
+    for node in body_obj.get("content", []):
+        if node.get("type") == "captionedImage":
+            for child in node.get("content", []):
+                if child.get("type") == "image2":
+                    src = child["attrs"].get("src", "")
+                    if src in image_cache:
+                        child["attrs"]["src"] = image_cache[src]
+
+    # Collect all images that need uploading
+    upload_tasks = []
+    for node in body_obj.get("content", []):
+        if node.get("type") == "captionedImage":
+            for child in node.get("content", []):
+                if child.get("type") == "image2":
+                    src = child["attrs"].get("src", "")
+                    if src in image_cache:
+                        continue
+                    fname_match = _re.search(r"/([^/]+)\.(svg|png)$", src)
+                    if fname_match:
+                        png_name = fname_match.group(1) + ".png"
+                        png_path = png_dir / png_name
+                        if png_path.exists():
+                            upload_tasks.append((child, src, png_name, png_path))
+
+    total_uploads = len(upload_tasks)
+    already_cached = len(image_cache)
+    if already_cached > 0:
+        print(f"  Resumed: {already_cached} images already uploaded from checkpoint")
+
+    if total_uploads == 0:
+        progress_bar(1, 1, prefix="Images", suffix=f"No new PNGs to upload ({already_cached} cached)")
+    else:
+        uploaded = 0
+        failed = 0
+        for idx, (child, src, png_name, png_path) in enumerate(upload_tasks):
+            # Skip already-completed uploads (checkpoint resume)
+            if idx <= resume_from_idx - already_cached:
+                progress_bar(idx + 1, total_uploads, prefix="Images", suffix=f"Skipped (checkpoint) {png_name}")
+                continue
+
+            progress_bar(idx, total_uploads, prefix="Images", suffix=f"Uploading {png_name}...")
+            try:
+                result = api_call_with_retry(api.get_image, str(png_path), rate_limiter=rate_limiter)
+                cdn_url = result.get("url") if isinstance(result, dict) else str(result)
+                if cdn_url:
+                    image_cache[src] = cdn_url
+                    child["attrs"]["src"] = cdn_url
+                    uploaded += 1
+                    # Save checkpoint after each successful upload
+                    save_checkpoint(checkpoint_path, image_cache, idx)
+                else:
+                    print(f"\n  Warning: Upload returned no URL for {png_name}")
+                    failed += 1
+            except Exception as e:
+                print(f"\n  Warning: Failed to upload {png_name}: {e}")
+                failed += 1
+                # Save checkpoint so we can resume
+                save_checkpoint(checkpoint_path, image_cache, idx - 1)
+                print(f"  Checkpoint saved. Resume will skip {uploaded} completed uploads.")
+
+        status = f"Done ({uploaded} uploaded"
+        if already_cached:
+            status += f", {already_cached} cached"
+        if failed:
+            status += f", {failed} failed"
+        status += ")"
+        progress_bar(total_uploads, total_uploads, prefix="Images", suffix=status)
+
+    # Clean up checkpoint on success
+    if checkpoint_path.exists():
+        checkpoint_path.unlink()
+
+    # ── Step 7: Push to Substack ───────────────────────────────────────
+    step_banner(7, TOTAL_STEPS, "Publishing to Substack")
+
+    # Substack subtitle limit ~120 chars - truncate if needed
+    sub = subtitle or "From SystemDesignLaws newsletter"
+    if len(sub) > 115:
+        sub = sub[:112] + "..."
+    progress_bar(1, 4, prefix="Publish", suffix="Payload prepared")
+
+    draft_payload = {
+        "draft_title": title,
+        "draft_subtitle": sub,
+        "draft_body": json.dumps(body_obj),
+        "draft_bylines": [{"id": int(user_id), "is_guest": False}],
+        "audience": "everyone",
+        "section_chosen": True,
+        "draft_section_id": None,
+        "type": "newsletter",
+    }
+
+    published_dir = Path(__file__).resolve().parent.parent / "published"
+    slug = draft_file.stem
+    output_file = published_dir / f"{slug}.json"
+
+    if args.update and output_file.exists():
+        data = json.loads(output_file.read_text())
+        draft_id = data.get("draft_id")
+        if not draft_id:
+            print("\nNo draft_id in published JSON. Cannot update.")
+            sys.exit(1)
+        progress_bar(2, 4, prefix="Publish", suffix=f"Updating draft {draft_id}...")
+        api_call_with_retry(api.put_draft, draft_id, draft_title=title, draft_subtitle=sub, draft_body=json.dumps(body_obj), rate_limiter=rate_limiter)
+        progress_bar(3, 4, prefix="Publish", suffix="Updated existing post")
+    else:
+        progress_bar(2, 4, prefix="Publish", suffix="Creating new draft...")
+        draft = api_call_with_retry(api.post_draft, draft_payload, rate_limiter=rate_limiter)
+        draft_id = draft.get("id")
+        if not draft_id:
+            print("\nERROR: API returned no draft_id. Response may be invalid.")
+            print(f"Response: {draft}")
+            sys.exit(1)
+        progress_bar(3, 4, prefix="Publish", suffix="Draft created")
+
+    # Edit URL: publication subdomain + /publish/post/{id} (opens draft editor when logged in)
+    pub_url = publication or (api.publication_url or "https://systemdesignlaws.substack.com")
+    base = str(pub_url).replace("https://", "").replace("http://", "").split("/")[0]
+    edit_url = f"https://{base}/publish/post/{draft_id}"
+
+    # Persist final output: ProseMirror JSON with Substack CDN URLs + draft metadata
+    published_dir.mkdir(exist_ok=True)
+    output_data = {
+        "draft_id": draft_id,
+        "edit_url": edit_url,
+        "title": title,
+        "subtitle": subtitle,
+        "source_file": draft_file.name,
+        "image_urls": image_cache,
+        "body": body_obj,
+    }
+    output_file.write_text(json.dumps(output_data, indent=2))
+    progress_bar(4, 4, prefix="Publish", suffix="Complete")
+
+    # ── Summary ────────────────────────────────────────────────────────
+    print(f"\n{'=' * 60}")
+    print(f"  {'UPDATED' if args.update else 'CREATED'}: {title}")
+    print(f"  Diagrams: {len(image_nodes)} | Images uploaded: {len(image_cache)}")
+    print(f"  Output:   {output_file.relative_to(REPO) if REPO else output_file}")
+    print(f"  Edit:     {edit_url}")
+    print(f"{'=' * 60}")
+
+
+if __name__ == "__main__":
+    main()

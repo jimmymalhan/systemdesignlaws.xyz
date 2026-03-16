@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Memcached vs Redis</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Two dominant in-memory cache solutions compared</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="65" x2="400" y2="420" stroke="#DDD" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Memcached -->
+  <rect x="30" y="70" width="350" height="350" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="205" y="98" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#2980b9" font-weight="bold">Memcached</text>
+  <text x="205" y="116" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888">Simple and fast</text>
+
+  <text x="50" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Data Model</text>
+  <text x="50" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Simple key-value (strings only)</text>
+
+  <text x="50" y="190" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Threading</text>
+  <text x="50" y="208" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Multi-threaded</text>
+  <text x="50" y="223" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">Uses all CPU cores</text>
+
+  <text x="50" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Persistence</text>
+  <text x="50" y="268" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">None - pure in-memory</text>
+
+  <text x="50" y="295" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Replication</text>
+  <text x="50" y="313" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">Not built-in</text>
+
+  <text x="50" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Eviction</text>
+  <text x="50" y="358" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">LRU only</text>
+
+  <text x="50" y="385" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Best For</text>
+  <text x="50" y="403" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#2980b9">Simple caching, session storage</text>
+
+  <!-- Redis -->
+  <rect x="420" y="70" width="350" height="350" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="595" y="98" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#27ae60" font-weight="bold">Redis</text>
+  <text x="595" y="116" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888">Feature-rich data store</text>
+
+  <text x="440" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Data Model</text>
+  <text x="440" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Strings, lists, sets, hashes, sorted sets</text>
+
+  <text x="440" y="190" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Threading</text>
+  <text x="440" y="208" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Single-threaded (event loop)</text>
+  <text x="440" y="223" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017">Simpler, no lock contention</text>
+
+  <text x="440" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Persistence</text>
+  <text x="440" y="268" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">RDB snapshots + AOF log</text>
+
+  <text x="440" y="295" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Replication</text>
+  <text x="440" y="313" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">Built-in primary-replica + cluster</text>
+
+  <text x="440" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Eviction</text>
+  <text x="440" y="358" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">LRU, LFU, random, volatile, allkeys</text>
+
+  <text x="440" y="385" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Best For</text>
+  <text x="440" y="403" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">Caching, pub/sub, leaderboards, queues</text>
+
+  <!-- Bottom recommendation -->
+  <rect x="30" y="435" width="740" height="30" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="455" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" font-weight="bold">Interview default: Redis. Richer features, built-in persistence and replication. Memcached only for pure simplicity.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

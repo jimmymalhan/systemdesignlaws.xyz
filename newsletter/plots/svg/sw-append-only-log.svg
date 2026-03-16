@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Append-Only Log Pattern</text>
+  <text x="450" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Sequential Writes: The Fastest Disk Pattern</text>
+  <rect x="30" y="80" width="400" height="130" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="230.0" y="150.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Random Writes (B-Tree)</text>
+  <rect x="60" y="120" width="340" height="60" rx="4" fill="#FFD5D5" stroke="#1B1B1F" stroke-width="1.5"/>
+  <line x1="80" y1="115" x2="80" y2="125" stroke="#B71C1C" stroke-width="2"/>
+  <line x1="160" y1="115" x2="160" y2="125" stroke="#B71C1C" stroke-width="2"/>
+  <line x1="120" y1="115" x2="120" y2="125" stroke="#B71C1C" stroke-width="2"/>
+  <line x1="300" y1="115" x2="300" y2="125" stroke="#B71C1C" stroke-width="2"/>
+  <line x1="200" y1="115" x2="200" y2="125" stroke="#B71C1C" stroke-width="2"/>
+  <line x1="350" y1="115" x2="350" y2="125" stroke="#B71C1C" stroke-width="2"/>
+  <line x1="100" y1="115" x2="100" y2="125" stroke="#B71C1C" stroke-width="2"/>
+  <line x1="260" y1="115" x2="260" y2="125" stroke="#B71C1C" stroke-width="2"/>
+  <text x="230" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Seek to page, update in place, seek again...</text>
+  <text x="230" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#B71C1C">5-10 MB/s (HDD), high latency</text>
+  <rect x="470" y="80" width="400" height="130" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="670.0" y="150.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Sequential Writes (Append-Only)</text>
+  <rect x="500" y="120" width="340" height="60" rx="4" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <rect x="510" y="130" width="30" height="40" rx="2" fill="#A5D6A7" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="525" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">W1</text>
+  <rect x="550" y="130" width="30" height="40" rx="2" fill="#A5D6A7" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="565" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">W2</text>
+  <rect x="590" y="130" width="30" height="40" rx="2" fill="#A5D6A7" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="605" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">W3</text>
+  <rect x="630" y="130" width="30" height="40" rx="2" fill="#A5D6A7" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="645" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">W4</text>
+  <rect x="670" y="130" width="30" height="40" rx="2" fill="#A5D6A7" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="685" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">W5</text>
+  <rect x="710" y="130" width="30" height="40" rx="2" fill="#A5D6A7" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="725" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">W6</text>
+  <rect x="750" y="130" width="30" height="40" rx="2" fill="#A5D6A7" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="765" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">W7</text>
+  <rect x="790" y="130" width="30" height="40" rx="2" fill="#A5D6A7" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="805" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">W8</text>
+  <text x="670" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">100-200 MB/s (HDD), minimal seeks</text>
+  <rect x="100" y="245" width="700" height="100" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450.0" y="300.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Systems Using Append-Only Logs</text>
+  <text x="450" y="280" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Kafka: all writes are sequential appends to partitions</text>
+  <text x="450" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Cassandra: commit log + SSTable flushes</text>
+  <text x="450" y="330" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">PostgreSQL WAL: sequential before random page writes</text>
+  <text x="450" y="380" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-style="italic">20-40x throughput advantage on HDD, 2-5x on SSD</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

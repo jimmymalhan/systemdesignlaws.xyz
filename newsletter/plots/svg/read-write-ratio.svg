@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" font-weight="bold" fill="#1B1B1F">Read-to-Write Ratios in Real Systems</text>
+
+  <!-- Legend -->
+  <rect x="280" y="48" width="16" height="16" rx="3" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="302" y="61" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Reads</text>
+  <rect x="360" y="48" width="16" height="16" rx="3" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="382" y="61" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Writes</text>
+
+  <!-- Y-axis label -->
+  <text x="60" y="220" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" transform="rotate(-90 30 220)">Relative Volume</text>
+
+  <!-- Baseline / axis -->
+  <line x1="90" y1="370" x2="860" y2="370" stroke="#1B1B1F" stroke-width="2"/>
+  <line x1="90" y1="80" x2="90" y2="370" stroke="#1B1B1F" stroke-width="2"/>
+
+  <!-- Grid lines -->
+  <line x1="90" y1="225" x2="860" y2="225" stroke="#E0E0E0" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="90" y1="140" x2="860" y2="140" stroke="#E0E0E0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- INSTAGRAM: 100:1 -->
+  <!-- Read bar -->
+  <rect x="130" y="100" width="70" height="270" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="165" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">100x</text>
+  <!-- Write bar -->
+  <rect x="210" y="343" width="35" height="27" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="228" y="361" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">1x</text>
+  <!-- Label -->
+  <text x="178" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Instagram</text>
+  <text x="178" y="408" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">100 : 1</text>
+
+  <!-- TWITTER: 1000:1 -->
+  <!-- Read bar -->
+  <rect x="310" y="88" width="70" height="282" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="345" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">1000x</text>
+  <!-- Write bar (tiny) -->
+  <rect x="390" y="360" width="35" height="10" rx="3" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <!-- Label -->
+  <text x="358" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Twitter</text>
+  <text x="358" y="408" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">1000 : 1</text>
+
+  <!-- YOUTUBE: 1000:1 -->
+  <!-- Read bar -->
+  <rect x="490" y="88" width="70" height="282" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="525" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">1000x</text>
+  <!-- Write bar (tiny) -->
+  <rect x="570" y="360" width="35" height="10" rx="3" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <!-- Label -->
+  <text x="538" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">YouTube</text>
+  <text x="538" y="408" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">1000 : 1</text>
+
+  <!-- AMAZON: 100:1 -->
+  <!-- Read bar -->
+  <rect x="670" y="100" width="70" height="270" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="705" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">100x</text>
+  <!-- Write bar -->
+  <rect x="750" y="343" width="35" height="27" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="768" y="361" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">1x</text>
+  <!-- Label -->
+  <text x="718" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Amazon</text>
+  <text x="718" y="408" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">100 : 1</text>
+
+  <!-- Insight callout -->
+  <rect x="460" y="46" width="390" height="30" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="655" y="66" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Most systems are 100-1000x more read-heavy than write-heavy</text>
+
+  <!-- Watermark -->
+  <text x="878" y="409" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

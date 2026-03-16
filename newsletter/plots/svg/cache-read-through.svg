@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-rt" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-rt-b" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2980b9" stroke="#2980b9" stroke-width="1"/>
+    </marker>
+    <marker id="arr-rt-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#27ae60" stroke="#27ae60" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Read-Through Cache</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Cache fetches from DB on miss - app never touches DB directly</text>
+
+  <!-- App -->
+  <rect x="60" y="140" width="140" height="70" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="130" y="168" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#1a1a1a" font-weight="bold">Application</text>
+  <text x="130" y="188" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#2980b9">get(key)</text>
+
+  <!-- Arrow App to Cache -->
+  <path d="M200,175 L290,175" stroke="#2980b9" stroke-width="2.5" fill="none" marker-end="url(#arr-rt-b)"/>
+  <text x="245" y="165" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#2980b9" font-weight="bold">1. Request</text>
+
+  <!-- Cache (center, larger) -->
+  <rect x="300" y="110" width="180" height="130" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="390" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#1a1a1a" font-weight="bold">Cache Layer</text>
+  <text x="390" y="160" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">Manages DB access</text>
+
+  <!-- HIT path -->
+  <rect x="310" y="170" width="70" height="28" rx="6" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="345" y="189" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" font-weight="bold">HIT</text>
+
+  <!-- MISS path -->
+  <rect x="400" y="170" width="70" height="28" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="435" y="189" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" font-weight="bold">MISS</text>
+
+  <!-- Arrow from MISS to DB -->
+  <path d="M480,200 L560,200" stroke="#d4a017" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arr-rt)"/>
+  <text x="520" y="190" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">2. Fetch</text>
+
+  <!-- Database -->
+  <rect x="570" y="170" width="140" height="60" rx="8" fill="#FFF8E8" stroke="#d4a017" stroke-width="2"/>
+  <text x="640" y="195" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#1a1a1a" font-weight="bold">Database</text>
+  <text x="640" y="215" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017">Source of truth</text>
+
+  <!-- Arrow DB back to Cache -->
+  <path d="M640,230 C640,260 500,270 440,240" stroke="#27ae60" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arr-rt-g)"/>
+  <text x="560" y="258" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">3. Populate</text>
+
+  <!-- Return to App -->
+  <path d="M300,175 L205,175" stroke="#27ae60" stroke-width="2.5" fill="none" marker-end="url(#arr-rt-g)"/>
+  <text x="252" y="192" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">4. Return</text>
+
+  <!-- Key difference box -->
+  <rect x="60" y="290" width="340" height="80" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="230" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#2980b9" font-weight="bold">Key Difference from Cache-Aside</text>
+  <text x="80" y="335" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Cache-aside: App manages cache + DB</text>
+  <text x="80" y="355" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Read-through: Cache manages DB access</text>
+
+  <!-- X mark showing app does NOT touch DB -->
+  <rect x="420" y="290" width="320" height="80" rx="8" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="580" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#c0392b" font-weight="bold">App NEVER touches DB</text>
+  <text x="440" y="335" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">+ Simpler app code</text>
+  <text x="440" y="355" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">+ Cache handles all data fetching</text>
+
+  <!-- Tradeoffs -->
+  <rect x="60" y="390" width="680" height="70" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="415" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333" font-weight="bold">Trade-offs</text>
+  <text x="80" y="438" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">+ Simpler application logic -- cache acts as a data access layer</text>
+  <text x="80" y="453" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">- Cold start penalty -- first request for any key hits DB. Cache warming mitigates this.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

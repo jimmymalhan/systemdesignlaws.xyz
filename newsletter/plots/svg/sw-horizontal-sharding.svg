@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Horizontal Sharding</text>
+  <text x="450" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Spread Writes Across Multiple Servers</text>
+  <rect x="330" y="70" width="240" height="45" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450.0" y="97.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Application Layer</text>
+  <rect x="360" y="150" width="180" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450.0" y="169.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Shard Router</text>
+  <text x="450.0" y="187.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">hash(key) % N</text>
+  <line x1="450" y1="115" x2="450" y2="150" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="80" y="240" width="150" height="70" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="155.0" y="272.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Shard 1</text>
+  <text x="155.0" y="290.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">250 w/s</text>
+  <line x1="450" y1="195" x2="155" y2="240" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="280" y="240" width="150" height="70" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="355.0" y="272.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Shard 2</text>
+  <text x="355.0" y="290.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">500 w/s</text>
+  <line x1="450" y1="195" x2="355" y2="240" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="480" y="240" width="150" height="70" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="555.0" y="272.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Shard 3</text>
+  <text x="555.0" y="290.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">750 w/s</text>
+  <line x1="450" y1="195" x2="555" y2="240" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="680" y="240" width="150" height="70" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="755.0" y="272.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Shard 4</text>
+  <text x="755.0" y="290.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">1000 w/s</text>
+  <line x1="450" y1="195" x2="755" y2="240" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="450" y="350" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-style="italic">4 shards = 4x write throughput</text>
+  <text x="450" y="380" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#555">N shards = Nx capacity (linear scaling)</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8e44ad"/>
+    </marker>
+  </defs>
+  <rect width="800" height="460" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">WebSocket HTTP Upgrade Handshake</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Starts as HTTP, upgrades to persistent bidirectional ws:// protocol</text>
+
+  <!-- Client column -->
+  <rect x="50" y="75" width="130" height="44" rx="8" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="115" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Client</text>
+  <line x1="115" y1="119" x2="115" y2="415" stroke="#4a90d9" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Server column -->
+  <rect x="590" y="75" width="140" height="44" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="660" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Server</text>
+  <line x1="660" y1="119" x2="660" y2="415" stroke="#4ab54a" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Phase label: HTTP -->
+  <rect x="200" y="78" width="200" height="18" rx="3" fill="#e8f4fd" stroke="none"/>
+  <text x="300" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#2980b9" text-anchor="middle" font-weight="bold">HTTP Phase</text>
+
+  <!-- Upgrade request -->
+  <text x="28" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">t=0ms</text>
+  <line x1="125" y1="148" x2="645" y2="155" stroke="#2980b9" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="390" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" text-anchor="middle" font-weight="bold">GET /chat HTTP/1.1</text>
+  <text x="390" y="155" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#2980b9" text-anchor="middle">Upgrade: websocket   Connection: Upgrade</text>
+  <text x="390" y="168" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">Sec-WebSocket-Key: dGhlIHNhbXBsZQ==</text>
+
+  <!-- 101 response -->
+  <text x="665" y="195" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">t=50ms</text>
+  <line x1="645" y1="200" x2="125" y2="207" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="390" y="196" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" text-anchor="middle" font-weight="bold">101 Switching Protocols</text>
+  <text x="390" y="210" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">Upgrade: websocket   Sec-WebSocket-Accept: ...</text>
+
+  <!-- Protocol switch annotation -->
+  <rect x="200" y="218" width="370" height="22" rx="4" fill="#e8fde8" stroke="#4ab54a" stroke-width="1.5"/>
+  <text x="385" y="233" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" text-anchor="middle" font-weight="bold">Protocol switches to ws:// — HTTP is done</text>
+
+  <!-- Phase label: WebSocket -->
+  <rect x="200" y="246" width="200" height="18" rx="3" fill="#f5e8ff" stroke="none"/>
+  <text x="300" y="259" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#8e44ad" text-anchor="middle" font-weight="bold">WebSocket Phase (bidirectional)</text>
+
+  <!-- Frame from client -->
+  <line x1="125" y1="275" x2="645" y2="282" stroke="#8e44ad" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <text x="390" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#8e44ad" text-anchor="middle">ws frame: {"type":"msg","text":"hello"}</text>
+
+  <!-- Frame from server -->
+  <line x1="645" y1="305" x2="125" y2="312" stroke="#8e44ad" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <text x="390" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#8e44ad" text-anchor="middle">ws frame: {"type":"ack","id":1}</text>
+
+  <!-- Frame from server push -->
+  <line x1="645" y1="335" x2="125" y2="342" stroke="#8e44ad" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <text x="390" y="330" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#8e44ad" text-anchor="middle">ws frame: {"type":"new_msg","from":"alice"}</text>
+
+  <!-- Frame from client -->
+  <line x1="125" y1="362" x2="645" y2="369" stroke="#8e44ad" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <text x="390" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#8e44ad" text-anchor="middle">ws frame: {"type":"typing"}</text>
+
+  <!-- Protocol stack annotation -->
+  <rect x="50" y="390" width="310" height="58" rx="6" fill="#f9f9f9" stroke="#cccccc" stroke-width="1"/>
+  <text x="205" y="408" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Protocol Stack After Upgrade</text>
+  <text x="70" y="426" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#8e44ad">L7: WebSocket frames (not HTTP)</text>
+  <text x="70" y="442" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60">L4: Same TCP connection (no re-handshake)</text>
+
+  <!-- Key point -->
+  <rect x="380" y="390" width="370" height="58" rx="6" fill="#fff8e8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="565" y="408" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Key Interview Points</text>
+  <text x="400" y="426" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555">Upgrade header: standard HTTP/1.1</text>
+  <text x="400" y="442" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555">L4 LB required (L7 breaks upgrade)</text>
+</svg>

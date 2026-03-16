@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <rect x="0" y="0" width="900" height="420" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+  <text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Redis as a Task Queue</text>
+  <!-- Redis box -->
+  <rect x="280" y="60" width="340" height="300" rx="10" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="90" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#1B1B1F" font-weight="bold">Redis</text>
+  <!-- List structure -->
+  <rect x="310" y="110" width="280" height="55" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">List: task_queue</text>
+  <text x="450" y="150" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">LPUSH to add | BRPOP to consume (blocking)</text>
+  <!-- Sorted Set -->
+  <rect x="310" y="180" width="280" height="55" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="200" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Sorted Set: delayed_tasks</text>
+  <text x="450" y="220" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Score = scheduled timestamp</text>
+  <!-- Hash for status -->
+  <rect x="310" y="250" width="280" height="55" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="270" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Hash: job:{id}</text>
+  <text x="450" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">status, result, created_at, updated_at</text>
+  <!-- Producer -->
+  <rect x="30" y="120" width="130" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="95" y="150" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Producer</text>
+  <line x1="160" y1="140" x2="308" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="234" y="133" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">LPUSH</text>
+  <!-- Consumer -->
+  <rect x="740" y="120" width="130" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="805" y="150" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Consumer</text>
+  <line x1="620" y1="140" x2="738" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="678" y="133" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">BRPOP</text>
+  <!-- Pros / Cons -->
+  <rect x="50" y="310" width="360" height="80" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="230" y="332" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Pros</text>
+  <text x="230" y="352" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Sub-ms latency, simple operations</text>
+  <text x="230" y="372" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Often already in your stack</text>
+  <rect x="490" y="310" width="360" height="80" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="670" y="332" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Cons</text>
+  <text x="670" y="352" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">No built-in retry, no dead letter queue</text>
+  <text x="670" y="372" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Memory-bound, data loss risk if no AOF</text>
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

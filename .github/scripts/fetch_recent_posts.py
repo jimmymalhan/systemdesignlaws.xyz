@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch latest 3 posts from Substack RSS and write recent-posts.json."""
+"""Fetch latest 15 posts from Substack RSS and write recent-posts.json."""
 import json
 import re
 from datetime import datetime, timezone
@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 
 RSS_PATH = Path("feed.xml")
 OUTPUT_PATH = Path("recent-posts.json")
-LIMIT = 3
+LIMIT = 15
 DESC_MAX_LEN = 140
 
 
@@ -40,7 +40,8 @@ def parse_rss_to_posts(rss_path: Path, limit: int = LIMIT, desc_max: int = DESC_
         if len(desc) > desc_max:
             desc = desc[: desc_max - 3].rsplit(" ", 1)[0] + "..."
         if title and link:
-            url = link.replace("systemdesignlaws.substack.com", "newsletter.systemdesignlaws.xyz")
+            # Use systemdesignlaws.substack.com for post URLs (newsletter.* returns 404 for /p/ paths)
+            url = link.replace("newsletter.systemdesignlaws.xyz", "systemdesignlaws.substack.com")
             posts.append({"title": title, "url": url, "description": desc or "Read more."})
     return posts
 

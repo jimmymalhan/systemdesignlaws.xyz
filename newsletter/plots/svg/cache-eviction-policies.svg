@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Cache Eviction Policies</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">When cache is full, which entry gets removed?</text>
+
+  <!-- LRU -->
+  <rect x="30" y="75" width="230" height="280" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="145" y="100" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#2980b9" font-weight="bold">LRU</text>
+  <text x="145" y="118" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888">Least Recently Used</text>
+
+  <!-- LRU visualization -->
+  <rect x="50" y="135" width="190" height="25" rx="4" fill="#FFFFFF" stroke="#2980b9" stroke-width="1"/>
+  <text x="145" y="152" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#1a1a1a">Most Recent --> A, B, C, D</text>
+
+  <rect x="50" y="168" width="190" height="25" rx="4" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="145" y="185" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">D evicted (oldest access)</text>
+
+  <text x="50" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" font-weight="bold">How it works:</text>
+  <text x="50" y="233" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Evict the item accessed</text>
+  <text x="50" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">longest ago.</text>
+
+  <text x="50" y="275" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Best general-purpose</text>
+  <text x="50" y="293" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Default in Redis</text>
+  <text x="50" y="311" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">- Scan-resistant</text>
+  <text x="50" y="329" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">  (one-time scans evict)</text>
+  <text x="50" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888" font-style="italic">Default choice for interviews</text>
+
+  <!-- LFU -->
+  <rect x="280" y="75" width="230" height="280" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="395" y="100" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#27ae60" font-weight="bold">LFU</text>
+  <text x="395" y="118" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888">Least Frequently Used</text>
+
+  <!-- LFU visualization -->
+  <rect x="300" y="135" width="190" height="25" rx="4" fill="#FFFFFF" stroke="#27ae60" stroke-width="1"/>
+  <text x="395" y="152" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#1a1a1a">A:50x B:30x C:5x D:2x</text>
+
+  <rect x="300" y="168" width="190" height="25" rx="4" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="395" y="185" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">D evicted (fewest accesses)</text>
+
+  <text x="300" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" font-weight="bold">How it works:</text>
+  <text x="300" y="233" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Track access count per key.</text>
+  <text x="300" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Evict lowest count.</text>
+
+  <text x="300" y="275" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Keeps truly popular items</text>
+  <text x="300" y="293" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Better for skewed access</text>
+  <text x="300" y="311" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">- Old popular items stick</text>
+  <text x="300" y="329" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">- More memory overhead</text>
+  <text x="300" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888" font-style="italic">Use when access is power-law</text>
+
+  <!-- FIFO -->
+  <rect x="530" y="75" width="230" height="280" rx="8" fill="#FFF8E8" stroke="#d4a017" stroke-width="2"/>
+  <text x="645" y="100" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#d4a017" font-weight="bold">FIFO</text>
+  <text x="645" y="118" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888">First In, First Out</text>
+
+  <!-- FIFO visualization -->
+  <rect x="550" y="135" width="190" height="25" rx="4" fill="#FFFFFF" stroke="#d4a017" stroke-width="1"/>
+  <text x="645" y="152" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#1a1a1a">Queue: [D, C, B, A]</text>
+
+  <rect x="550" y="168" width="190" height="25" rx="4" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="645" y="185" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">D evicted (inserted first)</text>
+
+  <text x="550" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" font-weight="bold">How it works:</text>
+  <text x="550" y="233" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Pure insertion order.</text>
+  <text x="550" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Oldest entry leaves first.</text>
+
+  <text x="550" y="275" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Simplest implementation</text>
+  <text x="550" y="293" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60">+ Predictable behavior</text>
+  <text x="550" y="311" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">- Ignores access patterns</text>
+  <text x="550" y="329" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b">- May evict hot items</text>
+  <text x="550" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888" font-style="italic">Rarely the right choice</text>
+
+  <!-- Bottom recommendation -->
+  <rect x="30" y="380" width="740" height="80" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="402" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#1a1a1a" font-weight="bold">Interview Default: LRU</text>
+  <text x="50" y="425" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Redis default: allkeys-lru. Works well for most workloads. Mention LFU only if the interviewer asks about</text>
+  <text x="50" y="443" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">power-law access patterns (e.g., celebrity posts). FIFO is almost never the answer in system design interviews.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

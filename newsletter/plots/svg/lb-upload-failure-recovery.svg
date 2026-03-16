@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-fr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-fr-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#D32F2F" stroke="#D32F2F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-fr-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Upload Failure Recovery Strategies</text>
+
+  <!-- Failure types -->
+  <rect x="40" y="60" width="250" height="130" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="165" y="82" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F" font-weight="bold">What Can Fail?</text>
+  <text x="60" y="102" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">- Network drops mid-upload</text>
+  <text x="60" y="120" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">- Client app crashes</text>
+  <text x="60" y="138" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">- Presigned URL expires</text>
+  <text x="60" y="156" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">- S3 returns 500 error</text>
+  <text x="60" y="174" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">- Incomplete multipart upload</text>
+
+  <!-- Strategy 1: Retry with backoff -->
+  <rect x="340" y="60" width="240" height="55" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="360" y="80" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Strategy 1: Retry + Backoff</text>
+  <text x="360" y="100" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Wait 1s, 2s, 4s between retries</text>
+
+  <path d="M290,85 L336,85" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-fr)"/>
+
+  <!-- Strategy 2: Resume from checkpoint -->
+  <rect x="340" y="125" width="240" height="65" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="360" y="145" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Strategy 2: Resume Upload</text>
+  <text x="360" y="163" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Query server for completed parts</text>
+  <text x="360" y="179" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Re-upload only missing chunks</text>
+
+  <path d="M290,130 L336,145" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-fr)"/>
+
+  <!-- Strategy 3: New presigned URL -->
+  <rect x="630" y="60" width="230" height="55" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="650" y="80" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#E65100" font-weight="bold">Strategy 3: New URL</text>
+  <text x="650" y="100" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">URL expired? Request fresh one</text>
+
+  <path d="M580,85 L626,85" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-fr)"/>
+
+  <!-- Strategy 4: Orphan cleanup -->
+  <rect x="630" y="125" width="230" height="65" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="650" y="145" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#E65100" font-weight="bold">Strategy 4: Orphan Cleanup</text>
+  <text x="650" y="163" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Lifecycle policy: abort incomplete</text>
+  <text x="650" y="179" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">multipart uploads after 24h</text>
+
+  <!-- Flow diagram -->
+  <rect x="40" y="220" width="820" height="170" rx="8" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="450" y="242" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Recovery Flow</text>
+
+  <!-- Upload attempt -->
+  <rect x="60" y="260" width="120" height="40" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="120" y="284" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Upload Chunk</text>
+
+  <path d="M180,280 L228,280" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-fr)"/>
+
+  <!-- Decision: success? -->
+  <polygon points="300,250 350,280 300,310 250,280" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="300" y="283" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">OK?</text>
+
+  <!-- Success -->
+  <path d="M350,280 L398,280" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-fr-g)"/>
+  <rect x="402" y="260" width="100" height="40" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="452" y="284" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Next Chunk</text>
+
+  <!-- Failure -->
+  <path d="M300,310 L300,330" stroke="#D32F2F" stroke-width="2" fill="none" marker-end="url(#arr-fr-r)"/>
+  <rect x="240" y="334" width="120" height="35" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1"/>
+  <text x="300" y="356" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Wait (backoff)</text>
+
+  <!-- Retry loop -->
+  <path d="M240,351 C200,351 180,320 180,280 L180,280" stroke="#D32F2F" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+  <text x="170" y="330" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#D32F2F">retry</text>
+
+  <!-- Max retries -->
+  <path d="M360,351 L478,351" stroke="#D32F2F" stroke-width="2" fill="none" marker-end="url(#arr-fr-r)"/>
+  <text x="420" y="345" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#D32F2F">max retries</text>
+  <rect x="482" y="334" width="120" height="35" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="542" y="356" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Mark Failed</text>
+
+  <!-- All done -->
+  <path d="M502,280 L548,280" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-fr-g)"/>
+  <rect x="552" y="260" width="130" height="40" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="617" y="284" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">All Chunks Done</text>
+
+  <path d="M682,280 L728,280" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-fr-g)"/>
+  <rect x="732" y="260" width="110" height="40" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="787" y="284" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Complete</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>
