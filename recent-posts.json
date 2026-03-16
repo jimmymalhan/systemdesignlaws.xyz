@@ -16,5 +16,5 @@
       "description": "- Fix race conditions with atomicity, locks, or optimistic concurrency. Scale to distributed coordination when needed."
     }
   ],
-  "updated": "2026-03-15T12:05:57Z"
+  "updated": "2026-03-16T12:13:11Z"
 }
