@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Optimistic vs Pessimistic: When to Use Which</text>
+
+  <!-- Side by side -->
+  <rect x="30" y="55" width="410" height="200" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="235" y="80" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#2E7D32" font-weight="bold">Pessimistic Locking</text>
+  <text x="235" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">"Assume conflicts WILL happen"</text>
+
+  <text x="50" y="125" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Mechanism: SELECT FOR UPDATE</text>
+  <text x="50" y="145" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Blocks other transactions</text>
+  <text x="50" y="165" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Best when: High contention</text>
+  <text x="50" y="185" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Cost: Waiting (blocked threads)</text>
+  <text x="50" y="205" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">No retries needed</text>
+  <text x="50" y="225" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Throughput: Lower under low contention</text>
+  <text x="50" y="245" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">Risk: Deadlocks (order your locks!)</text>
+
+  <rect x="460" y="55" width="410" height="200" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="665" y="80" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#E65100" font-weight="bold">Optimistic Concurrency</text>
+  <text x="665" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">"Assume conflicts are RARE"</text>
+
+  <text x="480" y="125" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Mechanism: Version column + CAS</text>
+  <text x="480" y="145" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">No locks held during read</text>
+  <text x="480" y="165" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100" font-weight="bold">Best when: Low contention</text>
+  <text x="480" y="185" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Cost: Retries on conflict</text>
+  <text x="480" y="205" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Work wasted on conflict</text>
+  <text x="480" y="225" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Throughput: Higher under low contention</text>
+  <text x="480" y="245" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">Risk: ABA problem, retry storms</text>
+
+  <!-- Contention scale -->
+  <text x="450" y="285" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Contention Scale</text>
+
+  <defs>
+    <linearGradient id="cont-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFF3E0"/>
+      <stop offset="100%" style="stop-color:#E8F5E9"/>
+    </linearGradient>
+  </defs>
+  <rect x="100" y="295" width="700" height="30" rx="6" fill="url(#cont-grad)" stroke="#1B1B1F" stroke-width="2"/>
+
+  <text x="100" y="342" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100" font-weight="bold">Low contention</text>
+  <text x="100" y="358" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">Optimistic wins</text>
+
+  <text x="800" y="342" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">High contention</text>
+  <text x="800" y="358" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Pessimistic wins</text>
+
+  <text x="450" y="342" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#7B1FA2" font-weight="bold">Crossover point</text>
+  <text x="450" y="358" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#7B1FA2">When retries cost more than waiting</text>
+
+  <!-- Bottom tip -->
+  <rect x="100" y="375" width="700" height="30" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="450" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#7B1FA2" font-weight="bold">Interview tip: Name both, explain tradeoff, pick one based on contention level</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

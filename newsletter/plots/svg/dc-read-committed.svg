@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-rc2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">READ COMMITTED: The Default Gotcha</text>
+
+  <line x1="150" y1="55" x2="150" y2="380" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="450" y1="55" x2="450" y2="380" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="750" y1="55" x2="750" y2="380" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <rect x="70" y="50" width="160" height="28" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="150" y="69" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Alice (Txn A)</text>
+  <rect x="370" y="50" width="160" height="28" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="69" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Database</text>
+  <rect x="670" y="50" width="160" height="28" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="750" y="69" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Bob (Txn B)</text>
+
+  <rect x="390" y="92" width="120" height="24" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="450" y="109" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">seats = 1</text>
+
+  <!-- Both read committed data -->
+  <line x1="150" y1="135" x2="438" y2="135" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-rc2)"/>
+  <text x="294" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">BEGIN; SELECT seats</text>
+
+  <line x1="450" y1="148" x2="162" y2="148" stroke="#1B1B1F" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr-rc2)"/>
+  <text x="306" y="162" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">seats = 1 (committed)</text>
+
+  <line x1="750" y1="175" x2="462" y2="175" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-rc2)"/>
+  <text x="606" y="170" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">BEGIN; SELECT seats</text>
+
+  <line x1="450" y1="188" x2="738" y2="188" stroke="#1B1B1F" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr-rc2)"/>
+  <text x="594" y="202" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">seats = 1 (committed)</text>
+
+  <!-- Both try to update -->
+  <line x1="150" y1="225" x2="438" y2="225" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-rc2)"/>
+  <text x="294" y="220" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">UPDATE seats=0 WHERE seats>0</text>
+  <text x="294" y="240" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">COMMIT (1 row affected)</text>
+
+  <line x1="750" y1="262" x2="462" y2="262" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-rc2)"/>
+  <text x="606" y="257" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">UPDATE seats=0 WHERE seats>0</text>
+
+  <!-- Key insight -->
+  <rect x="520" y="278" width="350" height="45" rx="4" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+  <text x="695" y="296" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100" font-weight="bold">Re-evaluates WHERE against committed state</text>
+  <text x="695" y="314" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">seats=0 now, so 0 rows affected</text>
+
+  <!-- Result -->
+  <rect x="140" y="340" width="620" height="50" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="450" y="360" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#E65100" font-weight="bold">UPDATE returns 0 rows, but app may still INSERT ticket!</text>
+  <text x="450" y="380" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100">Always check affected row count. Zero rows = lost the race.</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Webhook Callback Pattern</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Server pushes completion notification to the caller via HTTP POST</text>
+
+<!-- Step 1: Submit -->
+<rect x="40" y="80" width="160" height="55" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="120" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">1. Submit Job</text>
+<text x="120" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">callback_url included</text>
+
+<line x1="200" y1="107" x2="255" y2="107" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Step 2: Acknowledge -->
+<rect x="260" y="80" width="160" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="340" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">2. Acknowledge</text>
+<text x="340" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Return job_id (200 OK)</text>
+
+<line x1="420" y1="107" x2="475" y2="107" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Step 3: Process -->
+<rect x="480" y="80" width="160" height="55" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="560" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">3. Process</text>
+<text x="560" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Worker runs async</text>
+
+<line x1="640" y1="107" x2="695" y2="107" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Step 4: Callback -->
+<rect x="700" y="75" width="160" height="65" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="780" y="97" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">4. Webhook POST</text>
+<text x="780" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">POST callback_url</text>
+<text x="780" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">{job_id, status, result}</text>
+
+<!-- Callback details -->
+<text x="450" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Webhook Reliability Considerations</text>
+
+<rect x="40" y="195" width="260" height="90" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="170" y="217" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">What Can Go Wrong</text>
+<text x="60" y="237" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Callback URL is down</text>
+<text x="60" y="255" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Network timeout during POST</text>
+<text x="60" y="273" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Callback received but app crashes</text>
+
+<rect x="320" y="195" width="260" height="90" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="217" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Solutions</text>
+<text x="340" y="237" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Retry with exponential backoff</text>
+<text x="340" y="255" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Dead letter queue after N retries</text>
+<text x="340" y="273" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Idempotency key in payload</text>
+
+<rect x="600" y="195" width="260" height="90" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="730" y="217" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Security</text>
+<text x="620" y="237" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">HMAC signature in header</text>
+<text x="620" y="255" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Shared secret per webhook</text>
+<text x="620" y="273" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Verify before processing</text>
+
+<!-- Comparison -->
+<rect x="40" y="310" width="820" height="75" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="332" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Webhook vs Polling: When to Use</text>
+<text x="60" y="355" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Webhook: server-to-server, the caller has an endpoint to receive (Stripe, GitHub, Twilio)</text>
+<text x="60" y="375" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Polling: browser/mobile clients, or when the caller cannot receive inbound HTTP (firewalls, NAT)</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

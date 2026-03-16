@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ca" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ca-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ca-y" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#E65100" stroke="#E65100" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Cache-Aside Pattern (Lazy Loading)</text>
+
+  <!-- Step 1: App -->
+  <rect x="46" y="140" width="120" height="60" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="106" y="168" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">App</text>
+  <text x="106" y="188" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">Step 1: Request</text>
+
+  <!-- Arrow App to Cache diamond -->
+  <path d="M166,170 C195,170 220,170 248,170" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-ca)"/>
+
+  <!-- Step 2: Check Cache (diamond) -->
+  <polygon points="310,125 370,170 310,215 250,170" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="310" y="165" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Check</text>
+  <text x="310" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Cache</text>
+
+  <!-- HIT PATH (green, goes UP) -->
+  <path d="M310,125 C310,100 310,80 310,62" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#arr-ca-g)"/>
+  <text x="335" y="100" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">HIT</text>
+
+  <!-- Return ~1ms green box -->
+  <rect x="245" y="38" width="130" height="24" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="3"/>
+  <text x="310" y="56" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">Return ~1ms</text>
+
+  <!-- Green fast path label -->
+  <path d="M375,50 C430,50 500,50 555,50" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-ca-g)"/>
+  <rect x="560" y="35" width="195" height="30" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="657" y="56" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Best case: sub-millisecond!</text>
+
+  <!-- Arrow HIT return back to App (dashed) -->
+  <path d="M245,50 C180,55 140,80 120,140" stroke="#2E7D32" stroke-width="2.5" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-ca-g)"/>
+  <text x="148" y="95" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">~1ms</text>
+
+  <!-- MISS PATH (orange, goes DOWN) -->
+  <path d="M310,215 C310,232 310,240 310,258" stroke="#E65100" stroke-width="2.5" fill="none" marker-end="url(#arr-ca-y)"/>
+  <text x="335" y="245" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#E65100" font-weight="bold">MISS</text>
+
+  <!-- Step 3: Query DB -->
+  <rect x="250" y="262" width="120" height="50" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="310" y="284" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Query DB</text>
+  <text x="310" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F">~50ms</text>
+
+  <!-- Arrow: DB to Store in Cache -->
+  <path d="M370,287 C410,287 440,287 478,287" stroke="#E65100" stroke-width="2" fill="none" marker-end="url(#arr-ca-y)"/>
+  <text x="425" y="278" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#888">Step 3</text>
+
+  <!-- Step 4: Store in Cache -->
+  <rect x="482" y="262" width="140" height="50" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="552" y="284" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Store in Cache</text>
+  <text x="552" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">Step 4 + set TTL</text>
+
+  <!-- Arrow: Store to Return -->
+  <path d="M622,287 C660,287 680,287 710,287" stroke="#E65100" stroke-width="2" fill="none" marker-end="url(#arr-ca-y)"/>
+
+  <!-- Step 5: Return (miss path) -->
+  <rect x="715" y="262" width="130" height="50" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="780" y="284" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#E65100" font-weight="bold">Return</text>
+  <text x="780" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100">~51ms total</text>
+
+  <!-- Arrow: MISS return back to App (dashed) -->
+  <path d="M780,312 C780,335 400,350 120,200" stroke="#E65100" stroke-width="1.5" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-ca-y)"/>
+  <text x="500" y="342" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">~51ms</text>
+
+  <!-- Miss path label -->
+  <text x="552" y="330" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100" font-style="italic">slow path (fetch from DB, then populate cache)</text>
+
+  <!-- Legend -->
+  <rect x="100" y="365" width="700" height="35" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <circle cx="130" cy="382" r="7" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="145" y="387" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Cache Hit: ~1ms (fast path)</text>
+  <circle cx="375" cy="382" r="7" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="390" y="387" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Cache Miss: ~50ms (DB round-trip)</text>
+  <text x="620" y="387" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#888">Typical hit rate: 95-99%</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

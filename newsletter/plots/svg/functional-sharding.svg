@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-fs" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Functional Sharding (Vertical Partitioning)</text>
+
+  <!-- App Server -->
+  <rect x="310" y="48" width="280" height="55" rx="10" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="72" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Application Server</text>
+  <text x="450" y="90" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Routes queries by domain</text>
+
+  <!-- Arrow: App to User DB -->
+  <line x1="370" y1="108" x2="170" y2="170" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-fs)"/>
+  <text x="250" y="132" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" transform="rotate(-18, 250, 132)">user queries</text>
+
+  <!-- Arrow: App to Product DB -->
+  <line x1="450" y1="108" x2="450" y2="170" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-fs)"/>
+  <text x="485" y="145" text-anchor="start" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">product queries</text>
+
+  <!-- Arrow: App to Order DB -->
+  <line x1="530" y1="108" x2="730" y2="170" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-fs)"/>
+  <text x="650" y="132" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" transform="rotate(18, 650, 132)">order queries</text>
+
+  <!-- User DB -->
+  <rect x="50" y="175" width="240" height="150" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <ellipse cx="170" cy="193" rx="50" ry="10" fill="#BBDEFB" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="170" y="222" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">User DB</text>
+  <line x1="75" y1="235" x2="265" y2="235" stroke="#1B1B1F" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="170" y="254" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">profiles</text>
+  <text x="170" y="272" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">auth tokens</text>
+  <text x="170" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">preferences</text>
+  <text x="170" y="312" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1565C0">~50M rows</text>
+
+  <!-- Product DB -->
+  <rect x="330" y="175" width="240" height="150" rx="10" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <ellipse cx="450" cy="193" rx="50" ry="10" fill="#FFE0B2" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="450" y="222" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Product DB</text>
+  <line x1="355" y1="235" x2="545" y2="235" stroke="#1B1B1F" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="450" y="254" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">catalog</text>
+  <text x="450" y="272" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">inventory</text>
+  <text x="450" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">pricing</text>
+  <text x="450" y="312" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">~10M rows</text>
+
+  <!-- Order DB -->
+  <rect x="610" y="175" width="240" height="150" rx="10" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <ellipse cx="730" cy="193" rx="50" ry="10" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="730" y="222" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Order DB</text>
+  <line x1="635" y1="235" x2="825" y2="235" stroke="#1B1B1F" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="730" y="254" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">transactions</text>
+  <text x="730" y="272" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">line items</text>
+  <text x="730" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">shipping</text>
+  <text x="730" y="312" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">~200M rows</text>
+
+  <!-- Benefit annotations below each DB -->
+  <rect x="65" y="340" width="210" height="26" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="170" y="358" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Independent scaling</text>
+
+  <rect x="345" y="340" width="210" height="26" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="450" y="358" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Smaller = faster queries</text>
+
+  <rect x="625" y="340" width="210" height="26" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="730" y="358" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Isolated failures</text>
+
+  <!-- Bottom label -->
+  <rect x="210" y="380" width="480" height="28" rx="8" fill="#F5F5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="400" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Split by business domain, not by records</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

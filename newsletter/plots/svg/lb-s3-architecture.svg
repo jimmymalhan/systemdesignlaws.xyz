@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-s3" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Object Storage Architecture</text>
+
+  <!-- Client -->
+  <rect x="40" y="160" width="120" height="50" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="100" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Client</text>
+
+  <!-- App Server -->
+  <rect x="220" y="80" width="130" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="285" y="110" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">App Server</text>
+
+  <!-- Metadata DB -->
+  <rect x="220" y="240" width="130" height="50" rx="6" fill="#E8F4FD" stroke="#1565C0" stroke-width="2"/>
+  <text x="285" y="270" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Metadata DB</text>
+
+  <!-- Object Storage -->
+  <rect x="440" y="100" width="200" height="170" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="540" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#E65100" font-weight="bold">Object Storage</text>
+
+  <!-- Buckets -->
+  <rect x="460" y="140" width="160" height="30" rx="4" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="540" y="160" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Bucket: user-uploads</text>
+
+  <rect x="460" y="178" width="160" height="30" rx="4" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="540" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Bucket: thumbnails</text>
+
+  <rect x="460" y="216" width="160" height="30" rx="4" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="540" y="236" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Bucket: transcoded</text>
+
+  <!-- CDN -->
+  <rect x="710" y="160" width="140" height="50" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="780" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">CDN</text>
+
+  <!-- Arrows -->
+  <path d="M160,175 L216,115" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-s3)"/>
+  <text x="175" y="135" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#666">API calls</text>
+
+  <path d="M160,195 C300,230 380,185 436,185" stroke="#E65100" stroke-width="2" fill="none" marker-end="url(#arr-s3)"/>
+  <text x="280" y="218" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#E65100">direct upload</text>
+
+  <path d="M285,130 L285,236" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-s3)"/>
+  <text x="295" y="185" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1565C0">store metadata</text>
+
+  <path d="M350,105 L436,155" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-s3)"/>
+  <text x="390" y="120" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#666">presigned URL</text>
+
+  <path d="M640,185 L706,185" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-s3)"/>
+  <text x="670" y="178" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">cache</text>
+
+  <!-- Properties box -->
+  <rect x="40" y="310" width="260" height="85" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="60" y="332" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Object Storage Properties</text>
+  <text x="60" y="350" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Flat namespace (key/value)</text>
+  <text x="60" y="366" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- No queries, only GET by key</text>
+  <text x="60" y="382" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- 99.999999999% durability</text>
+
+  <!-- Rule box -->
+  <rect x="340" y="310" width="260" height="85" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="360" y="332" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100" font-weight="bold">The Rule</text>
+  <text x="360" y="350" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Files > 10MB that you will not</text>
+  <text x="360" y="366" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">run SQL queries against belong</text>
+  <text x="360" y="382" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">in object storage (S3)</text>
+
+  <!-- Scale box -->
+  <rect x="640" y="310" width="220" height="85" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="660" y="332" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Scale</text>
+  <text x="660" y="350" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Unlimited storage</text>
+  <text x="660" y="366" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- 5TB max per object</text>
+  <text x="660" y="382" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Pay per GB stored</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

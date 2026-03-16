@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#238636"/>
+      <stop offset="100%" stop-color="#3fb950"/>
+    </linearGradient>
+    <linearGradient id="limeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2ea043"/>
+      <stop offset="100%" stop-color="#56d364"/>
+    </linearGradient>
+    <linearGradient id="yellowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9e6a03"/>
+      <stop offset="100%" stop-color="#d29922"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#bd561d"/>
+      <stop offset="100%" stop-color="#db6d28"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#da3633"/>
+      <stop offset="100%" stop-color="#f85149"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#e6edf3">Caching Layers Overview</text>
+  <text x="400" y="58" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">Request path from client to database -- each layer adds latency</text>
+
+  <!-- Layer boxes -->
+  <!-- Client Cache -->
+  <rect x="30" y="110" width="130" height="70" rx="10" fill="url(#greenGrad)" filter="url(#shadow)" opacity="0.95"/>
+  <text x="95" y="138" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Client Cache</text>
+  <text x="95" y="156" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Browser / Mobile</text>
+  <rect x="55" y="190" width="80" height="22" rx="11" fill="rgba(0,0,0,0.35)"/>
+  <text x="95" y="205" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#3fb950">~0 ms</text>
+
+  <!-- CDN -->
+  <rect x="190" y="110" width="130" height="70" rx="10" fill="url(#limeGrad)" filter="url(#shadow)" opacity="0.95"/>
+  <text x="255" y="138" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">CDN Cache</text>
+  <text x="255" y="156" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">CloudFront / Akamai</text>
+  <rect x="215" y="190" width="80" height="22" rx="11" fill="rgba(0,0,0,0.35)"/>
+  <text x="255" y="205" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#56d364">1-10 ms</text>
+
+  <!-- In-Process Cache -->
+  <rect x="350" y="110" width="130" height="70" rx="10" fill="url(#yellowGrad)" filter="url(#shadow)" opacity="0.95"/>
+  <text x="415" y="138" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">In-Process</text>
+  <text x="415" y="156" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Guava / Caffeine</text>
+  <rect x="375" y="190" width="80" height="22" rx="11" fill="rgba(0,0,0,0.35)"/>
+  <text x="415" y="205" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#d29922">~0.1 ms</text>
+
+  <!-- External Cache -->
+  <rect x="510" y="110" width="130" height="70" rx="10" fill="url(#orangeGrad)" filter="url(#shadow)" opacity="0.95"/>
+  <text x="575" y="138" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">External Cache</text>
+  <text x="575" y="156" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Redis / Memcached</text>
+  <rect x="535" y="190" width="80" height="22" rx="11" fill="rgba(0,0,0,0.35)"/>
+  <text x="575" y="205" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#db6d28">1-5 ms</text>
+
+  <!-- Database -->
+  <rect x="670" y="110" width="110" height="70" rx="10" fill="url(#redGrad)" filter="url(#shadow)" opacity="0.95"/>
+  <text x="725" y="138" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Database</text>
+  <text x="725" y="156" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Postgres / MySQL</text>
+  <rect x="685" y="190" width="80" height="22" rx="11" fill="rgba(0,0,0,0.35)"/>
+  <text x="725" y="205" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#f85149">1-50 ms</text>
+
+  <!-- Arrows between layers -->
+  <line x1="160" y1="145" x2="188" y2="145" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+  <line x1="320" y1="145" x2="348" y2="145" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+  <line x1="480" y1="145" x2="508" y2="145" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+  <line x1="640" y1="145" x2="668" y2="145" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+
+  <!-- Bottom section: legend and annotations -->
+  <rect x="30" y="250" width="740" height="175" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <!-- Speed legend -->
+  <text x="60" y="278" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#e6edf3">Speed Legend</text>
+  <rect x="60" y="290" width="16" height="16" rx="3" fill="#3fb950"/>
+  <text x="84" y="303" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Fastest (sub-ms)</text>
+  <rect x="60" y="314" width="16" height="16" rx="3" fill="#d29922"/>
+  <text x="84" y="327" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Medium (low-ms)</text>
+  <rect x="60" y="338" width="16" height="16" rx="3" fill="#f85149"/>
+  <text x="84" y="351" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Slowest (1-50 ms)</text>
+
+  <!-- Key insight boxes -->
+  <text x="280" y="278" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#e6edf3">Key Insights</text>
+
+  <rect x="280" y="290" width="470" height="36" rx="6" fill="rgba(63,185,80,0.1)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+  <text x="295" y="313" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Each cache miss cascades to the next layer, multiplying latency 10-100x per hop.</text>
+
+  <rect x="280" y="334" width="470" height="36" rx="6" fill="rgba(88,166,255,0.1)" stroke="rgba(88,166,255,0.3)" stroke-width="1"/>
+  <text x="295" y="357" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">A 99% hit rate at the CDN means only 1% of requests reach your application servers.</text>
+
+  <rect x="280" y="378" width="470" height="36" rx="6" fill="rgba(210,153,34,0.1)" stroke="rgba(210,153,34,0.3)" stroke-width="1"/>
+  <text x="295" y="401" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">In-process caches (Guava, Caffeine) avoid network hops entirely -- the fastest cache.</text>
+
+  <!-- Latency scale bar -->
+  <text x="400" y="440" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#484f58">Latency increases left to right -- each layer is 10-1000x slower than the previous</text>
+</svg>

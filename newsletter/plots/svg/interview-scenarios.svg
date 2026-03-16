@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Interview Scenarios: Scaling Reads in Practice</text>
+
+  <!-- Row 1 -->
+  <!-- Card 1: Bit.ly -->
+  <rect x="20" y="50" width="270" height="110" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="42" y="74" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F">🔗</text>
+  <text x="72" y="76" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Bit.ly / URL Shortener</text>
+  <line x1="35" y1="84" x2="275" y2="84" stroke="#1B1B1F" stroke-width="0.8" opacity="0.3"/>
+  <text x="35" y="102" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Extreme read ratio (1000:1)</text>
+  <text x="35" y="118" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Key: Cache short URL -> long URL</text>
+  <text x="35" y="136" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1565C0">Strategy: Redis + CDN redirect</text>
+  <text x="35" y="152" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">99.9% cache hit rate achievable</text>
+
+  <!-- Card 2: Ticketmaster -->
+  <rect x="310" y="50" width="270" height="110" rx="10" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="332" y="74" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F">🎫</text>
+  <text x="362" y="76" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Ticketmaster</text>
+  <line x1="325" y1="84" x2="565" y2="84" stroke="#1B1B1F" stroke-width="0.8" opacity="0.3"/>
+  <text x="325" y="102" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Spike traffic (10x normal in seconds)</text>
+  <text x="325" y="118" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Key: Seat availability reads</text>
+  <text x="325" y="136" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#D32F2F">Strategy: Pre-warm cache + queue</text>
+  <text x="325" y="152" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Cache event pages before sale starts</text>
+
+  <!-- Card 3: News Feed -->
+  <rect x="600" y="50" width="280" height="110" rx="10" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="622" y="74" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F">📰</text>
+  <text x="652" y="76" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">News Feed (Facebook)</text>
+  <line x1="615" y1="84" x2="865" y2="84" stroke="#1B1B1F" stroke-width="0.8" opacity="0.3"/>
+  <text x="615" y="102" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Pre-compute feed at write time</text>
+  <text x="615" y="118" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Key: Fanout on write vs read</text>
+  <text x="615" y="136" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#E65100">Strategy: Hybrid push/pull</text>
+  <text x="615" y="152" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Push for normal users, pull for celebrities</text>
+
+  <!-- Row 2 -->
+  <!-- Card 4: YouTube -->
+  <rect x="20" y="180" width="270" height="110" rx="10" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="42" y="204" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F">▶</text>
+  <text x="62" y="206" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">YouTube</text>
+  <line x1="35" y1="214" x2="275" y2="214" stroke="#1B1B1F" stroke-width="0.8" opacity="0.3"/>
+  <text x="35" y="232" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Metadata reads per video view</text>
+  <text x="35" y="248" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Key: Title, thumbnails, comments</text>
+  <text x="35" y="266" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#2E7D32">Strategy: CDN + tiered cache</text>
+  <text x="35" y="282" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">L1: Edge CDN, L2: Redis, L3: DB</text>
+
+  <!-- Card 5: Instagram -->
+  <rect x="310" y="180" width="270" height="110" rx="10" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="332" y="204" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F">📷</text>
+  <text x="362" y="206" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Instagram</text>
+  <line x1="325" y1="214" x2="565" y2="214" stroke="#1B1B1F" stroke-width="0.8" opacity="0.3"/>
+  <text x="325" y="232" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Feed generation at scale</text>
+  <text x="325" y="248" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Key: Ranked feed for 2B+ users</text>
+  <text x="325" y="266" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#6A1B9A">Strategy: Pre-materialize feeds</text>
+  <text x="325" y="282" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Cache user's feed in Redis on follow</text>
+
+  <!-- Card 6: Yelp -->
+  <rect x="600" y="180" width="280" height="110" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="622" y="204" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F">⭐</text>
+  <text x="652" y="206" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Yelp / Search Results</text>
+  <line x1="615" y1="214" x2="865" y2="214" stroke="#1B1B1F" stroke-width="0.8" opacity="0.3"/>
+  <text x="615" y="232" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Geo-spatial search queries</text>
+  <text x="615" y="248" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Key: Nearby restaurants by location</text>
+  <text x="615" y="266" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1565C0">Strategy: Geo-sharding + cache</text>
+  <text x="615" y="282" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Cache search results by geo-hash prefix</text>
+
+  <!-- Bottom: Common patterns -->
+  <rect x="20" y="310" width="860" height="95" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="450" y="334" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Common Patterns Across All Scenarios</text>
+
+  <text x="50" y="356" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">1. Identify the read:write ratio first - it determines your entire scaling strategy</text>
+  <text x="50" y="374" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">2. Cache the most frequently accessed data closest to the user (CDN > Redis > DB replicas)</text>
+  <text x="50" y="392" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">3. Pre-compute where possible: trade write complexity for read speed (especially feeds and aggregations)</text>
+
+  <!-- Watermark -->
+  <text x="878" y="409" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

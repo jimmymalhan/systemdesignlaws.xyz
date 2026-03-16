@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="440" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Hop 2: Pull Polling Pattern</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Endpoint servers poll the database for new rows — simple but DB-intensive at scale</text>
+
+  <!-- Source -->
+  <rect x="30" y="160" width="110" height="60" rx="8" fill="#fdf8e8" stroke="#d4a017" stroke-width="2"/>
+  <text x="85" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Source</text>
+  <text x="85" y="204" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">writes events</text>
+
+  <!-- Write arrow to DB -->
+  <line x1="140" y1="190" x2="215" y2="190" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="178" y="183" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">INSERT</text>
+
+  <!-- Database -->
+  <rect x="215" y="155" width="130" height="70" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="280" y="182" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Database</text>
+  <text x="280" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">events table</text>
+  <text x="280" y="216" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">ts, type, payload</text>
+
+  <!-- Endpoint servers -->
+  <rect x="480" y="80" width="130" height="50" rx="6" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="545" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Endpoint Server 1</text>
+  <text x="545" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">500 WS connections</text>
+
+  <rect x="480" y="165" width="130" height="50" rx="6" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="545" y="187" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Endpoint Server 2</text>
+  <text x="545" y="203" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">500 WS connections</text>
+
+  <rect x="480" y="250" width="130" height="50" rx="6" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="545" y="272" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Endpoint Server 3</text>
+  <text x="545" y="288" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">500 WS connections</text>
+
+  <!-- Poll arrows from servers to DB -->
+  <line x1="478" y1="105" x2="347" y2="175" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+  <line x1="478" y1="190" x2="347" y2="190" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+  <line x1="478" y1="275" x2="347" y2="205" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+
+  <!-- Poll label -->
+  <text x="410" y="125" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle">SELECT WHERE ts</text>
+  <text x="410" y="139" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle">> last_seen</text>
+  <text x="410" y="153" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">(every 1-2 seconds)</text>
+
+  <!-- Client connections on right -->
+  <rect x="660" y="90" width="100" height="26" rx="4" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="710" y="107" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">Clients 1-500</text>
+  <rect x="660" y="175" width="100" height="26" rx="4" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="710" y="192" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">Clients 501-1000</text>
+  <rect x="660" y="260" width="100" height="26" rx="4" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="710" y="277" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">Clients 1001-1500</text>
+
+  <line x1="610" y1="105" x2="658" y2="103" stroke="#4a90d9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <line x1="610" y1="190" x2="658" y2="188" stroke="#4a90d9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <line x1="610" y1="275" x2="658" y2="273" stroke="#4a90d9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+
+  <!-- DB load warning -->
+  <rect x="30" y="320" width="440" height="60" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="250" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#c0392b" text-anchor="middle">DB Load Problem</text>
+  <text x="250" y="358" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">3 servers x 1 poll/sec = 3 queries/sec per user scope.</text>
+  <text x="250" y="374" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">With 100 servers: 100 queries/sec — DB becomes bottleneck.</text>
+
+  <!-- When to use -->
+  <rect x="490" y="320" width="280" height="60" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="1.5"/>
+  <text x="630" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">When to use</text>
+  <text x="630" y="358" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">Low server count (&lt; 10).</text>
+  <text x="630" y="374" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555" text-anchor="middle">Simple to implement, easy to debug.</text>
+
+  <!-- Footer -->
+  <text x="400" y="408" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888888" text-anchor="middle">At scale: replace pull polling with Pub/Sub (Kafka, Redis) to push events to servers instead.</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Load Shedding</text>
+  <text x="450" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Drop Low-Value Writes to Survive</text>
+  <rect x="30" y="80" width="200" height="60" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="130.0" y="107.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Incoming Writes</text>
+  <text x="130.0" y="125.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">15K/sec</text>
+  <rect x="320" y="75" width="260" height="70" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450.0" y="115.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Load Shedder</text>
+  <line x1="230" y1="110" x2="320" y2="110" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="680" y="80" width="180" height="50" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="770.0" y="102.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Accepted</text>
+  <text x="770.0" y="120.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">10K/sec</text>
+  <line x1="580" y1="100" x2="680" y2="100" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="680" y="160" width="180" height="50" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="770.0" y="182.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Dropped</text>
+  <text x="770.0" y="200.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">5K/sec</text>
+  <line x1="580" y1="125" x2="680" y2="175" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="450" y="260" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F">When to Shed</text>
+  <rect x="50" y="275" width="250" height="100" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="175.0" y="322.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Uber/Strava Location</text>
+  <text x="175.0" y="340.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Drop stale GPS updates</text>
+  <text x="175" y="340" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#555">Next update arrives in seconds</text>
+  <rect x="330" y="275" width="250" height="100" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="455.0" y="322.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Analytics Events</text>
+  <text x="455.0" y="340.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Drop impressions > clicks</text>
+  <text x="455" y="340" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#555">Clicks drive revenue</text>
+  <rect x="610" y="275" width="250" height="100" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="735.0" y="322.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Metrics Monitoring</text>
+  <text x="735.0" y="340.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Downsample to 1-min avg</text>
+  <text x="735" y="340" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#555">Approximate is acceptable</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

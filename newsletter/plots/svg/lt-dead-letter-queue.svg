@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <rect x="0" y="0" width="900" height="420" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+  <text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Dead Letter Queue Pattern</text>
+  <!-- Main Queue -->
+  <rect x="50" y="100" width="200" height="70" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="150" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Main Queue</text>
+  <text x="150" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">task messages</text>
+  <!-- Worker -->
+  <rect x="330" y="100" width="160" height="70" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="410" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Worker</text>
+  <text x="410" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">process message</text>
+  <line x1="250" y1="135" x2="328" y2="135" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Success path -->
+  <rect x="580" y="70" width="140" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="650" y="98" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">ACK (done)</text>
+  <line x1="490" y1="120" x2="578" y2="95" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="540" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">success</text>
+  <!-- Failure path - retry -->
+  <rect x="580" y="135" width="140" height="45" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="650" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">NACK + Retry</text>
+  <text x="650" y="172" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">re-enqueue</text>
+  <line x1="490" y1="145" x2="578" y2="155" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="540" y="142" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">fail</text>
+  <!-- Re-enqueue arrow back -->
+  <path d="M 650 180 Q 650 210 400 210 Q 150 210 150 172" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)" fill="none" stroke-dasharray="6,3"/>
+  <text x="400" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">back to queue (with retry count)</text>
+  <!-- DLQ path -->
+  <rect x="350" y="270" width="220" height="80" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="460" y="300" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Dead Letter Queue</text>
+  <text x="460" y="322" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Messages that failed max retries</text>
+  <text x="460" y="340" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Preserved for inspection</text>
+  <line x1="650" y1="180" x2="530" y2="268" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="610" y="232" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">retries exhausted</text>
+  <!-- Alert -->
+  <rect x="650" y="280" width="200" height="60" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="750" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Alert System</text>
+  <text x="750" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Page on-call engineer</text>
+  <line x1="570" y1="310" x2="648" y2="310" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Bottom -->
+  <rect x="100" y="375" width="700" height="30" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="450" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">DLQs prevent poison messages from blocking the entire queue. Fix the bug, then replay from DLQ.</text>
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

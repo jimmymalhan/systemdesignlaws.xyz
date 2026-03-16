@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-cp" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-cp-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Parallel Chunk Upload</text>
+
+  <!-- Client box -->
+  <rect x="30" y="70" width="130" height="300" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="95" y="95" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Client</text>
+  <text x="95" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">5GB file split</text>
+  <text x="95" y="132" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">into 50 chunks</text>
+
+  <!-- Chunk labels in client -->
+  <rect x="45" y="150" width="100" height="20" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="95" y="164" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Chunk 1</text>
+  <rect x="45" y="175" width="100" height="20" rx="3" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="95" y="189" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Chunk 2</text>
+  <rect x="45" y="200" width="100" height="20" rx="3" fill="#E8F4FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="95" y="214" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Chunk 3</text>
+  <rect x="45" y="225" width="100" height="20" rx="3" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1"/>
+  <text x="95" y="239" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Chunk 4</text>
+
+  <!-- Parallel arrows -->
+  <path d="M160,160 L298,110" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-cp-g)"/>
+  <path d="M160,185 L298,170" stroke="#E65100" stroke-width="2" fill="none" marker-end="url(#arr-cp)"/>
+  <path d="M160,210 L298,230" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-cp)"/>
+  <path d="M160,235 L298,290" stroke="#D32F2F" stroke-width="2" fill="none" marker-end="url(#arr-cp)"/>
+
+  <!-- Connection labels -->
+  <text x="230" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">conn 1</text>
+  <text x="230" y="170" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#E65100">conn 2</text>
+  <text x="230" y="225" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1565C0">conn 3</text>
+  <text x="230" y="275" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#D32F2F">conn 4</text>
+
+  <!-- S3 box with slots -->
+  <rect x="302" y="70" width="200" height="300" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="402" y="95" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">S3</text>
+
+  <rect x="322" y="105" width="160" height="30" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="402" y="124" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Part 1 receiving...</text>
+  <rect x="322" y="145" width="160" height="30" rx="4" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="402" y="164" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Part 2 receiving...</text>
+  <rect x="322" y="185" width="160" height="30" rx="4" fill="#E8F4FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="402" y="204" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Part 3 receiving...</text>
+  <rect x="322" y="225" width="160" height="30" rx="4" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1"/>
+  <text x="402" y="244" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Part 4 receiving...</text>
+
+  <text x="402" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">Parts stored</text>
+  <text x="402" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">independently</text>
+  <text x="402" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">in any order</text>
+
+  <!-- Comparison box -->
+  <rect x="560" y="80" width="300" height="130" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="710" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">Speed Improvement</text>
+
+  <text x="580" y="130" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Sequential:</text>
+  <text x="670" y="130" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">50 chunks x 10s = 500s</text>
+
+  <text x="580" y="155" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">Parallel (4x):</text>
+  <text x="680" y="155" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">500s / 4 = 125s</text>
+
+  <text x="580" y="185" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">4x faster with 4 connections</text>
+  <text x="580" y="200" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">Limited by client bandwidth</text>
+
+  <!-- Tradeoff box -->
+  <rect x="560" y="240" width="300" height="80" rx="8" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="580" y="262" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100" font-weight="bold">Tradeoff</text>
+  <text x="580" y="282" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- More concurrent connections</text>
+  <text x="580" y="298" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Higher client memory usage</text>
+  <text x="580" y="314" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">- Complexity: track part ordering</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-cdt" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-cdt-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#27ae60" stroke="#27ae60" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Caching Strategy Decision Tree</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Navigate from problem to solution in interviews</text>
+
+  <!-- Root: Read-heavy? -->
+  <polygon points="400,75 470,110 400,145 330,110" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="400" y="108" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#2980b9" font-weight="bold">Read-heavy?</text>
+
+  <!-- YES left path -->
+  <path d="M330,110 L240,110" stroke="#27ae60" stroke-width="2" fill="none" marker-end="url(#arr-cdt-g)"/>
+  <text x="285" y="103" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" font-weight="bold">YES</text>
+
+  <!-- NO right path -->
+  <path d="M470,110 L560,110" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr-cdt)"/>
+  <text x="515" y="103" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b" font-weight="bold">NO</text>
+
+  <!-- Write-heavy box -->
+  <rect x="565" y="85" width="200" height="50" rx="8" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="665" y="108" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b" font-weight="bold">Write-Behind Cache</text>
+  <text x="665" y="125" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Buffer writes, batch to DB</text>
+
+  <!-- Global users? -->
+  <polygon points="180,110 240,145 180,180 120,145" fill="#FFF3E0" stroke="#d4a017" stroke-width="2"/>
+  <text x="180" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017" font-weight="bold">Global</text>
+  <text x="180" y="153" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017" font-weight="bold">users?</text>
+
+  <!-- YES: CDN -->
+  <path d="M120,145 L50,145" stroke="#27ae60" stroke-width="2" fill="none" marker-end="url(#arr-cdt-g)"/>
+  <text x="85" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" font-weight="bold">YES</text>
+
+  <rect x="20" y="165" width="120" height="45" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="80" y="185" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" font-weight="bold">Add CDN</text>
+  <text x="80" y="200" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#333333">Edge caching</text>
+
+  <!-- NO: freshness needed? -->
+  <path d="M240,145 L310,145" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr-cdt)"/>
+  <text x="275" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b" font-weight="bold">NO</text>
+
+  <!-- Freshness? -->
+  <polygon points="380,145 440,180 380,215 320,180" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="380" y="175" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" font-weight="bold">Freshness</text>
+  <text x="380" y="188" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" font-weight="bold">critical?</text>
+
+  <!-- YES: Write-through -->
+  <path d="M320,180 L240,220" stroke="#27ae60" stroke-width="2" fill="none" marker-end="url(#arr-cdt-g)"/>
+  <text x="270" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" font-weight="bold">YES</text>
+
+  <rect x="160" y="220" width="160" height="50" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="240" y="243" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" font-weight="bold">Write-Through</text>
+  <text x="240" y="260" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">+ Versioned keys</text>
+
+  <!-- NO: Cache-aside -->
+  <path d="M440,180 L520,220" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr-cdt)"/>
+  <text x="490" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b" font-weight="bold">NO</text>
+
+  <rect x="480" y="220" width="160" height="50" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="560" y="243" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" font-weight="bold">Cache-Aside</text>
+  <text x="560" y="260" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Redis + TTL (default)</text>
+
+  <!-- Hot keys? -->
+  <path d="M560,270 L560,295" stroke="#1a1a1a" stroke-width="1.5" fill="none" marker-end="url(#arr-cdt)"/>
+
+  <polygon points="560,300 620,330 560,360 500,330" fill="#FFF3E0" stroke="#d4a017" stroke-width="2"/>
+  <text x="560" y="328" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017" font-weight="bold">Hot</text>
+  <text x="560" y="341" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017" font-weight="bold">keys?</text>
+
+  <!-- YES: Key fanout -->
+  <path d="M500,330 L420,330" stroke="#27ae60" stroke-width="2" fill="none" marker-end="url(#arr-cdt-g)"/>
+  <text x="460" y="323" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60" font-weight="bold">YES</text>
+
+  <rect x="290" y="310" width="130" height="45" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="355" y="330" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" font-weight="bold">Key Fanout</text>
+  <text x="355" y="347" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#333333">+ Request coalescing</text>
+
+  <!-- NO: Standard -->
+  <path d="M620,330 L700,330" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr-cdt)"/>
+  <text x="660" y="323" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b" font-weight="bold">NO</text>
+
+  <rect x="700" y="310" width="80" height="45" rx="8" fill="#FAFAFA" stroke="#DDD" stroke-width="1.5"/>
+  <text x="740" y="337" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" font-weight="bold">Standard</text>
+  <text x="740" y="350" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#888">Redis</text>
+
+  <!-- Summary box -->
+  <rect x="40" y="385" width="720" height="75" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="408" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#1a1a1a" font-weight="bold">Quick Reference</text>
+  <text x="60" y="430" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Default: Cache-aside + Redis + TTL. Most interviews expect this as baseline.</text>
+  <text x="60" y="448" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Add layers based on constraints: CDN for global, write-through for freshness, write-behind for throughput.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ra" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Redis Cluster Architecture</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Sharding across nodes with primary-replica replication</text>
+
+  <!-- Client -->
+  <rect x="300" y="70" width="200" height="50" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="400" y="95" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#2980b9" font-weight="bold">Client (Smart Routing)</text>
+  <text x="400" y="112" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">Knows which shard owns each key</text>
+
+  <!-- Arrows from client to shards -->
+  <path d="M340,120 L140,165" stroke="#1a1a1a" stroke-width="1.5" fill="none" marker-end="url(#arr-ra)"/>
+  <path d="M400,120 L400,165" stroke="#1a1a1a" stroke-width="1.5" fill="none" marker-end="url(#arr-ra)"/>
+  <path d="M460,120 L660,165" stroke="#1a1a1a" stroke-width="1.5" fill="none" marker-end="url(#arr-ra)"/>
+
+  <!-- Shard 1 -->
+  <rect x="40" y="170" width="200" height="130" rx="8" fill="#FAFAFA" stroke="#DDD" stroke-width="1.5"/>
+  <text x="140" y="192" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">Shard 1 (slots 0-5460)</text>
+
+  <rect x="60" y="205" width="160" height="35" rx="6" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="140" y="228" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" font-weight="bold">Primary</text>
+
+  <rect x="60" y="250" width="70" height="30" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="95" y="270" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Replica</text>
+
+  <rect x="145" y="250" width="70" height="30" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="180" y="270" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Replica</text>
+
+  <!-- Shard 2 -->
+  <rect x="280" y="170" width="200" height="130" rx="8" fill="#FAFAFA" stroke="#DDD" stroke-width="1.5"/>
+  <text x="380" y="192" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">Shard 2 (slots 5461-10922)</text>
+
+  <rect x="300" y="205" width="160" height="35" rx="6" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="380" y="228" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" font-weight="bold">Primary</text>
+
+  <rect x="300" y="250" width="70" height="30" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="335" y="270" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Replica</text>
+
+  <rect x="385" y="250" width="70" height="30" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="420" y="270" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Replica</text>
+
+  <!-- Shard 3 -->
+  <rect x="520" y="170" width="220" height="130" rx="8" fill="#FAFAFA" stroke="#DDD" stroke-width="1.5"/>
+  <text x="630" y="192" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">Shard 3 (slots 10923-16383)</text>
+
+  <rect x="540" y="205" width="180" height="35" rx="6" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="630" y="228" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" font-weight="bold">Primary</text>
+
+  <rect x="540" y="250" width="80" height="30" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="580" y="270" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Replica</text>
+
+  <rect x="635" y="250" width="80" height="30" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="675" y="270" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">Replica</text>
+
+  <!-- How it works -->
+  <rect x="40" y="320" width="350" height="90" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="215" y="342" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#2980b9" font-weight="bold">How Sharding Works</text>
+  <text x="60" y="362" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">slot = CRC16(key) mod 16384</text>
+  <text x="60" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">16384 hash slots across N shards</text>
+  <text x="60" y="398" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Client routes to correct shard directly</text>
+
+  <!-- Failover -->
+  <rect x="410" y="320" width="350" height="90" rx="8" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="585" y="342" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#c0392b" font-weight="bold">Automatic Failover</text>
+  <text x="430" y="362" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Primary fails -> replica promoted</text>
+  <text x="430" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Cluster detects via gossip protocol</text>
+  <text x="430" y="398" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Failover in seconds, not minutes</text>
+
+  <!-- Bottom note -->
+  <rect x="40" y="425" width="720" height="35" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="448" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" font-weight="bold">Redis Cluster scales horizontally. Each shard handles ~100K ops/sec. 6 shards = ~600K ops/sec.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

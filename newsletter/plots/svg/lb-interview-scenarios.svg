@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Interview Scenarios: Handling Large Blobs</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Common interview problems and the blob patterns they need</text>
+
+<!-- Scenario 1 -->
+<rect x="40" y="70" width="260" height="95" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="170" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Dropbox / Google Drive</text>
+<text x="60" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Presigned URLs, chunked upload</text>
+<text x="60" y="128" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Resumable upload, deduplication</text>
+<text x="60" y="144" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Content addressing (SHA-256)</text>
+<text x="60" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Key: sync across devices</text>
+
+<!-- Scenario 2 -->
+<rect x="320" y="70" width="260" height="95" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">YouTube / Video Platform</text>
+<text x="340" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Resumable upload (large files)</text>
+<text x="340" y="128" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Transcode pipeline, CDN delivery</text>
+<text x="340" y="144" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Adaptive bitrate streaming</text>
+<text x="340" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Key: async processing pipeline</text>
+
+<!-- Scenario 3 -->
+<rect x="600" y="70" width="260" height="95" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="730" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Instagram / Image Upload</text>
+<text x="620" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Presigned URL upload</text>
+<text x="620" y="128" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Thumbnail generation pipeline</text>
+<text x="620" y="144" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">CDN edge caching</text>
+<text x="620" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Key: fast read path via CDN</text>
+
+<!-- Scenario 4 -->
+<rect x="40" y="185" width="260" height="95" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="170" y="207" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Slack / Chat File Share</text>
+<text x="60" y="227" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Presigned URL, quota per team</text>
+<text x="60" y="243" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Virus scanning pipeline</text>
+<text x="60" y="259" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Access control per channel</text>
+<text x="60" y="273" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Key: abuse prevention + quotas</text>
+
+<!-- Scenario 5 -->
+<rect x="320" y="185" width="260" height="95" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="207" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Medical Imaging (PACS)</text>
+<text x="340" y="227" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Resumable upload (DICOM files)</text>
+<text x="340" y="243" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Compliance: encryption at rest</text>
+<text x="340" y="259" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Metadata-rich: patient, study</text>
+<text x="340" y="273" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Key: metadata + compliance</text>
+
+<!-- Common pattern -->
+<rect x="40" y="305" width="820" height="65" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="327" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Every Scenario Uses the Same Core Pattern</text>
+<text x="450" y="347" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">1. Presigned URL (bypass server) 2. Multipart/chunked upload 3. Event-driven processing 4. CDN delivery</text>
+<text x="450" y="364" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Differentiate by: processing pipeline, access control, and metadata requirements</text>
+
+<!-- Bottom tip -->
+<rect x="150" y="385" width="600" height="25" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="403" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Start with presigned URL upload. Layer on complexity based on the specific problem.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="460" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Long Polling Latency Problem</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">When two events arrive close together, the second waits for a full extra round-trip</text>
+
+  <!-- Timeline axis -->
+  <line x1="60" y1="380" x2="760" y2="380" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="770" y="384" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333">time</text>
+
+  <!-- Time markers -->
+  <line x1="80" y1="375" x2="80" y2="385" stroke="#333333" stroke-width="1.5"/>
+  <text x="80" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">t=0ms</text>
+
+  <line x1="180" y1="375" x2="180" y2="385" stroke="#333333" stroke-width="1.5"/>
+  <text x="180" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">t=10ms</text>
+
+  <line x1="280" y1="375" x2="280" y2="385" stroke="#333333" stroke-width="1.5"/>
+  <text x="280" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">t=100ms</text>
+
+  <line x1="450" y1="375" x2="450" y2="385" stroke="#333333" stroke-width="1.5"/>
+  <text x="450" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">t=200ms</text>
+
+  <line x1="620" y1="375" x2="620" y2="385" stroke="#333333" stroke-width="1.5"/>
+  <text x="620" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">t=290ms</text>
+
+  <!-- Event 1 arrives at server t=0ms -->
+  <line x1="80" y1="150" x2="80" y2="375" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="50" y="120" width="120" height="32" rx="5" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="110" y="141" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Event 1 at server</text>
+
+  <!-- Event 1 reaches client at t=100ms -->
+  <line x1="280" y1="150" x2="280" y2="375" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="215" y="120" width="140" height="32" rx="5" fill="#e8fde8" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="285" y="141" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Client gets Event 1</text>
+
+  <!-- Arrow from Event 1 server to client -->
+  <line x1="80" y1="220" x2="270" y2="220" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="175" y="212" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" text-anchor="middle" font-weight="bold">100ms RTT</text>
+  <text x="175" y="235" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">server responds immediately</text>
+
+  <!-- Event 2 arrives at server t=10ms -->
+  <line x1="180" y1="260" x2="180" y2="375" stroke="#8e44ad" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="140" y="230" width="130" height="32" rx="5" fill="#f5e8ff" stroke="#8e44ad" stroke-width="1.5"/>
+  <text x="205" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Event 2 at server</text>
+  <text x="205" y="268" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#8e44ad" text-anchor="middle">(arrives 10ms after E1)</text>
+
+  <!-- Event 2 must wait for new request -->
+  <rect x="280" y="270" width="165" height="28" rx="5" fill="#fdf8e8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="362" y="289" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle">Client sends new request</text>
+
+  <line x1="280" y1="298" x2="440" y2="298" stroke="#d4a017" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="360" y="313" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">100ms new request RTT</text>
+
+  <!-- Event 2 reaches client at t=290ms -->
+  <line x1="620" y1="260" x2="620" y2="375" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="550" y="230" width="160" height="32" rx="5" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="630" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">Client gets Event 2</text>
+
+  <!-- Total delay annotation -->
+  <line x1="180" y1="340" x2="620" y2="340" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <line x1="180" y1="334" x2="180" y2="346" stroke="#c0392b" stroke-width="2"/>
+  <text x="400" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#c0392b" text-anchor="middle" font-weight="bold">280ms total delay for Event 2</text>
+  <text x="400" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">(even though it arrived 10ms after Event 1)</text>
+
+  <!-- Math breakdown -->
+  <rect x="55" y="80" width="690" height="38" rx="6" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">Math: Event 2 delay = 100ms (E1 response) + 100ms (new request travel) + 90ms (wait on server) = 290ms</text>
+  <text x="400" y="111" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">Bursty events stack up. This is why WebSocket is better for chat — no request/response cycle overhead.</text>
+
+  <!-- Latency brace labels on axis -->
+  <text x="175" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2980b9" text-anchor="middle">E1: 100ms latency</text>
+  <text x="450" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">E2: 280ms latency (2.8x worse)</text>
+</svg>

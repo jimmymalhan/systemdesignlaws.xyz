@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Interview Scenarios: Write Scaling</text>
+  <rect x="25" y="55" width="275" height="150" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="162.5" y="135.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">YouTube Top K</text>
+  <text x="162" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Challenge: Shard counters</text>
+  <text x="162" y="145" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Solution: Hierarchical aggregation</text>
+  <rect x="320" y="55" width="275" height="150" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="457.5" y="135.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Strava</text>
+  <text x="457" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Challenge: Location writes</text>
+  <text x="457" y="145" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Solution: Load shed stale GPS</text>
+  <rect x="615" y="55" width="275" height="150" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="752.5" y="135.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Rate Limiter</text>
+  <text x="752" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Challenge: Counter per user</text>
+  <text x="752" y="145" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Solution: Shard by user_id</text>
+  <rect x="25" y="230" width="275" height="150" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="162.5" y="310.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Ad Click Agg</text>
+  <text x="162" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Challenge: Click events</text>
+  <text x="162" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Solution: Batch + aggregate</text>
+  <rect x="320" y="230" width="275" height="150" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="457.5" y="310.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">FB Post Search</text>
+  <text x="457" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Challenge: Index updates</text>
+  <text x="457" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Solution: Queue + batch index</text>
+  <rect x="615" y="230" width="275" height="150" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="752.5" y="310.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Metrics Monitor</text>
+  <text x="752" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">Challenge: Time-series data</text>
+  <text x="752" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Solution: Range partition + batch</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+
+<text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Exactly-Once Execution Guarantees</text>
+<text x="450" y="50" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">The engine ensures each activity runs exactly once (from the workflow perspective)</text>
+<rect x="50" y="80" width="250" height="100" rx="10" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="175" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">The Problem</text>
+<text x="175" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Activity succeeds but</text>
+<text x="175" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">fails to acknowledge</text>
+<text x="175" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">the engine.</text>
+<text x="175" y="172" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Engine retries the activity.</text>
+<line x1="300" y1="130" x2="340" y2="130" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="340" y="80" width="250" height="100" rx="10" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="465" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Without Idempotency</text>
+<text x="465" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Refund issued twice.</text>
+<text x="465" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Email sent twice.</text>
+<text x="465" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Inventory released twice.</text>
+<text x="465" y="172" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Bad for irreversible actions.</text>
+<line x1="590" y1="130" x2="630" y2="130" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="630" y="80" width="230" height="100" rx="10" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="745" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">With Idempotency</text>
+<text x="745" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Check key before acting.</text>
+<text x="745" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Already done? Return</text>
+<text x="745" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">stored result.</text>
+<text x="745" y="172" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Safe to retry.</text>
+<rect x="100" y="220" width="700" height="80" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="245" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Temporal Guarantee</text>
+<text x="450" y="265" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Temporal guarantees activities are not retried once they return successfully.</text>
+<text x="450" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">But network partitions can cause ack failures. Make activities idempotent as defense-in-depth.</text>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1B1B1F"/></marker></defs>
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

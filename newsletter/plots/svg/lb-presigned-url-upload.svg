@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-pu" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-pu-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+    <marker id="arr-pu-b" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Presigned URL Upload Flow</text>
+
+  <!-- Step labels -->
+  <rect x="30" y="58" width="26" height="26" rx="13" fill="#1565C0" stroke="none"/>
+  <text x="43" y="76" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#FFFFFF" font-weight="bold">1</text>
+  <text x="66" y="77" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Client requests upload URL</text>
+
+  <rect x="300" y="58" width="26" height="26" rx="13" fill="#1565C0" stroke="none"/>
+  <text x="313" y="76" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#FFFFFF" font-weight="bold">2</text>
+  <text x="336" y="77" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Server generates presigned URL</text>
+
+  <rect x="620" y="58" width="26" height="26" rx="13" fill="#2E7D32" stroke="none"/>
+  <text x="633" y="76" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#FFFFFF" font-weight="bold">3</text>
+  <text x="656" y="77" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Client uploads directly to S3</text>
+
+  <!-- Client -->
+  <rect x="40" y="130" width="130" height="60" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="105" y="156" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Client</text>
+  <text x="105" y="176" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">500MB video</text>
+
+  <!-- Arrow 1: Client to App Server (small request) -->
+  <path d="M170,145 L278,145" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-pu-b)"/>
+  <text x="224" y="138" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0">POST /upload (tiny)</text>
+
+  <!-- App Server -->
+  <rect x="282" y="130" width="150" height="60" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="357" y="156" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">App Server</text>
+  <text x="357" y="176" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">Generate URL only</text>
+
+  <!-- Arrow 2: App Server to S3 (get presigned URL) -->
+  <path d="M432,160 L548,160" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-pu-b)"/>
+  <text x="490" y="152" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0">createPresignedPost</text>
+
+  <!-- S3 -->
+  <rect x="552" y="130" width="140" height="60" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="622" y="156" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">S3</text>
+  <text x="622" y="176" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">Object Storage</text>
+
+  <!-- Arrow: S3 returns URL -->
+  <path d="M548,175 L432,175" stroke="#1565C0" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-pu-b)"/>
+  <text x="490" y="192" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0">presigned URL</text>
+
+  <!-- Arrow: App returns URL to Client -->
+  <path d="M282,175 L170,175" stroke="#1565C0" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-pu-b)"/>
+
+  <!-- Arrow 3: Client uploads directly to S3 (big green arrow) -->
+  <path d="M105,190 C105,280 350,310 622,190" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#arr-pu-g)"/>
+  <text x="360" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">Direct upload: 500MB</text>
+  <text x="360" y="310" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Bypasses app server entirely</text>
+
+  <!-- Benefits box -->
+  <rect x="560" y="260" width="290" height="90" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="705" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Benefits</text>
+  <text x="580" y="300" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">- Server never touches file bytes</text>
+  <text x="580" y="316" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">- Zero bandwidth on app server</text>
+  <text x="580" y="332" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">- URL expires after set time (15 min)</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

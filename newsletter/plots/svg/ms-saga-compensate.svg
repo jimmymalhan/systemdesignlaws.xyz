@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+
+<text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Compensation Examples by Domain</text>
+<rect x="50" y="70" width="250" height="75" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="175" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Action</text>
+<text x="175" y="112" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Charge credit card</text>
+<text x="175" y="132" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Payment Service</text>
+<rect x="330" y="70" width="30" height="75" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="345" y="112" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#1B1B1F">-></text>
+<rect x="390" y="70" width="250" height="75" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="515" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Compensation</text>
+<text x="515" y="112" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Issue refund</text>
+<text x="515" y="132" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Payment Service</text>
+<rect x="50" y="165" width="250" height="75" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="175" y="187" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Action</text>
+<text x="175" y="207" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Reserve inventory</text>
+<text x="175" y="227" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Inventory Service</text>
+<rect x="330" y="165" width="30" height="75" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="345" y="207" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#1B1B1F">-></text>
+<rect x="390" y="165" width="250" height="75" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="515" y="187" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Compensation</text>
+<text x="515" y="207" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Release reserved stock</text>
+<text x="515" y="227" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Inventory Service</text>
+<rect x="50" y="260" width="250" height="75" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="175" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Action</text>
+<text x="175" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Create shipping label</text>
+<text x="175" y="322" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Shipping Service</text>
+<rect x="330" y="260" width="30" height="75" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="345" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#1B1B1F">-></text>
+<rect x="390" y="260" width="250" height="75" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="515" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Compensation</text>
+<text x="515" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Cancel shipment</text>
+<text x="515" y="322" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.6">Shipping Service</text>
+<rect x="680" y="140" width="180" height="120" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="770" y="165" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Key Rule</text>
+<text x="770" y="185" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Every forward action</text>
+<text x="770" y="200" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">must have a defined</text>
+<text x="770" y="215" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">compensating action</text>
+<text x="770" y="240" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">that can undo it.</text>
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

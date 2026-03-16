@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+    <marker id="greenarrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2E7D32"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Request Coalescing</text>
+
+  <!-- Left: 1000 users cluster -->
+  <rect x="30" y="55" width="180" height="255" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="120" y="78" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">1000 Users</text>
+
+  <!-- User icons (stylized circles) -->
+  <!-- Row 1 -->
+  <circle cx="55" cy="103" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="80" cy="103" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="105" cy="103" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="130" cy="103" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="155" cy="103" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="180" cy="103" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <!-- Row 2 -->
+  <circle cx="55" cy="128" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="80" cy="128" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="105" cy="128" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="130" cy="128" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="155" cy="128" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="180" cy="128" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <!-- Row 3 -->
+  <circle cx="55" cy="153" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="80" cy="153" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="105" cy="153" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="130" cy="153" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="155" cy="153" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="180" cy="153" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <!-- Row 4 -->
+  <circle cx="55" cy="178" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="80" cy="178" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="105" cy="178" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="130" cy="178" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="155" cy="178" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="180" cy="178" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <!-- Dots indicating more -->
+  <text x="120" y="205" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">... ... ...</text>
+  <!-- Row 5 -->
+  <circle cx="55" cy="225" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="80" cy="225" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="105" cy="225" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="130" cy="225" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="155" cy="225" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+  <circle cx="180" cy="225" r="8" fill="#7BAFD4" stroke="#1B1B1F" stroke-width="1.5"/>
+
+  <!-- Request key label -->
+  <rect x="50" y="248" width="145" height="26" rx="5" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="122" y="266" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">key: "feed:celebrity"</text>
+
+  <!-- Wait bubble for 999 -->
+  <rect x="52" y="282" width="140" height="22" rx="11" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="122" y="298" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">999 waiting...</text>
+
+  <!-- Arrow: Users to Coalescing Layer (many lines converging) -->
+  <line x1="215" y1="120" x2="315" y2="168" stroke="#1B1B1F" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="215" y1="148" x2="315" y2="178" stroke="#1B1B1F" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="215" y1="175" x2="315" y2="188" stroke="#1B1B1F" stroke-width="2"/>
+  <line x1="215" y1="205" x2="315" y2="198" stroke="#1B1B1F" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="215" y1="235" x2="315" y2="208" stroke="#1B1B1F" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- Middle: Coalescing Layer -->
+  <rect x="315" y="125" width="200" height="130" rx="10" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="415" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Coalescing Layer</text>
+  <line x1="335" y1="167" x2="495" y2="167" stroke="#1B1B1F" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="415" y="187" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Detects duplicate key</text>
+  <text x="415" y="205" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Holds 999 callers</text>
+  <text x="415" y="223" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Sends 1 to backend</text>
+  <!-- Funnel visual -->
+  <polygon points="335,237 495,237 445,247 385,247" fill="#E8D5B7" stroke="#1B1B1F" stroke-width="1"/>
+
+  <!-- Arrow: Coalescing to Backend (single thick arrow) -->
+  <line x1="520" y1="188" x2="640" y2="188" stroke="#1B1B1F" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <text x="580" y="176" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">1 request</text>
+
+  <!-- Right: Backend DB -->
+  <rect x="645" y="140" width="160" height="95" rx="10" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="725" y="178" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Backend DB</text>
+  <text x="725" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">feed:celebrity</text>
+  <!-- DB cylinder hint -->
+  <ellipse cx="725" cy="218" rx="28" ry="7" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1"/>
+
+  <!-- Return arrow: Backend to Coalescing -->
+  <path d="M 645,225 Q 580,280 520,225" fill="none" stroke="#2E7D32" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#greenarrow)"/>
+  <text x="580" y="275" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">result</text>
+
+  <!-- Return arrow: Coalescing to All Users (fan out) -->
+  <line x1="315" y1="225" x2="215" y2="148" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#greenarrow)"/>
+  <line x1="315" y1="225" x2="215" y2="175" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#greenarrow)"/>
+  <line x1="315" y1="225" x2="215" y2="205" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#greenarrow)"/>
+  <line x1="315" y1="225" x2="215" y2="235" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#greenarrow)"/>
+
+  <!-- Fan-out label -->
+  <text x="268" y="262" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">shared to all 1000</text>
+
+  <!-- Bottom annotation -->
+  <rect x="250" y="340" width="400" height="35" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="363" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">1000 requests  -->  1 backend fetch</text>
+
+  <!-- Savings note -->
+  <text x="450" y="395" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">99.9% reduction in backend load for hot keys</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

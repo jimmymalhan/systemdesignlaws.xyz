@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ttl" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ttl-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#27ae60" stroke="#27ae60" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ttl-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#c0392b" stroke="#c0392b" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">TTL Expiration Flow</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Time-based expiration: set once, auto-expire, refetch on miss</text>
+
+  <!-- Timeline -->
+  <path d="M60,100 L740,100" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arr-ttl)"/>
+  <text x="400" y="90" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Time</text>
+
+  <!-- Step 1: SET with TTL -->
+  <rect x="60" y="120" width="130" height="70" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="125" y="145" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60" font-weight="bold">SET key</text>
+  <text x="125" y="163" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">TTL = 300s</text>
+  <text x="125" y="180" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">t=0</text>
+
+  <!-- Step 2: Reads hit cache -->
+  <path d="M190,155 L215,155" stroke="#27ae60" stroke-width="2" fill="none" marker-end="url(#arr-ttl-g)"/>
+
+  <rect x="220" y="120" width="130" height="70" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="285" y="145" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60" font-weight="bold">Cache HIT</text>
+  <text x="285" y="163" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Fresh data served</text>
+  <text x="285" y="180" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">t=1s to t=299s</text>
+
+  <!-- Step 3: TTL expires -->
+  <path d="M350,155 L375,155" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr-ttl-r)"/>
+
+  <!-- Lightning bolt for expiry -->
+  <path d="M395,108 L410,108 L405,130 L415,130 L390,158 L398,138 L388,138 Z" fill="#FFF176" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="420" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" font-weight="bold">TTL Expires!</text>
+
+  <rect x="380" y="120" width="100" height="70" rx="8" fill="#FFEBEE" stroke="#c0392b" stroke-width="2"/>
+  <text x="430" y="153" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b" font-weight="bold">Key</text>
+  <text x="430" y="168" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b" font-weight="bold">Expired</text>
+  <text x="430" y="183" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">t=300s</text>
+
+  <!-- Step 4: Next read is MISS -->
+  <path d="M480,155 L505,155" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr-ttl-r)"/>
+
+  <rect x="510" y="120" width="110" height="70" rx="8" fill="#FFF3E0" stroke="#d4a017" stroke-width="2"/>
+  <text x="565" y="145" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#d4a017" font-weight="bold">MISS</text>
+  <text x="565" y="163" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Fetch from DB</text>
+  <text x="565" y="180" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">t=301s</text>
+
+  <!-- Step 5: Re-cache -->
+  <path d="M620,155 L645,155" stroke="#27ae60" stroke-width="2" fill="none" marker-end="url(#arr-ttl-g)"/>
+
+  <rect x="650" y="120" width="110" height="70" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="705" y="145" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#27ae60" font-weight="bold">Re-Cache</text>
+  <text x="705" y="163" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">New TTL=300s</text>
+  <text x="705" y="180" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">t=301s</text>
+
+  <!-- Staleness window -->
+  <rect x="190" y="210" width="290" height="40" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="335" y="235" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#d4a017" font-weight="bold">Staleness window: data may be stale during TTL</text>
+
+  <!-- TTL Guidelines -->
+  <text x="400" y="285" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#1a1a1a" font-weight="bold">TTL Guidelines by Data Type</text>
+
+  <rect x="40" y="300" width="170" height="70" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="125" y="322" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">User Profiles</text>
+  <text x="125" y="342" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#27ae60" font-weight="bold">5-15 min</text>
+  <text x="125" y="360" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">Change rarely</text>
+
+  <rect x="225" y="300" width="170" height="70" rx="8" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="310" y="322" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Feed / Timeline</text>
+  <text x="310" y="342" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#d4a017" font-weight="bold">30-60 sec</text>
+  <text x="310" y="360" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">Update frequently</text>
+
+  <rect x="410" y="300" width="170" height="70" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="495" y="322" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Config / Flags</text>
+  <text x="495" y="342" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#2980b9" font-weight="bold">1-5 min</text>
+  <text x="495" y="360" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">Infrequent changes</text>
+
+  <rect x="595" y="300" width="170" height="70" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="680" y="322" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Session Data</text>
+  <text x="680" y="342" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#7B1FA2" font-weight="bold">Hours</text>
+  <text x="680" y="360" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">Tied to session</text>
+
+  <!-- Tradeoffs -->
+  <rect x="40" y="395" width="720" height="65" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="418" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">How to Set TTL</text>
+  <text x="60" y="438" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Driven by non-functional requirements. "Search results no more than 30s stale" = 30s TTL.</text>
+  <text x="60" y="453" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Most systems combine short TTLs as safety net + active invalidation for critical data.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <rect x="0" y="0" width="900" height="420" fill="#FFFFFF"/>
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Synchronous vs Asynchronous Processing</text>
+  <!-- Sync side -->
+  <text x="225" y="70" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Synchronous (Blocking)</text>
+  <rect x="50" y="90" width="160" height="45" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="130" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Client Request</text>
+  <line x1="130" y1="135" x2="130" y2="165" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="50" y="165" width="160" height="45" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="130" y="193" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Server Processing</text>
+  <text x="220" y="193" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">(45s...)</text>
+  <line x1="130" y1="210" x2="130" y2="240" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="50" y="240" width="160" height="45" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="130" y="268" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Response (or Timeout)</text>
+  <rect x="280" y="130" width="120" height="110" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="340" y="155" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Client blocked</text>
+  <text x="340" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">waiting...</text>
+  <text x="340" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#1B1B1F">X</text>
+  <!-- Async side -->
+  <text x="675" y="70" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Asynchronous (Non-blocking)</text>
+  <rect x="530" y="90" width="160" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="610" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Client Request</text>
+  <line x1="610" y1="135" x2="610" y2="165" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="530" y="165" width="160" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="610" y="185" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Acknowledge</text>
+  <text x="610" y="200" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">return job_id (50ms)</text>
+  <line x1="610" y1="210" x2="610" y2="240" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="530" y="240" width="160" height="45" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="610" y="260" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Background Worker</text>
+  <text x="610" y="278" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">processes task</text>
+  <line x1="610" y1="285" x2="610" y2="315" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="530" y="315" width="160" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="610" y="343" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Notify on Complete</text>
+  <rect x="720" y="150" width="130" height="70" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="785" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Client free to</text>
+  <text x="785" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">do other work</text>
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

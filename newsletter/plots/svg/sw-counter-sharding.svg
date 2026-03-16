@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Counter Sharding</text>
+  <text x="450" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F">Shard a Single Counter Across Nodes</text>
+  <rect x="30" y="80" width="380" height="120" rx="6" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="220.0" y="145.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Naive: Single Counter</text>
+  <rect x="80" y="115" width="280" height="35" rx="4" fill="#FFD5D5" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="220.0" y="136.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">likes: 1,234,567</text>
+  <text x="220" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#B71C1C">100K increments/sec on ONE row</text>
+  <text x="220" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#B71C1C">Lock contention, single shard bottleneck</text>
+  <rect x="470" y="80" width="400" height="120" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="670.0" y="145.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Sharded: N Sub-Counters</text>
+  <rect x="490" y="115" width="85" height="35" rx="4" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="532.5" y="136.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">likes:0</text>
+  <rect x="585" y="115" width="85" height="35" rx="4" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="627.5" y="136.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">likes:1</text>
+  <rect x="680" y="115" width="85" height="35" rx="4" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="722.5" y="136.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">likes:2</text>
+  <rect x="775" y="115" width="85" height="35" rx="4" fill="#C8E6C9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="817.5" y="136.5" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">likes:3</text>
+  <text x="670" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32">25K increments/sec per shard</text>
+  <text x="670" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">No contention between shards</text>
+  <rect x="100" y="230" width="700" height="70" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450.0" y="270.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Read: SUM All Shards</text>
+  <text x="450" y="265" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">total = likes:0 + likes:1 + likes:2 + likes:3 = 1,234,567</text>
+  <text x="450" y="285" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#555">k shards = k reads (scatter-gather)</text>
+  <text x="450" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F">Real-World Applications</text>
+  <rect x="50" y="340" width="250" height="50" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="175.0" y="369.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">YouTube view counts</text>
+  <text x="175" y="400" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#555">Millions of increments/sec</text>
+  <rect x="325" y="340" width="250" height="50" rx="4" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="450.0" y="369.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Twitter like counts</text>
+  <text x="450" y="400" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#555">Viral tweets: 100K+ likes/sec</text>
+  <rect x="600" y="340" width="250" height="50" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="725.0" y="369.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Rate limiter counters</text>
+  <text x="725" y="400" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#555">Per-user request counting</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

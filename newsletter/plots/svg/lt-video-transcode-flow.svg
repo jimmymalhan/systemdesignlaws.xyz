@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Video Transcode: Long-Running Task Example</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">CPU-intensive task with progress tracking, priority queues, and auto-scaling</text>
+
+<!-- Submit -->
+<rect x="40" y="80" width="120" height="45" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="100" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Upload</text>
+<text x="100" y="116" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">2GB raw video</text>
+
+<line x1="160" y1="102" x2="200" y2="102" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Priority queue -->
+<rect x="205" y="70" width="170" height="65" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="290" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Priority Queue</text>
+<text x="290" y="110" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Paid users: high priority</text>
+<text x="290" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Free users: low priority</text>
+
+<line x1="375" y1="102" x2="415" y2="102" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Worker pool -->
+<rect x="420" y="70" width="180" height="65" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="510" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">GPU Worker Pool</text>
+<text x="510" y="110" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Decode, resize, encode</text>
+<text x="510" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Auto-scale on queue depth</text>
+
+<!-- Output -->
+<line x1="600" y1="90" x2="655" y2="80" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="600" y1="102" x2="655" y2="102" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="600" y1="114" x2="655" y2="124" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<rect x="660" y="65" width="90" height="30" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="705" y="84" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">1080p</text>
+<rect x="660" y="98" width="90" height="30" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="705" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">720p</text>
+<rect x="660" y="131" width="90" height="30" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="705" y="150" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">480p</text>
+
+<line x1="750" y1="112" x2="790" y2="112" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="795" y="90" width="70" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="830" y="110" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">CDN</text>
+<text x="830" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">HLS</text>
+
+<!-- Progress tracking -->
+<text x="450" y="195" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Task Lifecycle with Progress</text>
+
+<rect x="40" y="210" width="130" height="40" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="105" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">queued</text>
+
+<line x1="170" y1="230" x2="205" y2="230" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="210" y="210" width="130" height="40" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="275" y="228" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">processing</text>
+<text x="275" y="244" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">progress: 45%</text>
+
+<line x1="340" y1="230" x2="375" y2="230" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="380" y="210" width="130" height="40" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="445" y="228" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">processing</text>
+<text x="445" y="244" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">progress: 90%</text>
+
+<line x1="510" y1="230" x2="545" y2="230" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="550" y="210" width="130" height="40" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="615" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">complete</text>
+
+<line x1="680" y1="230" x2="715" y2="230" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="720" y="210" width="140" height="40" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="790" y="228" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">webhook/notify</text>
+<text x="790" y="244" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">download URL</text>
+
+<!-- Key patterns -->
+<rect x="40" y="275" width="400" height="90" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="240" y="297" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Patterns Applied</text>
+<text x="60" y="317" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Submit-and-poll for status checking</text>
+<text x="60" y="335" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Priority queue for paid vs free users</text>
+<text x="60" y="353" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Auto-scaling workers on queue depth</text>
+
+<rect x="460" y="275" width="400" height="90" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="660" y="297" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Failure Handling</text>
+<text x="480" y="317" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Retry failed transcode (idempotent)</text>
+<text x="480" y="335" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Dead letter queue for corrupt files</text>
+<text x="480" y="353" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Timeout: kill stuck workers after 30m</text>
+
+<!-- Bottom -->
+<rect x="100" y="380" width="700" height="28" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="399" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Combines every pattern: queue, workers, progress, retry, backpressure, priority.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

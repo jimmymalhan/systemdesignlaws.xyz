@@ -1,0 +1,53 @@
+{
+  "scaling-reads-for-system-design-interviews": {
+    "tags": [
+      "System Design",
+      "Interview Prep",
+      "Scalability",
+      "Databases",
+      "Caching",
+      "Read Replicas",
+      "Sharding",
+      "Redis"
+    ],
+    "seo": {
+      "title": "Scaling Reads | SystemDesignLaws",
+      "description": "Learn how to scale read-heavy systems in 3 tiers: optimize DB (indexing, denormalization), scale horizontally (replicas, sharding), add caching (Redis, CDN). Interview-ready framework."
+    },
+    "canonical_slug": "scaling-reads-for-system-design-interviews",
+    "share": {
+      "send_email": true,
+      "share_automatically": true
+    }
+  },
+  "real-time-updates-for-system-design-interviews": {
+    "tags": ["System Design", "Interview Prep", "WebSockets", "Real-time", "Pub/Sub", "SSE", "Long Polling"],
+    "seo": { "title": "Real-time Updates | SystemDesignLaws", "description": "Two hops for real-time: client-server (polling, long polling, SSE, WebSockets) and source-server (Pub/Sub). Interview framework for chat, live comments, collaborative docs." },
+    "share": { "send_email": true, "share_automatically": true }
+  },
+  "dealing-with-contention-for-system-design-interviews": {
+    "tags": ["System Design", "Interview Prep", "Transactions", "Locking", "Optimistic Concurrency", "Contention"],
+    "seo": { "title": "Dealing with Contention | SystemDesignLaws", "description": "Solve race conditions: atomicity, pessimistic locking, optimistic concurrency, distributed locks. Ticketmaster, auction, rate limiter patterns." },
+    "share": { "send_email": true, "share_automatically": true }
+  },
+  "multi-step-processes-for-system-design-interviews": {
+    "tags": ["System Design", "Interview Prep", "Workflows", "Temporal", "Event Sourcing", "Sagas"],
+    "seo": { "title": "Multi-step Processes | SystemDesignLaws", "description": "Reliable multi-step workflows: event sourcing, Temporal, Step Functions. Handle failures, compensation, human-in-the-loop. Payment and Uber-style systems." },
+    "share": { "send_email": true, "share_automatically": true }
+  },
+  "scaling-writes-for-system-design-interviews": {
+    "tags": ["System Design", "Interview Prep", "Scalability", "Sharding", "Batching", "Write Throughput"],
+    "seo": { "title": "Scaling Writes | SystemDesignLaws", "description": "Scale write-heavy systems: vertical scaling, database choice, sharding, queues, batching, hierarchical aggregation. YouTube, Strava, metrics." },
+    "share": { "send_email": true, "share_automatically": true }
+  },
+  "handling-large-blobs-for-system-design-interviews": {
+    "tags": ["System Design", "Interview Prep", "Storage", "S3", "Large Files", "Multipart Upload"],
+    "seo": { "title": "Handling Large Blobs | SystemDesignLaws", "description": "Upload and store large files: multipart upload, presigned URLs, CDN, content addressing. Dropbox, YouTube-style systems." },
+    "share": { "send_email": true, "share_automatically": true }
+  },
+  "managing-long-running-tasks-for-system-design-interviews": {
+    "tags": ["System Design", "Interview Prep", "Async", "Queues", "Workers", "Job Scheduler"],
+    "seo": { "title": "Managing Long Running Tasks | SystemDesignLaws", "description": "Async job processing: queues, workers, idempotency, retries, webhooks. Video transcoding, PDF generation, notification systems." },
+    "share": { "send_email": true, "share_automatically": true }
+  }
+}

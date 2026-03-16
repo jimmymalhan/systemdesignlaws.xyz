@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Upload Progress Tracking</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Client tracks chunk completion for progress bar and resume capability</text>
+
+<!-- Client side -->
+<rect x="40" y="75" width="200" height="130" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="140" y="98" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Client</text>
+<text x="60" y="120" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">File: 500MB video</text>
+<text x="60" y="138" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Chunk size: 5MB</text>
+<text x="60" y="156" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Total chunks: 100</text>
+<text x="60" y="174" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Uploaded: 63/100</text>
+<text x="60" y="192" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Progress: 63%</text>
+
+<!-- Progress bar visual -->
+<rect x="40" y="220" width="200" height="20" rx="4" fill="#FAFAFA" stroke="#1B1B1F" stroke-width="1"/>
+<rect x="40" y="220" width="126" height="20" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1"/>
+<text x="140" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">63%</text>
+
+<!-- Arrow to server -->
+<line x1="240" y1="140" x2="340" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="290" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Chunk 64</text>
+
+<!-- Server side -->
+<rect x="345" y="75" width="220" height="130" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="455" y="98" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Upload Server</text>
+<text x="365" y="120" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Track upload_id</text>
+<text x="365" y="138" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Chunk bitmap: completed[]</text>
+<text x="365" y="156" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">ETag per chunk</text>
+<text x="365" y="174" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Expiry: 24h</text>
+
+<!-- Arrow to storage -->
+<line x1="565" y1="140" x2="640" y2="140" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Storage -->
+<rect x="645" y="95" width="210" height="90" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="750" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Object Storage (S3)</text>
+<text x="665" y="140" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Multipart upload API</text>
+<text x="665" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Store parts independently</text>
+<text x="665" y="176" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Assemble on complete</text>
+
+<!-- Resume flow -->
+<text x="450" y="270" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Resume After Failure</text>
+
+<rect x="40" y="285" width="180" height="45" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="130" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Network Drops</text>
+<text x="130" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">at chunk 64</text>
+
+<line x1="220" y1="307" x2="260" y2="307" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="265" y="285" width="200" height="45" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="365" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Query: which chunks</text>
+<text x="365" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">are missing?</text>
+
+<line x1="465" y1="307" x2="505" y2="307" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="510" y="285" width="170" height="45" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="595" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Server responds:</text>
+<text x="595" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">chunks 64-100 needed</text>
+
+<line x1="680" y1="307" x2="720" y2="307" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="725" y="285" width="130" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="790" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Resume from</text>
+<text x="790" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">chunk 64</text>
+
+<!-- Key insight -->
+<rect x="150" y="355" width="600" height="40" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="380" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Client never re-uploads completed chunks. Progress = completed_chunks / total_chunks.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

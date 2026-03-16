@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="480" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Heartbeat / Keep-Alive Mechanism</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Detect zombie WebSocket connections before they waste resources</text>
+
+  <!-- Client column -->
+  <rect x="50" y="75" width="130" height="44" rx="8" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="115" y="97" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Client</text>
+  <text x="115" y="113" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#4a90d9" text-anchor="middle">WebSocket conn</text>
+  <line x1="115" y1="125" x2="115" y2="395" stroke="#4a90d9" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Server column -->
+  <rect x="560" y="75" width="140" height="44" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="630" y="97" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Server</text>
+  <text x="630" y="113" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#4ab54a" text-anchor="middle">timeout = 30s</text>
+  <line x1="630" y1="125" x2="630" y2="395" stroke="#4ab54a" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Healthy: Ping 1 -->
+  <text x="32" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">t=0s</text>
+  <line x1="125" y1="150" x2="615" y2="157" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="375" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" text-anchor="middle" font-weight="bold">PING</text>
+
+  <!-- Pong 1 -->
+  <line x1="615" y1="175" x2="125" y2="182" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="375" y="172" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" text-anchor="middle" font-weight="bold">PONG</text>
+
+  <!-- Healthy label -->
+  <rect x="680" y="148" width="80" height="26" rx="4" fill="#e8fde8" stroke="#4ab54a" stroke-width="1"/>
+  <text x="720" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">Healthy</text>
+
+  <!-- Healthy: Ping 2 -->
+  <text x="32" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">t=15s</text>
+  <line x1="125" y1="213" x2="615" y2="220" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="375" y="208" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" text-anchor="middle" font-weight="bold">PING</text>
+
+  <!-- Pong 2 -->
+  <line x1="615" y1="238" x2="125" y2="245" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="375" y="235" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" text-anchor="middle" font-weight="bold">PONG</text>
+
+  <rect x="680" y="211" width="80" height="26" rx="4" fill="#e8fde8" stroke="#4ab54a" stroke-width="1"/>
+  <text x="720" y="228" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">Healthy</text>
+
+  <!-- Network break indicator -->
+  <rect x="270" y="262" width="200" height="22" rx="4" fill="#fde8e8" stroke="#c0392b" stroke-width="1"/>
+  <text x="370" y="278" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="bold">Network drops silently</text>
+
+  <!-- Zombie: Ping 3 - no response -->
+  <text x="32" y="305" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">t=30s</text>
+  <line x1="125" y1="303" x2="380" y2="308" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="260" y="298" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b" text-anchor="middle">PING (lost)</text>
+  <text x="420" y="313" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle">X</text>
+
+  <!-- Timeout -->
+  <text x="32" y="345" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888">t=45s</text>
+  <line x1="125" y1="343" x2="380" y2="348" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="260" y="338" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b" text-anchor="middle">PING (lost)</text>
+  <text x="420" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle">X</text>
+
+  <!-- Server detects zombie -->
+  <rect x="540" y="330" width="200" height="40" rx="6" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="640" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="bold">No PONG for 30s</text>
+  <text x="640" y="363" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle">Close + cleanup</text>
+
+  <!-- Server cleanup arrow -->
+  <line x1="630" y1="370" x2="630" y2="388" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+  <text x="700" y="387" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">free resources</text>
+
+  <!-- Tradeoffs box -->
+  <rect x="40" y="405" width="720" height="65" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="60" y="424" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a">Why heartbeats matter:</text>
+  <text x="60" y="442" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555">Without heartbeats, zombie connections hold memory, file descriptors, and pub/sub subscriptions indefinitely.</text>
+  <text x="60" y="458" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#555555">Typical interval: 15-30s PING. Timeout: 2-3 missed PINGs. Server-side or client-side initiation both work.</text>
+</svg>

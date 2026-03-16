@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Video Transcoding Pipeline</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Upload raw video, transcode to multiple resolutions, serve via CDN</text>
+
+<!-- Upload phase -->
+<rect x="40" y="75" width="130" height="55" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="105" y="97" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Client Upload</text>
+<text x="105" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">2GB raw video</text>
+
+<line x1="170" y1="102" x2="205" y2="102" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="210" y="75" width="130" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="275" y="97" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Object Storage</text>
+<text x="275" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Raw file stored</text>
+
+<line x1="340" y1="102" x2="375" y2="102" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="380" y="75" width="130" height="55" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="445" y="97" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Event Trigger</text>
+<text x="445" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">S3 notification</text>
+
+<!-- Fan out -->
+<line x1="510" y1="90" x2="560" y2="75" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="510" y1="100" x2="560" y2="100" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="510" y1="110" x2="560" y2="125" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Transcode workers -->
+<rect x="565" y="55" width="140" height="35" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="635" y="77" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Worker: 1080p H.264</text>
+
+<rect x="565" y="95" width="140" height="35" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="635" y="117" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Worker: 720p H.264</text>
+
+<rect x="565" y="135" width="140" height="35" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+<text x="635" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Worker: 480p H.264</text>
+
+<!-- Converge to storage -->
+<line x1="705" y1="72" x2="750" y2="100" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="705" y1="112" x2="750" y2="110" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="705" y1="152" x2="750" y2="120" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<rect x="755" y="80" width="110" height="55" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="810" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">CDN</text>
+<text x="810" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">HLS/DASH</text>
+
+<!-- Detailed pipeline -->
+<text x="450" y="200" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Detailed Transcode Worker Pipeline</text>
+
+<rect x="40" y="215" width="120" height="45" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="100" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Download raw</text>
+<text x="100" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">from S3</text>
+
+<line x1="160" y1="237" x2="190" y2="237" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="195" y="215" width="120" height="45" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="255" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Decode</text>
+<text x="255" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">FFmpeg</text>
+
+<line x1="315" y1="237" x2="345" y2="237" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="350" y="215" width="120" height="45" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="410" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Resize + Encode</text>
+<text x="410" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Target resolution</text>
+
+<line x1="470" y1="237" x2="500" y2="237" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="505" y="215" width="120" height="45" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="565" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Segment</text>
+<text x="565" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">HLS chunks</text>
+
+<line x1="625" y1="237" x2="655" y2="237" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="660" y="215" width="120" height="45" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="720" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Upload output</text>
+<text x="720" y="250" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">to S3 + CDN</text>
+
+<!-- Key considerations -->
+<rect x="40" y="285" width="400" height="80" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="240" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Scale Considerations</text>
+<text x="60" y="327" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">GPU workers for hardware-accelerated encoding</text>
+<text x="60" y="345" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Auto-scaling worker pool based on queue depth</text>
+<text x="60" y="362" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Priority queue: paid users transcode first</text>
+
+<rect x="470" y="285" width="390" height="80" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="665" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Failure Handling</text>
+<text x="490" y="327" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Retry failed transcode jobs (idempotent)</text>
+<text x="490" y="345" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Dead letter queue for corrupt videos</text>
+<text x="490" y="362" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Webhook callback on completion/failure</text>
+
+<!-- Bottom note -->
+<rect x="150" y="380" width="600" height="28" rx="6" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+<text x="450" y="399" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">YouTube processes 500+ hours of video per minute using this exact pattern.</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

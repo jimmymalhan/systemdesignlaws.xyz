@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-aba" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">ABA Problem: Hidden State Changes</text>
+
+  <!-- Timeline -->
+  <line x1="80" y1="50" x2="80" y2="390" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="450" y1="50" x2="450" y2="390" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="780" y1="50" x2="780" y2="390" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <rect x="20" y="46" width="120" height="26" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="80" y="64" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Txn A</text>
+  <rect x="390" y="46" width="120" height="26" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="64" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Database</text>
+  <rect x="720" y="46" width="120" height="26" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="780" y="64" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Txn B, Txn C</text>
+
+  <!-- Initial state -->
+  <rect x="390" y="85" width="120" height="24" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="450" y="102" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">balance = $100</text>
+
+  <!-- Txn A reads $100 -->
+  <line x1="80" y1="125" x2="438" y2="125" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr-aba)"/>
+  <text x="260" y="120" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">READ balance = $100</text>
+
+  <!-- Txn B changes to $50 -->
+  <line x1="780" y1="155" x2="462" y2="155" stroke="#E65100" stroke-width="2" marker-end="url(#arr-aba)"/>
+  <text x="621" y="150" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">Txn B: UPDATE to $50, COMMIT</text>
+
+  <rect x="390" y="165" width="120" height="22" rx="4" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="450" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">balance = $50</text>
+
+  <!-- Txn C changes back to $100 -->
+  <line x1="780" y1="205" x2="462" y2="205" stroke="#E65100" stroke-width="2" marker-end="url(#arr-aba)"/>
+  <text x="621" y="200" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">Txn C: UPDATE to $100, COMMIT</text>
+
+  <rect x="390" y="215" width="120" height="22" rx="4" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="450" y="230" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">balance = $100 again!</text>
+
+  <!-- A-B-A label -->
+  <rect x="545" y="125" width="120" height="110" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="605" y="168" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="28" fill="#D32F2F" font-weight="bold">A B A</text>
+  <text x="605" y="192" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">$100 to $50 to $100</text>
+  <text x="605" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Same value, different history</text>
+
+  <!-- Txn A writes, thinks nothing changed -->
+  <line x1="80" y1="260" x2="438" y2="260" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-aba)"/>
+  <text x="260" y="255" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">UPDATE WHERE balance=$100</text>
+
+  <rect x="300" y="275" width="300" height="30" rx="4" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="450" y="295" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">1 row affected! Thinks OK, but missed changes</text>
+
+  <!-- Fix -->
+  <rect x="60" y="325" width="380" height="70" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="250" y="348" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Fix: Dedicated version column</text>
+  <text x="250" y="368" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">v=1 to v=2 to v=3</text>
+  <text x="250" y="385" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">WHERE version=1 fails (now v=3)</text>
+
+  <rect x="460" y="325" width="400" height="70" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="660" y="348" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#D32F2F" font-weight="bold">When business value as version is safe</text>
+  <text x="660" y="368" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Only when values change monotonically:</text>
+  <text x="660" y="385" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Auction bids (only go up), sequence numbers</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

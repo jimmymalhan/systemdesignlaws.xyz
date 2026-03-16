@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-wpc" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Cache Patterns Comparison</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Four approaches to reading and writing cached data</text>
+
+  <!-- Cache-Aside -->
+  <rect x="20" y="70" width="185" height="300" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="2"/>
+  <text x="112" y="95" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#2980b9" font-weight="bold">Cache-Aside</text>
+  <text x="112" y="112" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">(Lazy Loading)</text>
+
+  <!-- Mini flow -->
+  <rect x="35" y="125" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#2980b9" stroke-width="1"/>
+  <text x="60" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#2980b9">App</text>
+  <path d="M85,136 L105,136" stroke="#2980b9" stroke-width="1" fill="none" marker-end="url(#arr-wpc)"/>
+  <rect x="110" y="125" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#27ae60" stroke-width="1"/>
+  <text x="135" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#27ae60">Cache</text>
+  <path d="M60,147 L60,160" stroke="#d4a017" stroke-width="1" fill="none" stroke-dasharray="3,2" marker-end="url(#arr-wpc)"/>
+  <rect x="35" y="163" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#d4a017" stroke-width="1"/>
+  <text x="60" y="178" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#d4a017">DB</text>
+
+  <text x="35" y="205" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">App manages both</text>
+  <text x="35" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">cache and DB</text>
+
+  <text x="35" y="245" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">+ Only caches what's read</text>
+  <text x="35" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">+ Simple to implement</text>
+  <text x="35" y="278" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">- Cold start misses</text>
+  <text x="35" y="296" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">- Stale until invalidated</text>
+
+  <rect x="35" y="310" width="155" height="22" rx="6" fill="#E8F4FD" stroke="#2980b9" stroke-width="1"/>
+  <text x="112" y="325" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#2980b9" font-weight="bold">DEFAULT FOR INTERVIEWS</text>
+
+  <rect x="35" y="340" width="155" height="20" rx="4" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="112" y="354" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#888">Consistency: Eventual</text>
+
+  <!-- Write-Through -->
+  <rect x="215" y="70" width="185" height="300" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2"/>
+  <text x="307" y="95" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#27ae60" font-weight="bold">Write-Through</text>
+  <text x="307" y="112" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">(Sync to both)</text>
+
+  <rect x="230" y="125" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#2980b9" stroke-width="1"/>
+  <text x="255" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#2980b9">App</text>
+  <path d="M280,136 L300,136" stroke="#27ae60" stroke-width="1" fill="none" marker-end="url(#arr-wpc)"/>
+  <rect x="305" y="125" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#27ae60" stroke-width="1"/>
+  <text x="330" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#27ae60">Cache</text>
+  <path d="M330,147 L330,160" stroke="#d4a017" stroke-width="1" fill="none" marker-end="url(#arr-wpc)"/>
+  <rect x="305" y="163" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#d4a017" stroke-width="1"/>
+  <text x="330" y="178" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#d4a017">DB</text>
+
+  <text x="230" y="205" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Write to cache first,</text>
+  <text x="230" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">cache syncs to DB</text>
+
+  <text x="230" y="245" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">+ Cache always fresh</text>
+  <text x="230" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">+ Strong consistency</text>
+  <text x="230" y="278" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">- Slower writes (2x)</text>
+  <text x="230" y="296" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">- Pollutes cache</text>
+
+  <rect x="230" y="340" width="155" height="20" rx="4" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="307" y="354" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#888">Consistency: Strong</text>
+
+  <!-- Write-Behind -->
+  <rect x="410" y="70" width="185" height="300" rx="8" fill="#FFF3E0" stroke="#d4a017" stroke-width="2"/>
+  <text x="502" y="95" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#d4a017" font-weight="bold">Write-Behind</text>
+  <text x="502" y="112" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">(Async to DB)</text>
+
+  <rect x="425" y="125" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#2980b9" stroke-width="1"/>
+  <text x="450" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#2980b9">App</text>
+  <path d="M475,136 L495,136" stroke="#27ae60" stroke-width="1" fill="none" marker-end="url(#arr-wpc)"/>
+  <rect x="500" y="125" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#27ae60" stroke-width="1"/>
+  <text x="525" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#27ae60">Cache</text>
+  <path d="M525,147 L525,160" stroke="#d4a017" stroke-width="1" fill="none" stroke-dasharray="3,2" marker-end="url(#arr-wpc)"/>
+  <rect x="500" y="163" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#d4a017" stroke-width="1"/>
+  <text x="525" y="178" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#d4a017">DB</text>
+  <text x="555" y="172" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#d4a017">async</text>
+
+  <text x="425" y="205" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Write to cache, batch</text>
+  <text x="425" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">to DB async</text>
+
+  <text x="425" y="245" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">+ Fastest writes</text>
+  <text x="425" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">+ Batching efficiency</text>
+  <text x="425" y="278" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">- Data loss risk</text>
+  <text x="425" y="296" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">- Complex failure modes</text>
+
+  <rect x="425" y="340" width="155" height="20" rx="4" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="502" y="354" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#888">Consistency: Eventual</text>
+
+  <!-- Read-Through -->
+  <rect x="605" y="70" width="175" height="300" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2"/>
+  <text x="692" y="95" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#7B1FA2" font-weight="bold">Read-Through</text>
+  <text x="692" y="112" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888">(Cache fetches DB)</text>
+
+  <rect x="620" y="125" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#2980b9" stroke-width="1"/>
+  <text x="645" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#2980b9">App</text>
+  <path d="M670,136 L690,136" stroke="#7B1FA2" stroke-width="1" fill="none" marker-end="url(#arr-wpc)"/>
+  <rect x="695" y="125" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="720" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#7B1FA2">Cache</text>
+  <path d="M720,147 L720,160" stroke="#d4a017" stroke-width="1" fill="none" stroke-dasharray="3,2" marker-end="url(#arr-wpc)"/>
+  <rect x="695" y="163" width="50" height="22" rx="4" fill="#FFFFFF" stroke="#d4a017" stroke-width="1"/>
+  <text x="720" y="178" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#d4a017">DB</text>
+
+  <text x="620" y="205" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Cache manages DB</text>
+  <text x="620" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">access on miss</text>
+
+  <text x="620" y="245" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">+ Simpler app code</text>
+  <text x="620" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">+ Cache is data layer</text>
+  <text x="620" y="278" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">- Cold start penalty</text>
+  <text x="620" y="296" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">- Less common in practice</text>
+
+  <rect x="620" y="340" width="145" height="20" rx="4" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="692" y="354" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#888">Consistency: Eventual</text>
+
+  <!-- Bottom recommendation -->
+  <rect x="20" y="390" width="760" height="70" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="415" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#1a1a1a" font-weight="bold">Interview Strategy</text>
+  <text x="40" y="435" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Start with cache-aside (default). Mention write-through if interviewer asks about freshness.</text>
+  <text x="40" y="453" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Write-behind for write-heavy. Read-through if simplifying app architecture is the goal.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

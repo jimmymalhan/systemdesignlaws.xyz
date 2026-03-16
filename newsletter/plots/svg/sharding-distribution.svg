@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-sh" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-sh-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Hash-Based Sharding Distribution</text>
+
+  <!-- User IDs flowing in (left) -->
+  <text x="95" y="65" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">User IDs</text>
+
+  <rect x="32" y="78" width="125" height="28" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="94" y="97" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">user_id = 1001</text>
+
+  <rect x="32" y="112" width="125" height="28" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="94" y="131" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">user_id = 1002</text>
+
+  <rect x="32" y="146" width="125" height="28" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="94" y="165" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">user_id = 1003</text>
+
+  <rect x="32" y="180" width="125" height="28" rx="4" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="94" y="199" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">user_id = 1004</text>
+
+  <!-- Arrows to hash function -->
+  <path d="M160,92 C200,95 240,110 275,125" stroke="#1B1B1F" stroke-width="1.8" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M160,126 C200,128 240,130 275,135" stroke="#1B1B1F" stroke-width="1.8" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M160,160 C200,158 240,150 275,145" stroke="#1B1B1F" stroke-width="1.8" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M160,194 C200,188 240,165 275,155" stroke="#1B1B1F" stroke-width="1.8" fill="none" marker-end="url(#arr-sh)"/>
+
+  <!-- Hash Function Box (center) -->
+  <rect x="280" y="100" width="210" height="80" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2.5"/>
+  <text x="385" y="132" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Hash Function</text>
+  <text x="385" y="158" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#E65100">user_id % 4</text>
+
+  <!-- Arrows from hash to shards -->
+  <path d="M493,115 C530,112 570,97 608,88" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-sh-blue)"/>
+  <text x="558" y="100" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0">= 1</text>
+
+  <path d="M493,130 C530,130 570,130 608,130" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-sh-blue)"/>
+  <text x="558" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0">= 2</text>
+
+  <path d="M493,148 C530,152 570,165 608,173" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-sh-blue)"/>
+  <text x="558" y="164" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0">= 3</text>
+
+  <path d="M493,165 C530,175 570,200 608,215" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arr-sh-blue)"/>
+  <text x="558" y="200" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1565C0">= 0</text>
+
+  <!-- Shard boxes (right) -->
+  <rect x="615" y="65" width="215" height="38" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="722" y="89" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Shard 0  ~25% users</text>
+
+  <rect x="615" y="112" width="215" height="38" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="722" y="136" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Shard 1  ~25% users</text>
+
+  <rect x="615" y="159" width="215" height="38" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="722" y="183" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Shard 2  ~25% users</text>
+
+  <rect x="615" y="206" width="215" height="38" rx="5" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="722" y="230" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Shard 3  ~25% users</text>
+
+  <!-- Separator -->
+  <line x1="30" y1="265" x2="870" y2="265" stroke="#DDD" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Bottom: Scatter-Gather pattern -->
+  <text x="450" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#1B1B1F" font-weight="bold">Cross-Shard Query (Scatter-Gather)</text>
+
+  <!-- Query box -->
+  <rect x="50" y="305" width="200" height="40" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="150" y="330" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Query: "all users > 30"</text>
+
+  <!-- Scatter arrows -->
+  <path d="M252,312 C310,308 380,305 430,305" stroke="#D32F2F" stroke-width="1.5" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M252,320 C310,322 380,328 430,330" stroke="#D32F2F" stroke-width="1.5" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M252,328 C310,335 380,350 430,355" stroke="#D32F2F" stroke-width="1.5" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M252,336 C310,348 380,372 430,380" stroke="#D32F2F" stroke-width="1.5" fill="none" marker-end="url(#arr-sh)"/>
+
+  <text x="340" y="300" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">scatter</text>
+
+  <!-- Mini shard boxes for scatter-gather -->
+  <rect x="435" y="295" width="82" height="24" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="476" y="312" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Shard 0</text>
+
+  <rect x="435" y="323" width="82" height="24" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="476" y="340" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Shard 1</text>
+
+  <rect x="435" y="351" width="82" height="24" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="476" y="368" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Shard 2</text>
+
+  <rect x="435" y="379" width="82" height="24" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="476" y="396" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Shard 3</text>
+
+  <!-- Gather arrows -->
+  <path d="M519,307 C560,307 600,330 640,340" stroke="#2E7D32" stroke-width="1.5" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M519,335 C560,336 600,340 640,345" stroke="#2E7D32" stroke-width="1.5" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M519,363 C560,360 600,352 640,350" stroke="#2E7D32" stroke-width="1.5" fill="none" marker-end="url(#arr-sh)"/>
+  <path d="M519,391 C560,385 600,365 640,358" stroke="#2E7D32" stroke-width="1.5" fill="none" marker-end="url(#arr-sh)"/>
+
+  <text x="580" y="380" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">gather</text>
+
+  <!-- Merge result -->
+  <rect x="645" y="325" width="120" height="45" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="705" y="347" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Merge</text>
+  <text x="705" y="363" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Results</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

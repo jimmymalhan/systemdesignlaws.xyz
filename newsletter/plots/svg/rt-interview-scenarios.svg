@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+  <rect width="800" height="440" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Interview Scenarios: Protocol + Hop 2 Choices</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Use these as starting points — justify based on your specific requirements</text>
+
+  <!-- Header row -->
+  <rect x="30" y="68" width="740" height="36" rx="4" fill="#1a1a1a"/>
+  <text x="130" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">System</text>
+  <text x="270" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Hop 1 Protocol</text>
+  <text x="430" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Hop 2 Pattern</text>
+  <text x="630" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Why</text>
+
+  <!-- Column dividers in header -->
+  <line x1="200" y1="68" x2="200" y2="104" stroke="#444444" stroke-width="1"/>
+  <line x1="345" y1="68" x2="345" y2="104" stroke="#444444" stroke-width="1"/>
+  <line x1="520" y1="68" x2="520" y2="104" stroke="#444444" stroke-width="1"/>
+
+  <!-- Row 1: Chat App -->
+  <rect x="30" y="104" width="740" height="60" rx="0" fill="#f5f9ff" stroke="#e0e8f0" stroke-width="1"/>
+  <rect x="30" y="104" width="170" height="60" fill="#e8f4fd" stroke="#e0e8f0" stroke-width="1"/>
+  <text x="115" y="128" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Chat App</text>
+  <text x="115" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">(Slack, WhatsApp)</text>
+
+  <text x="272" y="128" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#8e44ad" text-anchor="middle">WebSocket</text>
+  <text x="272" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">ws:// persistent</text>
+
+  <text x="432" y="128" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#e67e22" text-anchor="middle">Pub/Sub (Kafka)</text>
+  <text x="432" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">stateless endpoint servers</text>
+
+  <text x="630" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Bidirectional needed.</text>
+  <text x="630" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Users on any server can</text>
+  <text x="630" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">receive messages.</text>
+
+  <!-- Row 2: Live Comments -->
+  <rect x="30" y="164" width="740" height="60" fill="#ffffff" stroke="#e0e8f0" stroke-width="1"/>
+  <rect x="30" y="164" width="170" height="60" fill="#e8fde8" stroke="#e0e8f0" stroke-width="1"/>
+  <text x="115" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Live Comments</text>
+  <text x="115" y="208" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">(YouTube, Twitch)</text>
+
+  <text x="272" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#27ae60" text-anchor="middle">SSE</text>
+  <text x="272" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">text/event-stream</text>
+
+  <text x="432" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#e67e22" text-anchor="middle">Pub/Sub (Redis)</text>
+  <text x="432" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">fan-out to all servers</text>
+
+  <text x="630" y="182" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Server-to-client only.</text>
+  <text x="630" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">High volume. SSE simpler</text>
+  <text x="630" y="214" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">than WS for this case.</text>
+
+  <!-- Row 3: Collaborative Doc -->
+  <rect x="30" y="224" width="740" height="60" fill="#f5f9ff" stroke="#e0e8f0" stroke-width="1"/>
+  <rect x="30" y="224" width="170" height="60" fill="#f5e8ff" stroke="#e0e8f0" stroke-width="1"/>
+  <text x="115" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Collaborative Doc</text>
+  <text x="115" y="268" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">(Google Docs)</text>
+
+  <text x="272" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#8e44ad" text-anchor="middle">WebSocket</text>
+  <text x="272" y="266" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">ws:// with OT/CRDT</text>
+
+  <text x="432" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#2980b9" text-anchor="middle">Consistent Hash</text>
+  <text x="432" y="266" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">doc_id hashes to server</text>
+
+  <text x="630" y="242" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Stateful per-doc state.</text>
+  <text x="630" y="258" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">All users of doc X land</text>
+  <text x="630" y="274" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">on same server.</text>
+
+  <!-- Row 4: Live Dashboard -->
+  <rect x="30" y="284" width="740" height="60" fill="#ffffff" stroke="#e0e8f0" stroke-width="1"/>
+  <rect x="30" y="284" width="170" height="60" fill="#fff8e8" stroke="#e0e8f0" stroke-width="1"/>
+  <text x="115" y="308" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Live Dashboard</text>
+  <text x="115" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">(metrics, analytics)</text>
+
+  <text x="272" y="308" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#27ae60" text-anchor="middle">SSE</text>
+  <text x="272" y="326" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">or simple polling</text>
+
+  <text x="432" y="308" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#d4a017" text-anchor="middle">Pull Polling</text>
+  <text x="432" y="326" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">DB or time-series store</text>
+
+  <text x="630" y="302" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Simplest that works.</text>
+  <text x="630" y="318" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Fresh-every-5s is fine.</text>
+  <text x="630" y="334" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">No complexity needed.</text>
+
+  <!-- Row 5: Video Call -->
+  <rect x="30" y="344" width="740" height="60" fill="#f5f9ff" stroke="#e0e8f0" stroke-width="1"/>
+  <rect x="30" y="344" width="170" height="60" fill="#fde8e8" stroke="#e0e8f0" stroke-width="1"/>
+  <text x="115" y="368" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Video Call</text>
+  <text x="115" y="388" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">(Zoom, Meet)</text>
+
+  <text x="272" y="368" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#c0392b" text-anchor="middle">WebRTC</text>
+  <text x="272" y="386" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">P2P + STUN/TURN</text>
+
+  <text x="432" y="368" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#c0392b" text-anchor="middle">Signaling Server</text>
+  <text x="432" y="386" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">WebSocket/HTTP</text>
+
+  <text x="630" y="362" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Audio/video bandwidth.</text>
+  <text x="630" y="378" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">P2P offloads server cost.</text>
+  <text x="630" y="394" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Signaling is lightweight.</text>
+
+  <!-- Column dividers -->
+  <line x1="200" y1="104" x2="200" y2="404" stroke="#e0e8f0" stroke-width="1.5"/>
+  <line x1="345" y1="104" x2="345" y2="404" stroke="#e0e8f0" stroke-width="1.5"/>
+  <line x1="520" y1="104" x2="520" y2="404" stroke="#e0e8f0" stroke-width="1.5"/>
+
+  <!-- Border around table -->
+  <rect x="30" y="68" width="740" height="336" rx="4" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+
+  <!-- Footer -->
+  <text x="400" y="424" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#888888" text-anchor="middle">These are starting points. Always validate against stated requirements: scale, latency, directionality, infrastructure constraints.</text>
+</svg>

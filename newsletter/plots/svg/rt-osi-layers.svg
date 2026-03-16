@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect width="800" height="420" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">OSI Layers Relevant to Real-Time Communication</text>
+
+  <!-- L7 Box -->
+  <rect x="60" y="70" width="260" height="80" rx="8" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="190" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Layer 7 — Application</text>
+  <text x="190" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333" text-anchor="middle">HTTP · WebSocket · WebRTC</text>
+  <text x="190" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">SSE · gRPC streaming</text>
+
+  <!-- L4 Box -->
+  <rect x="60" y="185" width="260" height="80" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="190" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Layer 4 — Transport</text>
+  <text x="190" y="237" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333" text-anchor="middle">TCP (reliable, ordered)</text>
+  <text x="190" y="255" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">UDP (fast, lossy — used by WebRTC)</text>
+
+  <!-- L3 Box -->
+  <rect x="60" y="300" width="260" height="80" rx="8" fill="#fdf8e8" stroke="#d4a017" stroke-width="2"/>
+  <text x="190" y="330" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Layer 3 — Network</text>
+  <text x="190" y="352" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#333333" text-anchor="middle">IP · Routing · Addressing</text>
+  <text x="190" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Packets hop across internet</text>
+
+  <!-- Vertical connector lines -->
+  <line x1="190" y1="150" x2="190" y2="185" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="190" y1="265" x2="190" y2="300" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Annotation lines -->
+  <!-- L7 annotation -->
+  <line x1="320" y1="110" x2="380" y2="110" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="390" y="72" width="350" height="76" rx="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="405" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a">Interview relevance:</text>
+  <text x="405" y="114" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">Choose protocol at this layer.</text>
+  <text x="405" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">WebSocket upgrades from HTTP here.</text>
+
+  <!-- L4 annotation -->
+  <line x1="320" y1="225" x2="380" y2="225" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="390" y="187" width="350" height="76" rx="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="405" y="211" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a">Interview relevance:</text>
+  <text x="405" y="229" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">L4 LB sees TCP only. Pins WebSocket</text>
+  <text x="405" y="245" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">connections to same backend server.</text>
+
+  <!-- L3 annotation -->
+  <line x1="320" y1="340" x2="380" y2="340" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="390" y="302" width="350" height="76" rx="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1"/>
+  <text x="405" y="326" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#1a1a1a">Interview relevance:</text>
+  <text x="405" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">Mostly transparent. NAT traversal</text>
+  <text x="405" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#333333">matters for WebRTC (STUN/TURN).</text>
+</svg>

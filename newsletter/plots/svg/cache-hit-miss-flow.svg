@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="arrowBlk" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1B1B1F"/>
+    </marker>
+    <marker id="arrowGrn" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2E7D32"/>
+    </marker>
+    <marker id="arrowOrg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#E65100"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Cache Hit vs. Miss: Full Request Lifecycle</text>
+
+  <!-- User -->
+  <rect x="20" y="110" width="80" height="55" rx="10" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="60" y="134" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">User</text>
+  <text x="60" y="152" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">GET /feed</text>
+
+  <!-- Arrow to LB -->
+  <line x1="100" y1="137" x2="145" y2="137" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrowBlk)"/>
+
+  <!-- Load Balancer -->
+  <rect x="150" y="110" width="90" height="55" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="195" y="132" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Load</text>
+  <text x="195" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Balancer</text>
+
+  <!-- Arrow to App Server -->
+  <line x1="240" y1="137" x2="285" y2="137" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrowBlk)"/>
+
+  <!-- App Server -->
+  <rect x="290" y="100" width="110" height="75" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="345" y="124" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">App Server</text>
+  <text x="345" y="142" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">1. Check cache</text>
+  <text x="345" y="157" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">2. If miss, query DB</text>
+  <text x="345" y="170" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">3. Return response</text>
+
+  <!-- Arrow to Redis -->
+  <line x1="400" y1="120" x2="480" y2="70" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrowBlk)"/>
+  <text x="430" y="82" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Check</text>
+
+  <!-- Redis Cache -->
+  <rect x="485" y="42" width="130" height="55" rx="10" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="550" y="64" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Redis Cache</text>
+  <text x="550" y="82" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">In-memory key-value</text>
+
+  <!-- HIT PATH (green) -->
+  <rect x="650" y="42" width="230" height="55" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="765" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#2E7D32">CACHE HIT</text>
+  <text x="765" y="78" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Return immediately ~ 1ms</text>
+  <text x="765" y="92" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Data found in Redis, skip DB entirely</text>
+  <line x1="615" y1="62" x2="645" y2="62" stroke="#2E7D32" stroke-width="2.5" marker-end="url(#arrowGrn)"/>
+
+  <!-- Green return arrow -->
+  <path d="M 650 97 Q 400 105 60 165" fill="none" stroke="#2E7D32" stroke-width="2" stroke-dasharray="6 3" marker-end="url(#arrowGrn)"/>
+  <text x="360" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Response ~ 1ms total</text>
+
+  <!-- MISS PATH (orange) -->
+  <!-- Arrow from Redis to MISS label -->
+  <line x1="550" y1="97" x2="550" y2="145" stroke="#E65100" stroke-width="2" marker-end="url(#arrowOrg)"/>
+  <text x="570" y="125" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">MISS!</text>
+
+  <!-- Miss box -->
+  <rect x="475" y="148" width="160" height="30" rx="6" fill="#FFEBEE" stroke="#E65100" stroke-width="2"/>
+  <text x="555" y="168" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#E65100">CACHE MISS</text>
+
+  <!-- Arrow to PostgreSQL -->
+  <line x1="555" y1="178" x2="555" y2="218" stroke="#E65100" stroke-width="2" marker-end="url(#arrowOrg)"/>
+  <text x="575" y="200" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#E65100">Query DB</text>
+
+  <!-- PostgreSQL -->
+  <rect x="475" y="222" width="160" height="60" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="555" y="247" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">PostgreSQL</text>
+  <text x="555" y="267" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Query ~ 5-50ms</text>
+
+  <!-- Arrow back to Redis (write back) -->
+  <line x1="475" y1="240" x2="420" y2="240" stroke="#E65100" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="420" y1="240" x2="420" y2="75" stroke="#E65100" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="420" y1="75" x2="480" y2="75" stroke="#E65100" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowOrg)"/>
+  <text x="415" y="155" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#E65100" transform="rotate(-90 415 155)">Write to cache</text>
+
+  <!-- Orange return arrow -->
+  <path d="M 475 270 Q 300 310 60 170" fill="none" stroke="#E65100" stroke-width="2" stroke-dasharray="6 3" marker-end="url(#arrowOrg)"/>
+  <text x="250" y="285" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">Response ~ 50ms total</text>
+
+  <!-- Legend / performance comparison -->
+  <rect x="30" y="310" width="400" height="90" rx="8" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="230" y="332" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Performance Comparison</text>
+
+  <!-- Hit bar -->
+  <rect x="50" y="342" width="30" height="14" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="90" y="354" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32">Cache HIT: ~1ms (50x faster)</text>
+
+  <!-- Miss bar -->
+  <rect x="50" y="365" width="340" height="14" rx="3" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+  <text x="90" y="377" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#E65100">Cache MISS: ~50ms (DB round-trip + cache write)</text>
+
+  <!-- Target hit rate -->
+  <rect x="500" y="310" width="380" height="90" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="690" y="332" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#2E7D32">Target: 95%+ Cache Hit Rate</text>
+  <text x="690" y="352" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">At 95% hit rate with 1ms hits and 50ms misses:</text>
+  <text x="690" y="370" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Avg latency = 0.95(1) + 0.05(50) = 3.45ms</text>
+  <text x="690" y="390" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#2E7D32">14x faster than hitting DB every time</text>
+
+  <!-- Watermark -->
+  <text x="878" y="409" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+
+<text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Event Sourcing Architecture</text>
+<text x="450" y="50" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Events as the source of truth. Workers react to events and emit new ones.</text>
+<rect x="30" y="75" width="140" height="50" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="100" y="95" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">API Service</text>
+<text x="100" y="113" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Emits OrderPlaced</text>
+<line x1="170" y1="100" x2="210" y2="100" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="210" y="70" width="480" height="60" rx="10" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="95" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Event Log (Kafka)</text>
+<text x="450" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">OrderPlaced | PaymentCharged | InventoryReserved | ShippingCreated</text>
+<line x1="300" y1="130" x2="150" y2="170" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="400" y1="130" x2="350" y2="170" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="500" y1="130" x2="550" y2="170" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="600" y1="130" x2="750" y2="170" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="70" y="170" width="160" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="150" y="192" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Payment Worker</text>
+<text x="150" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Reads: OrderPlaced</text>
+<rect x="270" y="170" width="160" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="350" y="192" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Inventory Worker</text>
+<text x="350" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Reads: PaymentCharged</text>
+<rect x="470" y="170" width="160" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="550" y="192" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Shipping Worker</text>
+<text x="550" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Reads: InventoryReserved</text>
+<rect x="670" y="170" width="160" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="750" y="192" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Email Worker</text>
+<text x="750" y="212" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Reads: ShippingCreated</text>
+<line x1="150" y1="225" x2="300" y2="85" stroke="#1B1B1F" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="350" y1="225" x2="400" y2="85" stroke="#1B1B1F" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="550" y1="225" x2="500" y2="85" stroke="#1B1B1F" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="150" y="245" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Emits: PaymentCharged</text>
+<text x="350" y="245" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Emits: InventoryReserved</text>
+<text x="550" y="245" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Emits: ShippingCreated</text>
+<rect x="100" y="280" width="700" height="70" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Benefits</text>
+<text x="450" y="325" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Fault tolerant (workers are stateless). Scalable. Complete audit trail.</text>
+<text x="450" y="340" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Trade-off: significant infrastructure to build and monitor.</text>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1B1B1F"/></marker></defs>
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

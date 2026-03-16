@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="arwD" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Scaling Decision Tree: When to Use What</text>
+
+  <!-- Node 1: DB slow? -->
+  <rect x="40" y="48" width="140" height="45" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="110" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">DB queries</text>
+  <text x="110" y="84" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">slow?</text>
+
+  <!-- No branch: All good -->
+  <line x1="110" y1="93" x2="110" y2="120" stroke="#2E7D32" stroke-width="2" marker-end="url(#arwD)"/>
+  <text x="122" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">No</text>
+  <rect x="50" y="124" width="120" height="32" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="110" y="145" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#2E7D32">All good!</text>
+
+  <!-- Yes branch -->
+  <line x1="180" y1="70" x2="240" y2="70" stroke="#D32F2F" stroke-width="2" marker-end="url(#arwD)"/>
+  <text x="208" y="64" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">Yes</text>
+
+  <!-- Node 2: Indexes added? -->
+  <rect x="245" y="48" width="140" height="45" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="315" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Indexes</text>
+  <text x="315" y="84" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">added?</text>
+
+  <!-- No branch: Add indexes -->
+  <line x1="315" y1="93" x2="315" y2="120" stroke="#D32F2F" stroke-width="2" marker-end="url(#arwD)"/>
+  <text x="327" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">No</text>
+  <rect x="245" y="124" width="140" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="315" y="144" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Add Indexes</text>
+  <text x="315" y="160" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">+ Denormalize</text>
+  <text x="315" y="172" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">(cheapest fix first)</text>
+
+  <!-- Yes branch -->
+  <line x1="385" y1="70" x2="445" y2="70" stroke="#2E7D32" stroke-width="2" marker-end="url(#arwD)"/>
+  <text x="413" y="64" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Yes</text>
+
+  <!-- Node 3: Over 100K RPS? -->
+  <rect x="450" y="48" width="140" height="45" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="520" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Over 100K</text>
+  <text x="520" y="84" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">RPS?</text>
+
+  <!-- No branch: Optimize queries -->
+  <line x1="520" y1="93" x2="520" y2="120" stroke="#2E7D32" stroke-width="2" marker-end="url(#arwD)"/>
+  <text x="532" y="112" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">No</text>
+  <rect x="450" y="124" width="140" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="520" y="144" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Optimize Queries</text>
+  <text x="520" y="160" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">EXPLAIN ANALYZE</text>
+  <text x="520" y="172" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">Fix N+1, add joins</text>
+
+  <!-- Yes branch -->
+  <line x1="590" y1="70" x2="650" y2="70" stroke="#D32F2F" stroke-width="2" marker-end="url(#arwD)"/>
+  <text x="618" y="64" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">Yes</text>
+
+  <!-- Node 4: Read-heavy? -->
+  <rect x="655" y="48" width="140" height="45" rx="10" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="725" y="68" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Read-heavy?</text>
+  <text x="725" y="84" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">(>80% reads)</text>
+
+  <!-- Yes branch: Read-heavy path -->
+  <line x1="725" y1="93" x2="725" y2="130" stroke="#2E7D32" stroke-width="2" marker-end="url(#arwD)"/>
+  <text x="737" y="116" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">Yes</text>
+
+  <!-- Read Replicas -->
+  <rect x="610" y="134" width="230" height="52" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="725" y="154" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#2E7D32">Add Read Replicas + Cache</text>
+  <text x="725" y="172" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Scale reads horizontally with replicas + Redis</text>
+
+  <!-- Further decision from read replicas -->
+  <line x1="725" y1="186" x2="725" y2="210" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arwD)"/>
+
+  <!-- Still not enough? -->
+  <rect x="640" y="214" width="170" height="40" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="725" y="238" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Still not enough?</text>
+
+  <!-- CDN -->
+  <line x1="725" y1="254" x2="725" y2="278" stroke="#2E7D32" stroke-width="2" marker-end="url(#arwD)"/>
+  <rect x="630" y="282" width="190" height="48" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="725" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#2E7D32">Add CDN Layer</text>
+  <text x="725" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Cache static content at the edge</text>
+
+  <!-- No branch from Read-heavy: Write-heavy path -->
+  <line x1="795" y1="70" x2="840" y2="70" stroke="#D32F2F" stroke-width="2"/>
+  <line x1="840" y1="70" x2="840" y2="134" stroke="#D32F2F" stroke-width="2" marker-end="url(#arwD)"/>
+  <text x="850" y="100" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">No</text>
+
+  <!-- Sharding -->
+  <rect x="775" y="138" width="110" height="90" rx="8" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="830" y="162" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#D32F2F">Shard</text>
+  <text x="830" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Split data</text>
+  <text x="830" y="196" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">across DBs</text>
+  <text x="830" y="218" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#D32F2F">(most complex!)</text>
+
+  <!-- Bottom: Summary legend -->
+  <rect x="30" y="250" width="560" height="150" rx="8" fill="#FFFFFF" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="310" y="274" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Order of Operations (cheapest to most complex)</text>
+
+  <rect x="50" y="286" width="18" height="14" rx="3" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="75" y="298" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">1. Add indexes + denormalize (free, minutes)</text>
+
+  <rect x="50" y="308" width="18" height="14" rx="3" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="75" y="320" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">2. Optimize queries with EXPLAIN ANALYZE (free, hours)</text>
+
+  <rect x="50" y="330" width="18" height="14" rx="3" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="75" y="342" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">3. Add read replicas + Redis cache (moderate cost, days)</text>
+
+  <rect x="50" y="352" width="18" height="14" rx="3" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="75" y="364" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">4. CDN for static/semi-static content (moderate cost, days)</text>
+
+  <rect x="50" y="374" width="18" height="14" rx="3" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="75" y="386" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">5. Shard the database (high cost, weeks/months)</text>
+
+  <!-- Watermark -->
+  <text x="878" y="409" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

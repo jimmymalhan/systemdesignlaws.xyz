@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="440" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a" text-anchor="middle">SSE Reconnection with Last-Event-ID</text>
+  <text x="400" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#555555" text-anchor="middle">Browser EventSource automatically reconnects — no messages lost</text>
+
+  <!-- Client column -->
+  <rect x="50" y="75" width="120" height="44" rx="8" fill="#e8f4fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="110" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Client</text>
+  <line x1="110" y1="119" x2="110" y2="390" stroke="#4a90d9" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Server column -->
+  <rect x="580" y="75" width="150" height="44" rx="8" fill="#e8fde8" stroke="#4ab54a" stroke-width="2"/>
+  <text x="655" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Server</text>
+  <line x1="655" y1="119" x2="655" y2="390" stroke="#4ab54a" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Phase 1: Connected, receiving events -->
+  <rect x="175" y="78" width="380" height="20" rx="3" fill="#e8fde8" stroke="none"/>
+  <text x="365" y="92" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle" font-weight="bold">Phase 1: Connected</text>
+
+  <!-- Event 41 -->
+  <line x1="645" y1="125" x2="120" y2="132" stroke="#4ab54a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="385" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">id: 41   data: event content A</text>
+
+  <!-- Event 42 -->
+  <line x1="645" y1="150" x2="120" y2="157" stroke="#4ab54a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="385" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333" text-anchor="middle">id: 42   data: event content B</text>
+
+  <!-- Phase 2: Disconnection -->
+  <rect x="90" y="165" width="580" height="22" rx="3" fill="#fde8e8" stroke="none"/>
+  <text x="380" y="180" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="bold">Connection drops (network hiccup / server restart)</text>
+
+  <!-- Events 43, 44, 45 arrive at server during disconnect -->
+  <rect x="610" y="190" width="115" height="60" rx="5" fill="#fdf8e8" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="667" y="210" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle" font-weight="bold">Buffered:</text>
+  <text x="667" y="228" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">id: 43, 44, 45</text>
+  <text x="667" y="244" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">(in Redis stream)</text>
+
+  <!-- Client waiting -->
+  <rect x="75" y="192" width="105" height="52" rx="5" fill="#fff8e8" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="127" y="212" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle">waiting</text>
+  <text x="127" y="228" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d4a017" text-anchor="middle">to retry</text>
+  <text x="127" y="242" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">(~3 seconds)</text>
+
+  <!-- Phase 3: Reconnection -->
+  <rect x="175" y="252" width="380" height="20" rx="3" fill="#e8f4fd" stroke="none"/>
+  <text x="365" y="266" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#2980b9" text-anchor="middle" font-weight="bold">Phase 3: Automatic Reconnect</text>
+
+  <!-- Reconnect request with Last-Event-ID -->
+  <line x1="120" y1="278" x2="640" y2="285" stroke="#2980b9" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="385" y="273" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" text-anchor="middle" font-weight="bold">GET /events   Last-Event-ID: 42</text>
+  <text x="385" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#555555" text-anchor="middle">(Browser EventSource sends this automatically)</text>
+
+  <!-- Server looks up buffer and sends missed events -->
+  <line x1="640" y1="308" x2="120" y2="315" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="385" y="303" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">id: 43   data: missed event C</text>
+
+  <line x1="640" y1="330" x2="120" y2="337" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="385" y="325" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">id: 44   data: missed event D</text>
+
+  <line x1="640" y1="352" x2="120" y2="359" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="385" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">id: 45   data: missed event E</text>
+
+  <!-- Annotation -->
+  <rect x="50" y="392" width="700" height="36" rx="6" fill="#e8f4fd" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="400" y="408" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle" font-weight="bold">Zero message loss — server must buffer events (Redis streams or DB) keyed by ID</text>
+  <text x="400" y="422" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#555555" text-anchor="middle">EventSource: automatic retry with exponential backoff built into all modern browsers</text>
+</svg>

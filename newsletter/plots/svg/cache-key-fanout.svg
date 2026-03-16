@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="arw" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Hot Key Fanout: Solving Cache Hotspots</text>
+
+  <!-- LEFT SIDE: Problem -->
+  <text x="200" y="58" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" font-weight="bold" fill="#D32F2F">PROBLEM: Single Hot Key</text>
+
+  <!-- Requests incoming -->
+  <text x="50" y="100" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">500K RPS</text>
+  <line x1="30" y1="110" x2="30" y2="130" stroke="#1B1B1F" stroke-width="1"/>
+  <line x1="50" y1="110" x2="50" y2="130" stroke="#1B1B1F" stroke-width="1"/>
+  <line x1="70" y1="110" x2="70" y2="130" stroke="#1B1B1F" stroke-width="1"/>
+  <line x1="90" y1="110" x2="90" y2="130" stroke="#1B1B1F" stroke-width="1"/>
+  <line x1="110" y1="110" x2="110" y2="130" stroke="#1B1B1F" stroke-width="1"/>
+
+  <!-- Arrow cluster pointing to single node -->
+  <line x1="30" y1="130" x2="170" y2="185" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arw)"/>
+  <line x1="50" y1="130" x2="170" y2="190" stroke="#1B1B1F" stroke-width="1.5"/>
+  <line x1="70" y1="130" x2="170" y2="195" stroke="#1B1B1F" stroke-width="1.5"/>
+  <line x1="90" y1="130" x2="170" y2="200" stroke="#1B1B1F" stroke-width="1.5"/>
+  <line x1="110" y1="130" x2="170" y2="205" stroke="#1B1B1F" stroke-width="1.5"/>
+
+  <!-- Single overloaded Redis node -->
+  <rect x="170" y="160" width="170" height="80" rx="10" fill="#FFEBEE" stroke="#D32F2F" stroke-width="3"/>
+  <text x="255" y="185" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#D32F2F">Redis Node</text>
+  <text x="255" y="204" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">key: feed:celebrity</text>
+  <text x="255" y="220" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#D32F2F">500K RPS!!</text>
+  <text x="255" y="234" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">OVERLOADED</text>
+
+  <!-- Danger indicators -->
+  <text x="355" y="180" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F">CPU 100%</text>
+  <text x="355" y="198" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F">Timeouts</text>
+  <text x="355" y="216" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F">Cascading</text>
+  <text x="355" y="234" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F">failures</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="50" x2="450" y2="400" stroke="#1B1B1F" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+  <!-- RIGHT SIDE: Solution -->
+  <text x="680" y="58" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" font-weight="bold" fill="#2E7D32">SOLUTION: Fan Out to N Shards</text>
+
+  <!-- Requests incoming right side -->
+  <text x="500" y="82" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">500K RPS</text>
+
+  <!-- Hash router -->
+  <rect x="480" y="90" width="120" height="40" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="540" y="108" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#1B1B1F">Hash Router</text>
+  <text x="540" y="122" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">shard = hash(key) % 10</text>
+
+  <!-- Fan out arrows to 10 nodes (5 per column) -->
+  <!-- Column 1 -->
+  <line x1="540" y1="130" x2="530" y2="150" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arw)"/>
+  <line x1="540" y1="130" x2="530" y2="202" stroke="#2E7D32" stroke-width="1.5"/>
+  <line x1="540" y1="130" x2="530" y2="254" stroke="#2E7D32" stroke-width="1.5"/>
+  <line x1="540" y1="130" x2="530" y2="306" stroke="#2E7D32" stroke-width="1.5"/>
+  <line x1="540" y1="130" x2="530" y2="358" stroke="#2E7D32" stroke-width="1.5"/>
+
+  <!-- Column 2 -->
+  <line x1="540" y1="130" x2="700" y2="150" stroke="#2E7D32" stroke-width="1.5"/>
+  <line x1="540" y1="130" x2="700" y2="202" stroke="#2E7D32" stroke-width="1.5"/>
+  <line x1="540" y1="130" x2="700" y2="254" stroke="#2E7D32" stroke-width="1.5"/>
+  <line x1="540" y1="130" x2="700" y2="306" stroke="#2E7D32" stroke-width="1.5"/>
+  <line x1="540" y1="130" x2="700" y2="358" stroke="#2E7D32" stroke-width="1.5"/>
+
+  <!-- Left column nodes -->
+  <rect x="470" y="152" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="530" y="168" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:1</text>
+  <text x="530" y="183" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <rect x="470" y="204" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="530" y="220" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:2</text>
+  <text x="530" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <rect x="470" y="256" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="530" y="272" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:3</text>
+  <text x="530" y="287" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <rect x="470" y="308" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="530" y="324" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:4</text>
+  <text x="530" y="339" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <rect x="470" y="360" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="530" y="376" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:5</text>
+  <text x="530" y="391" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <!-- Right column nodes -->
+  <rect x="640" y="152" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="700" y="168" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:6</text>
+  <text x="700" y="183" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <rect x="640" y="204" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="700" y="220" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:7</text>
+  <text x="700" y="235" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <rect x="640" y="256" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="700" y="272" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:8</text>
+  <text x="700" y="287" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <rect x="640" y="308" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="700" y="324" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:9</text>
+  <text x="700" y="339" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <rect x="640" y="360" width="120" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="700" y="376" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#1B1B1F">feed:celebrity:10</text>
+  <text x="700" y="391" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="9" fill="#2E7D32">50K RPS</text>
+
+  <!-- Bottom summary left -->
+  <rect x="30" y="280" width="400" height="110" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="230" y="302" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">Why Does This Happen?</text>
+  <text x="230" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Celebrity posts go viral: millions of followers</text>
+  <text x="230" y="336" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">All requests map to same cache key on same node</text>
+  <text x="230" y="356" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#2E7D32">Solution: Append :N suffix, distribute across nodes</text>
+  <text x="230" y="376" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Each shard handles 1/N of the traffic</text>
+
+  <!-- Watermark -->
+  <text x="878" y="409" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

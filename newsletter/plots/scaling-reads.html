@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scaling Reads - Interactive System Design Diagrams</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d13;
+      --card: rgba(255,255,255,0.03);
+      --border: rgba(0,255,200,0.12);
+      --accent: #00ffc8;
+      --accent2: #6366f1;
+      --red: #ef4444;
+      --green: #22c55e;
+      --yellow: #eab308;
+      --blue: #3b82f6;
+      --purple: #a855f7;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* Nav */
+    .tabs {
+      display: flex; gap: 0; overflow-x: auto; position: sticky; top: 0; z-index: 100;
+      background: rgba(11,13,19,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 1rem;
+    }
+    .tab {
+      padding: 0.75rem 1.25rem; cursor: pointer; font-size: 0.8rem; font-weight: 600;
+      color: var(--muted); white-space: nowrap; border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* Content */
+    .content { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .panel { display: none; animation: fadeIn 0.3s ease; }
+    .panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    h1 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; }
+    h2 { font-size: 1.1rem; color: var(--text); margin: 2rem 0 0.75rem; }
+    .subtitle { color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem; }
+    .caption { color: var(--muted); font-size: 0.75rem; font-family: var(--mono); margin-top: 0.75rem; }
+
+    /* Diagram container */
+    .diagram-box {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem; margin: 1.5rem 0; position: relative; overflow: hidden;
+    }
+    .diagram-box::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: shimmer 2s ease-in-out infinite;
+    }
+    @keyframes shimmer { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+    /* SVG diagram styles */
+    svg.diagram { width: 100%; height: auto; display: block; }
+    .svg-node {
+      rx: 8; ry: 8; stroke: none;
+      transition: filter 0.2s;
+    }
+    .svg-node:hover { filter: brightness(1.2) drop-shadow(0 0 12px rgba(0,255,200,0.3)); cursor: pointer; }
+    .svg-text { font-family: var(--sans); font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+    .svg-label { font-family: var(--mono); font-size: 10px; fill: var(--muted); text-anchor: middle; }
+
+    /* Animated flow line */
+    .flow-line {
+      fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 8 6;
+      animation: dashFlow 0.8s linear infinite;
+    }
+    .flow-line.slow { animation-duration: 1.5s; }
+    .flow-line.red { stroke: var(--red); }
+    .flow-line.yellow { stroke: var(--yellow); }
+    .flow-line.purple { stroke: var(--purple); }
+    @keyframes dashFlow { to { stroke-dashoffset: -14; } }
+
+    /* Animated packet dot */
+    .packet {
+      fill: var(--accent); r: 4;
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+    .packet.red { fill: var(--red); filter: drop-shadow(0 0 6px var(--red)); }
+
+    /* Pulse ring */
+    .pulse-ring {
+      fill: none; stroke: var(--accent); stroke-width: 1.5; opacity: 0;
+      animation: pulseRing 2s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0% { r: 20; opacity: 0.6; stroke-width: 2; }
+      100% { r: 45; opacity: 0; stroke-width: 0.5; }
+    }
+
+    /* Stats bar */
+    .stats {
+      display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0;
+    }
+    .stat {
+      background: rgba(0,255,200,0.06); border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 8px; padding: 0.75rem 1rem; min-width: 140px;
+    }
+    .stat-value { font-size: 1.4rem; font-weight: 700; color: var(--accent); font-family: var(--mono); }
+    .stat-label { font-size: 0.7rem; color: var(--muted); margin-top: 0.25rem; }
+    .stat.danger .stat-value { color: var(--red); }
+    .stat.warn .stat-value { color: var(--yellow); }
+
+    /* Comparison rows */
+    .compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;
+    }
+    .compare-col {
+      background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;
+    }
+    .compare-col.bad { border-color: rgba(239,68,68,0.3); }
+    .compare-col.good { border-color: rgba(34,197,94,0.3); }
+    .compare-title { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .compare-col.bad .compare-title { color: var(--red); }
+    .compare-col.good .compare-title { color: var(--green); }
+    .compare-item { font-size: 0.8rem; color: var(--muted); margin: 0.25rem 0; }
+
+    /* Code block */
+    .code {
+      background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; padding: 1rem; font-family: var(--mono); font-size: 0.78rem;
+      color: #a5f3fc; overflow-x: auto; margin: 1rem 0; line-height: 1.6;
+    }
+    .code .kw { color: #c084fc; }
+    .code .str { color: #86efac; }
+    .code .comment { color: #64748b; }
+    .code .num { color: #fbbf24; }
+
+    /* Animated counter */
+    .counter {
+      font-family: var(--mono); font-size: 2rem; font-weight: 700;
+      color: var(--accent); text-align: center; padding: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .compare { grid-template-columns: 1fr; }
+      .stats { gap: 0.75rem; }
+      .stat { min-width: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="tabs">
+  <div class="tab active" onclick="showPanel(0)">Overview</div>
+  <div class="tab" onclick="showPanel(1)">Indexing</div>
+  <div class="tab" onclick="showPanel(2)">Denormalization</div>
+  <div class="tab" onclick="showPanel(3)">Read Replicas</div>
+  <div class="tab" onclick="showPanel(4)">Sharding</div>
+  <div class="tab" onclick="showPanel(5)">Cache-Aside</div>
+  <div class="tab" onclick="showPanel(6)">CDN</div>
+  <div class="tab" onclick="showPanel(7)">Cache Stampede</div>
+  <div class="tab" onclick="showPanel(8)">Cache Versioning</div>
+</div>
+
+<div class="content">
+
+<!-- Panel 0: Overview -->
+<div class="panel active" id="p0">
+  <h1>Scaling Reads</h1>
+  <p class="subtitle">Three-tier progression: Optimize DB -> Scale Horizontally -> Add Caching</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-value">100:1</div><div class="stat-label">Read-to-Write Ratio</div></div>
+    <div class="stat danger"><div class="stat-value">100+</div><div class="stat-label">Reads per Feed Load</div></div>
+    <div class="stat"><div class="stat-value">50x</div><div class="stat-label">Cache vs DB Speed</div></div>
+    <div class="stat warn"><div class="stat-value">50-100K</div><div class="stat-label">Single DB QPS Limit</div></div>
+  </div>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 300">
+      <!-- Users -->
+      <rect class="svg-node" x="20" y="120" width="100" height="50" fill="var(--blue)"/>
+      <text class="svg-text" x="70" y="145" fill="white" font-size="13">Users</text>
+      <text class="svg-label" x="70" y="190">Millions of reads</text>
+      <circle class="pulse-ring" cx="70" cy="145"/>
+
+      <!-- Arrow to Tier 1 -->
+      <line class="flow-line" x1="125" y1="145" x2="195" y2="145"/>
+      <circle class="packet" cx="125" cy="145"><animate attributeName="cx" values="125;195" dur="1s" repeatCount="indefinite"/></circle>
+
+      <!-- Tier 1: Optimize DB -->
+      <rect class="svg-node" x="200" y="100" width="140" height="90" fill="var(--green)" opacity="0.85"/>
+      <text class="svg-text" x="270" y="130" fill="black" font-size="11" font-weight="700">TIER 1</text>
+      <text class="svg-text" x="270" y="150" fill="black" font-size="11">Optimize DB</text>
+      <text class="svg-label" x="270" y="170" fill="rgba(0,0,0,0.6)">Index + Denorm + HW</text>
+
+      <!-- Arrow to Tier 2 -->
+      <line class="flow-line" x1="345" y1="145" x2="415" y2="145"/>
+      <circle class="packet" cx="345" cy="145"><animate attributeName="cx" values="345;415" dur="1.2s" begin="0.3s" repeatCount="indefinite"/></circle>
+
+      <!-- Tier 2: Scale Horizontally -->
+      <rect class="svg-node" x="420" y="100" width="140" height="90" fill="var(--purple)" opacity="0.85"/>
+      <text class="svg-text" x="490" y="130" fill="white" font-size="11" font-weight="700">TIER 2</text>
+      <text class="svg-text" x="490" y="150" fill="white" font-size="11">Scale Out</text>
+      <text class="svg-label" x="490" y="170" fill="rgba(255,255,255,0.6)">Replicas + Sharding</text>
+
+      <!-- Arrow to Tier 3 -->
+      <line class="flow-line" x1="565" y1="145" x2="635" y2="145"/>
+      <circle class="packet" cx="565" cy="145"><animate attributeName="cx" values="565;635" dur="1.2s" begin="0.6s" repeatCount="indefinite"/></circle>
+
+      <!-- Tier 3: Caching -->
+      <rect class="svg-node" x="640" y="100" width="140" height="90" fill="var(--yellow)" opacity="0.85"/>
+      <text class="svg-text" x="710" y="130" fill="black" font-size="11" font-weight="700">TIER 3</text>
+      <text class="svg-text" x="710" y="150" fill="black" font-size="11">Add Caching</text>
+      <text class="svg-label" x="710" y="170" fill="rgba(0,0,0,0.6)">Redis + CDN</text>
+
+      <!-- Cost indicator -->
+      <text class="svg-label" x="270" y="210">Low cost</text>
+      <text class="svg-label" x="490" y="210">Medium cost</text>
+      <text class="svg-label" x="710" y="210">High complexity</text>
+
+      <!-- Bottom bar - cost gradient -->
+      <rect x="200" y="225" width="580" height="6" rx="3" fill="url(#costGrad)" opacity="0.6"/>
+      <defs>
+        <linearGradient id="costGrad"><stop offset="0%" stop-color="var(--green)"/><stop offset="50%" stop-color="var(--yellow)"/><stop offset="100%" stop-color="var(--red)"/></linearGradient>
+      </defs>
+      <text class="svg-label" x="200" y="250">Cheap / Simple</text>
+      <text class="svg-label" x="780" y="250">Expensive / Complex</text>
+    </svg>
+    <p class="caption">Each tier builds on the last. Exhaust simple options before moving to complex ones.</p>
+  </div>
+</div>
+
+<!-- Panel 1: Indexing -->
+<div class="panel" id="p1">
+  <h1>Indexing: Full Scan vs B-Tree Lookup</h1>
+  <p class="subtitle">Turn O(n) into O(log n) - the single biggest read optimization</p>
+
+  <div class="compare">
+    <div class="compare-col bad">
+      <div class="compare-title">Without Index (Full Table Scan)</div>
+      <div class="compare-item">Scans ALL 10M rows</div>
+      <div class="compare-item">100-500ms latency</div>
+      <div class="compare-item">CPU at 100%</div>
+      <div class="compare-item">O(n) - linear scan</div>
+      <div class="compare-item">No write overhead</div>
+    </div>
+    <div class="compare-col good">
+      <div class="compare-title">With B-Tree Index</div>
+      <div class="compare-item">Traverses 3-4 tree levels</div>
+      <div class="compare-item">1-5ms latency</div>
+      <div class="compare-item">Minimal CPU usage</div>
+      <div class="compare-item">O(log n) - tree lookup</div>
+      <div class="compare-item">Small write cost per index</div>
+    </div>
+  </div>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 320">
+      <!-- Full scan side -->
+      <text class="svg-text" x="180" y="25" fill="var(--red)" font-size="13">Full Table Scan</text>
+      <!-- Table rows -->
+      <g id="scanRows">
+        <rect x="80" y="40" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+        <rect x="80" y="62" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+        <rect x="80" y="84" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+        <rect x="80" y="106" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+        <rect x="80" y="128" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+        <rect x="80" y="150" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+        <rect x="80" y="172" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+        <rect x="80" y="194" width="200" height="18" rx="3" fill="var(--green)" opacity="0.4" stroke="var(--green)" stroke-width="1"/>
+        <rect x="80" y="216" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+        <rect x="80" y="238" width="200" height="18" rx="3" fill="var(--red)" opacity="0.15" stroke="var(--red)" stroke-width="0.5"/>
+      </g>
+      <text class="svg-label" x="180" y="275">Scan pointer (row by row)</text>
+      <!-- Animated scan bar -->
+      <rect x="78" y="40" width="4" height="18" fill="var(--red)" opacity="0.8">
+        <animate attributeName="y" values="40;62;84;106;128;150;172;194;216;238;40" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text class="svg-label" x="180" y="295">10M rows = 500ms</text>
+
+      <!-- B-tree side -->
+      <text class="svg-text" x="600" y="25" fill="var(--green)" font-size="13">B-Tree Index Lookup</text>
+      <!-- Root -->
+      <rect x="560" y="45" width="80" height="30" rx="6" fill="var(--green)" opacity="0.8"/>
+      <text class="svg-text" x="600" y="60" fill="black" font-size="10">Root</text>
+      <!-- Level 2 -->
+      <line class="flow-line" x1="580" y1="75" x2="520" y2="105" stroke="var(--green)"/>
+      <line class="flow-line slow" x1="620" y1="75" x2="680" y2="105" stroke="rgba(100,116,139,0.3)"/>
+      <rect x="480" y="105" width="80" height="30" rx="6" fill="var(--green)" opacity="0.7"/>
+      <text class="svg-text" x="520" y="120" fill="black" font-size="10">Node</text>
+      <rect x="640" y="105" width="80" height="30" rx="6" fill="rgba(100,116,139,0.2)"/>
+      <text class="svg-text" x="680" y="120" fill="var(--muted)" font-size="10">Skip</text>
+      <!-- Level 3 -->
+      <line class="flow-line" x1="520" y1="135" x2="520" y2="165" stroke="var(--green)"/>
+      <rect x="480" y="165" width="80" height="30" rx="6" fill="var(--green)" opacity="0.6"/>
+      <text class="svg-text" x="520" y="180" fill="black" font-size="10">Node</text>
+      <!-- Leaf -->
+      <line class="flow-line" x1="520" y1="195" x2="520" y2="225" stroke="var(--green)"/>
+      <rect x="480" y="225" width="80" height="30" rx="6" fill="var(--accent)" opacity="0.9"/>
+      <text class="svg-text" x="520" y="240" fill="black" font-size="10">FOUND</text>
+      <circle class="pulse-ring" cx="520" cy="240" style="animation-duration: 1.5s;"><animate attributeName="r" values="20;40" dur="1.5s" repeatCount="indefinite"/></circle>
+      <!-- Animated packet down the tree -->
+      <circle class="packet" cx="600" cy="60" r="5" fill="var(--green)" filter="drop-shadow(0 0 8px var(--green))">
+        <animate attributeName="cx" values="600;520;520;520" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="60;120;180;240" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text class="svg-label" x="600" y="295">3-4 hops = 1-5ms</text>
+    </svg>
+    <p class="caption">Left: sequential scan reads every row. Right: B-tree jumps directly to the match in 3-4 hops.</p>
+  </div>
+
+  <div class="code">
+    <span class="comment">-- Before: Full table scan (10M rows)</span><br>
+    <span class="kw">EXPLAIN</span> <span class="kw">SELECT</span> * <span class="kw">FROM</span> users <span class="kw">WHERE</span> email = <span class="str">'user@example.com'</span>;<br>
+    <span class="comment">-- Seq Scan on users (cost=0.00..412,000.00 rows=1)</span><br><br>
+    <span class="comment">-- Add index</span><br>
+    <span class="kw">CREATE INDEX</span> idx_users_email <span class="kw">ON</span> users(email);<br><br>
+    <span class="comment">-- After: Index scan (instant)</span><br>
+    <span class="kw">EXPLAIN</span> <span class="kw">SELECT</span> * <span class="kw">FROM</span> users <span class="kw">WHERE</span> email = <span class="str">'user@example.com'</span>;<br>
+    <span class="comment">-- Index Scan using idx_users_email (cost=0.43..8.45 rows=1)</span>
+  </div>
+</div>
+
+<!-- Panel 2: Denormalization -->
+<div class="panel" id="p2">
+  <h1>Denormalization: Trade Storage for Speed</h1>
+  <p class="subtitle">Eliminate joins by storing redundant data</p>
+
+  <div class="compare">
+    <div class="compare-col bad">
+      <div class="compare-title">Normalized (3-Table JOIN)</div>
+      <div class="compare-item">users + orders + products</div>
+      <div class="compare-item">Multiple disk seeks per query</div>
+      <div class="compare-item">Clean data model</div>
+      <div class="compare-item">Single-point writes</div>
+      <div class="compare-item">10-50ms per read</div>
+    </div>
+    <div class="compare-col good">
+      <div class="compare-title">Denormalized (Single Table)</div>
+      <div class="compare-item">order_summary has everything</div>
+      <div class="compare-item">One row = one disk read</div>
+      <div class="compare-item">Redundant data stored</div>
+      <div class="compare-item">Multi-point writes</div>
+      <div class="compare-item">1-5ms per read</div>
+    </div>
+  </div>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 240">
+      <!-- Normalized side -->
+      <text class="svg-text" x="180" y="20" fill="var(--red)" font-size="12">Normalized: 3 JOINs</text>
+      <rect x="60" y="35" width="80" height="35" rx="6" fill="var(--blue)" opacity="0.7"/>
+      <text class="svg-text" x="100" y="55" fill="white" font-size="10">users</text>
+      <rect x="160" y="35" width="80" height="35" rx="6" fill="var(--blue)" opacity="0.7"/>
+      <text class="svg-text" x="200" y="55" fill="white" font-size="10">orders</text>
+      <rect x="260" y="35" width="80" height="35" rx="6" fill="var(--blue)" opacity="0.7"/>
+      <text class="svg-text" x="300" y="55" fill="white" font-size="10">products</text>
+      <!-- Join lines -->
+      <line class="flow-line red" x1="140" y1="52" x2="160" y2="52"/>
+      <line class="flow-line red" x1="240" y1="52" x2="260" y2="52"/>
+      <!-- Result -->
+      <line class="flow-line red" x1="200" y1="70" x2="200" y2="100"/>
+      <rect x="130" y="100" width="140" height="35" rx="6" fill="var(--red)" opacity="0.3" stroke="var(--red)" stroke-width="1"/>
+      <text class="svg-text" x="200" y="120" fill="var(--red)" font-size="10">JOIN result: 10-50ms</text>
+
+      <!-- Denormalized side -->
+      <text class="svg-text" x="600" y="20" fill="var(--green)" font-size="12">Denormalized: 1 Read</text>
+      <rect x="520" y="35" width="160" height="35" rx="6" fill="var(--green)" opacity="0.7"/>
+      <text class="svg-text" x="600" y="55" fill="black" font-size="10">order_summary</text>
+      <line class="flow-line" x1="600" y1="70" x2="600" y2="100"/>
+      <rect x="530" y="100" width="140" height="35" rx="6" fill="var(--green)" opacity="0.3" stroke="var(--green)" stroke-width="1"/>
+      <text class="svg-text" x="600" y="120" fill="var(--green)" font-size="10">Direct read: 1-5ms</text>
+      <circle class="pulse-ring" cx="600" cy="120" style="stroke: var(--green);"/>
+
+      <!-- Materialized View -->
+      <text class="svg-text" x="400" y="175" fill="var(--accent)" font-size="12">Materialized View</text>
+      <rect x="300" y="190" width="200" height="35" rx="6" fill="var(--accent)" opacity="0.15" stroke="var(--accent)" stroke-width="1"/>
+      <text class="svg-text" x="400" y="210" fill="var(--accent)" font-size="10">AVG(rating) precomputed</text>
+      <text class="svg-label" x="400" y="240">Background job refreshes periodically</text>
+    </svg>
+  </div>
+
+  <div class="code">
+    <span class="comment">-- Normalized: expensive on every page load</span><br>
+    <span class="kw">SELECT</span> p.id, <span class="kw">AVG</span>(r.rating) <span class="kw">as</span> avg_rating<br>
+    <span class="kw">FROM</span> products p <span class="kw">JOIN</span> reviews r <span class="kw">ON</span> p.id = r.product_id<br>
+    <span class="kw">GROUP BY</span> p.id;<br><br>
+    <span class="comment">-- Denormalized: precompute once</span><br>
+    <span class="kw">CREATE MATERIALIZED VIEW</span> product_ratings <span class="kw">AS</span><br>
+    <span class="kw">SELECT</span> p.id, <span class="kw">AVG</span>(r.rating) <span class="kw">as</span> avg_rating<br>
+    <span class="kw">FROM</span> products p <span class="kw">JOIN</span> reviews r <span class="kw">ON</span> p.id = r.product_id<br>
+    <span class="kw">GROUP BY</span> p.id;
+  </div>
+</div>
+
+<!-- Panel 3: Read Replicas -->
+<div class="panel" id="p3">
+  <h1>Read Replicas: Leader-Follower Replication</h1>
+  <p class="subtitle">One primary handles writes. N replicas handle reads. Nx throughput.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-value">Nx</div><div class="stat-label">Read Throughput</div></div>
+    <div class="stat warn"><div class="stat-value">100-300ms</div><div class="stat-label">Replication Lag</div></div>
+    <div class="stat"><div class="stat-value">WAL</div><div class="stat-label">Write-Ahead Log</div></div>
+  </div>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 320">
+      <!-- App servers -->
+      <rect class="svg-node" x="30" y="130" width="90" height="40" rx="8" fill="var(--blue)" opacity="0.8"/>
+      <text class="svg-text" x="75" y="155" fill="white" font-size="11">App Servers</text>
+
+      <!-- Write path -->
+      <line class="flow-line yellow" x1="125" y1="140" x2="240" y2="80"/>
+      <text class="svg-label" x="170" y="100">writes</text>
+
+      <!-- Read paths -->
+      <line class="flow-line" x1="125" y1="150" x2="240" y2="160"/>
+      <line class="flow-line" x1="125" y1="155" x2="240" y2="220"/>
+      <line class="flow-line" x1="125" y1="160" x2="240" y2="280"/>
+      <text class="svg-label" x="170" y="175">reads</text>
+
+      <!-- Primary -->
+      <rect class="svg-node" x="245" y="55" width="120" height="45" rx="8" fill="var(--yellow)" opacity="0.85"/>
+      <text class="svg-text" x="305" y="80" fill="black" font-size="11">Primary (RW)</text>
+      <circle class="pulse-ring" cx="305" cy="78" style="stroke: var(--yellow); animation-duration: 2.5s;"/>
+
+      <!-- WAL replication lines -->
+      <line class="flow-line purple" x1="370" y1="78" x2="460" y2="78"/>
+      <path class="flow-line purple" d="M 460 78 L 460 160" />
+      <path class="flow-line purple" d="M 460 78 L 460 220" />
+      <path class="flow-line purple" d="M 460 78 L 460 280" />
+      <text class="svg-label" x="430" y="65">WAL stream</text>
+
+      <!-- Animated WAL packets -->
+      <circle class="packet" cx="370" cy="78" r="3" fill="var(--purple)" filter="drop-shadow(0 0 4px var(--purple))">
+        <animate attributeName="cx" values="370;460" dur="0.8s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Replicas -->
+      <rect class="svg-node" x="480" y="140" width="120" height="40" rx="8" fill="var(--purple)" opacity="0.6"/>
+      <text class="svg-text" x="540" y="162" fill="white" font-size="11">Replica 1</text>
+      <rect class="svg-node" x="480" y="200" width="120" height="40" rx="8" fill="var(--purple)" opacity="0.6"/>
+      <text class="svg-text" x="540" y="222" fill="white" font-size="11">Replica 2</text>
+      <rect class="svg-node" x="480" y="260" width="120" height="40" rx="8" fill="var(--purple)" opacity="0.6"/>
+      <text class="svg-text" x="540" y="282" fill="white" font-size="11">Replica 3</text>
+
+      <!-- Connect WAL to replicas -->
+      <line class="flow-line purple" x1="460" y1="160" x2="480" y2="160"/>
+      <line class="flow-line purple" x1="460" y1="220" x2="480" y2="220"/>
+      <line class="flow-line purple" x1="460" y1="280" x2="480" y2="280"/>
+
+      <!-- Read routing from replicas -->
+      <rect class="svg-node" x="650" y="195" width="120" height="40" rx="8" fill="var(--green)" opacity="0.6"/>
+      <text class="svg-text" x="710" y="218" fill="black" font-size="11">Load Balancer</text>
+      <line class="flow-line" x1="600" y1="160" x2="650" y2="210"/>
+      <line class="flow-line" x1="600" y1="220" x2="650" y2="215"/>
+      <line class="flow-line" x1="600" y1="280" x2="650" y2="220"/>
+    </svg>
+    <p class="caption">Yellow = writes to primary. Purple = WAL replication stream. Green = load-balanced reads across replicas.</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col good">
+      <div class="compare-title">Good for Replicas</div>
+      <div class="compare-item">Feeds - stale by seconds is fine</div>
+      <div class="compare-item">Product catalogs - rarely change</div>
+      <div class="compare-item">Search results - eventual OK</div>
+      <div class="compare-item">User profiles - tolerate lag</div>
+    </div>
+    <div class="compare-col bad">
+      <div class="compare-title">Route to Primary</div>
+      <div class="compare-item">Bank balance - must be exact</div>
+      <div class="compare-item">Inventory count - oversell risk</div>
+      <div class="compare-item">Payment ledger - financial data</div>
+      <div class="compare-item">Read-your-own-writes scenarios</div>
+    </div>
+  </div>
+</div>
+
+<!-- Panel 4: Sharding -->
+<div class="panel" id="p4">
+  <h1>Sharding: Split Data Across Databases</h1>
+  <p class="subtitle">Each shard holds a subset. Smaller data = faster queries.</p>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 300">
+      <!-- App / Router -->
+      <rect class="svg-node" x="320" y="20" width="160" height="40" rx="8" fill="var(--blue)" opacity="0.8"/>
+      <text class="svg-text" x="400" y="45" fill="white" font-size="12">App (Shard Router)</text>
+      <text class="svg-label" x="400" y="75">hash(user_id) % 4</text>
+
+      <!-- Fan-out lines -->
+      <line class="flow-line" x1="340" y1="60" x2="100" y2="140"/>
+      <line class="flow-line" x1="380" y1="60" x2="280" y2="140"/>
+      <line class="flow-line" x1="420" y1="60" x2="500" y2="140"/>
+      <line class="flow-line" x1="460" y1="60" x2="700" y2="140"/>
+
+      <!-- Animated routing packets -->
+      <circle class="packet" cx="400" cy="60" r="4">
+        <animate attributeName="cx" values="380;280" dur="1.2s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="60;140" dur="1.2s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Shards -->
+      <rect class="svg-node" x="40" y="140" width="120" height="55" rx="8" fill="var(--purple)" opacity="0.7"/>
+      <text class="svg-text" x="100" y="160" fill="white" font-size="11">Shard 0</text>
+      <text class="svg-label" x="100" y="180">Users 0-25%</text>
+
+      <rect class="svg-node" x="220" y="140" width="120" height="55" rx="8" fill="var(--purple)" opacity="0.7"/>
+      <text class="svg-text" x="280" y="160" fill="white" font-size="11">Shard 1</text>
+      <text class="svg-label" x="280" y="180">Users 25-50%</text>
+
+      <rect class="svg-node" x="440" y="140" width="120" height="55" rx="8" fill="var(--purple)" opacity="0.7"/>
+      <text class="svg-text" x="500" y="160" fill="white" font-size="11">Shard 2</text>
+      <text class="svg-label" x="500" y="180">Users 50-75%</text>
+
+      <rect class="svg-node" x="640" y="140" width="120" height="55" rx="8" fill="var(--purple)" opacity="0.7"/>
+      <text class="svg-text" x="700" y="160" fill="white" font-size="11">Shard 3</text>
+      <text class="svg-label" x="700" y="180">Users 75-100%</text>
+
+      <!-- Shard key comparison -->
+      <text class="svg-text" x="400" y="230" fill="var(--muted)" font-size="11">Shard Key Trade-offs</text>
+      <text class="svg-label" x="100" y="255">user_id: even dist</text>
+      <text class="svg-label" x="280" y="255">tenant_id: isolation</text>
+      <text class="svg-label" x="500" y="255">geo: locality</text>
+      <text class="svg-label" x="700" y="255">timestamp: hot shard risk</text>
+    </svg>
+    <p class="caption">Router hashes the shard key to pick the correct shard. Cross-shard queries require scatter-gather across all shards.</p>
+  </div>
+</div>
+
+<!-- Panel 5: Cache-Aside -->
+<div class="panel" id="p5">
+  <h1>Cache-Aside: The Default Caching Pattern</h1>
+  <p class="subtitle">Check cache first. Miss? Query DB, store result, return.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-value">~1ms</div><div class="stat-label">Cache Hit (Redis)</div></div>
+    <div class="stat danger"><div class="stat-value">~50ms</div><div class="stat-label">Cache Miss (DB)</div></div>
+    <div class="stat"><div class="stat-value">90%+</div><div class="stat-label">Hit Rate Target</div></div>
+  </div>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 280">
+      <!-- App -->
+      <rect class="svg-node" x="40" y="110" width="100" height="50" rx="8" fill="var(--blue)" opacity="0.8"/>
+      <text class="svg-text" x="90" y="138" fill="white" font-size="12">App</text>
+
+      <!-- Cache -->
+      <rect class="svg-node" x="260" y="50" width="120" height="50" rx="8" fill="var(--yellow)" opacity="0.85"/>
+      <text class="svg-text" x="320" y="72" fill="black" font-size="12">Redis Cache</text>
+      <text class="svg-label" x="320" y="115">~1ms response</text>
+
+      <!-- DB -->
+      <rect class="svg-node" x="260" y="180" width="120" height="50" rx="8" fill="var(--green)" opacity="0.7"/>
+      <text class="svg-text" x="320" y="208" fill="black" font-size="12">Database</text>
+      <text class="svg-label" x="320" y="245">~50ms response</text>
+
+      <!-- Step 1: Check cache -->
+      <line class="flow-line" x1="145" y1="125" x2="255" y2="75"/>
+      <text class="svg-label" x="195" y="90">1. Check cache</text>
+      <circle class="packet" cx="145" cy="125" r="4">
+        <animate attributeName="cx" values="145;255" dur="0.8s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="125;75" dur="0.8s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Step 2: HIT - return -->
+      <rect x="440" y="50" width="100" height="50" rx="8" fill="var(--green)" opacity="0.3" stroke="var(--green)" stroke-width="1.5"/>
+      <text class="svg-text" x="490" y="70" fill="var(--green)" font-size="12">HIT</text>
+      <text class="svg-label" x="490" y="88">Return ~1ms</text>
+      <line class="flow-line" x1="385" y1="75" x2="435" y2="75" stroke="var(--green)"/>
+
+      <!-- Step 3: MISS - query DB -->
+      <line class="flow-line red" x1="145" y1="145" x2="255" y2="200"/>
+      <text class="svg-label" x="175" y="185">2. On MISS: query DB</text>
+
+      <!-- Step 4: Populate cache -->
+      <line class="flow-line yellow" x1="320" y1="175" x2="320" y2="105"/>
+      <text class="svg-label" x="350" y="145" fill="var(--yellow)">3. Populate cache</text>
+
+      <!-- TTL indicator -->
+      <rect x="560" y="130" width="200" height="100" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="1"/>
+      <text class="svg-text" x="660" y="155" fill="var(--accent)" font-size="11">TTL Guidelines</text>
+      <text class="svg-label" x="660" y="175">User profile: 5-15 min</text>
+      <text class="svg-label" x="660" y="190">Feed/timeline: 30s-2min</text>
+      <text class="svg-label" x="660" y="205">Config/flags: 1-5 min</text>
+      <text class="svg-label" x="660" y="220">Session: hours</text>
+    </svg>
+    <p class="caption">Green path = cache hit (fast). Red path = cache miss (query DB, then populate cache for next time).</p>
+  </div>
+
+  <h2>Invalidation Strategies</h2>
+  <div class="stats">
+    <div class="stat"><div class="stat-value">TTL</div><div class="stat-label">Time-based expiry</div></div>
+    <div class="stat"><div class="stat-value">Write-Through</div><div class="stat-label">Update on write</div></div>
+    <div class="stat"><div class="stat-value">Tagged</div><div class="stat-label">Group invalidation</div></div>
+    <div class="stat"><div class="stat-value">Versioned</div><div class="stat-label">Key versioning</div></div>
+  </div>
+</div>
+
+<!-- Panel 6: CDN -->
+<div class="panel" id="p6">
+  <h1>CDN: Edge Caching Worldwide</h1>
+  <p class="subtitle">Reduce origin load by 90%+. Users hit the nearest edge.</p>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 300">
+      <!-- Origin -->
+      <rect class="svg-node" x="340" y="120" width="120" height="50" rx="8" fill="var(--blue)" opacity="0.8"/>
+      <text class="svg-text" x="400" y="148" fill="white" font-size="12">Origin (Virginia)</text>
+      <text class="svg-label" x="400" y="185">Full dataset</text>
+
+      <!-- Edge nodes arranged in a circle -->
+      <!-- Tokyo -->
+      <rect class="svg-node" x="80" y="20" width="100" height="40" rx="8" fill="#e91e63" opacity="0.7"/>
+      <text class="svg-text" x="130" y="42" fill="white" font-size="10">Tokyo Edge</text>
+      <line class="flow-line slow" x1="185" y1="40" x2="335" y2="135"/>
+      <text class="svg-label" x="130" y="75">10-30ms to user</text>
+
+      <!-- London -->
+      <rect class="svg-node" x="620" y="20" width="100" height="40" rx="8" fill="#e91e63" opacity="0.7"/>
+      <text class="svg-text" x="670" y="42" fill="white" font-size="10">London Edge</text>
+      <line class="flow-line slow" x1="615" y1="40" x2="465" y2="135"/>
+
+      <!-- Sydney -->
+      <rect class="svg-node" x="80" y="240" width="100" height="40" rx="8" fill="#e91e63" opacity="0.7"/>
+      <text class="svg-text" x="130" y="262" fill="white" font-size="10">Sydney Edge</text>
+      <line class="flow-line slow" x1="185" y1="260" x2="335" y2="160"/>
+
+      <!-- Sao Paulo -->
+      <rect class="svg-node" x="620" y="240" width="100" height="40" rx="8" fill="#e91e63" opacity="0.7"/>
+      <text class="svg-text" x="670" y="262" fill="white" font-size="10">Sao Paulo Edge</text>
+      <line class="flow-line slow" x1="615" y1="260" x2="465" y2="160"/>
+
+      <!-- Latency comparison -->
+      <rect x="290" y="220" width="220" height="70" rx="8" fill="var(--card)" stroke="var(--border)"/>
+      <text class="svg-label" x="400" y="240">Without CDN: 150-300ms</text>
+      <text class="svg-label" x="400" y="258" fill="var(--green)">With CDN: 10-30ms</text>
+      <text class="svg-label" x="400" y="276" fill="var(--accent)">Origin load: -90%</text>
+    </svg>
+    <p class="caption">Edge servers worldwide. Each edge caches content locally. Only misses reach origin.</p>
+  </div>
+</div>
+
+<!-- Panel 7: Cache Stampede -->
+<div class="panel" id="p7">
+  <h1>Cache Stampede: The Thundering Herd</h1>
+  <p class="subtitle">When a popular cache key expires, thousands of requests hit the DB simultaneously</p>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 280">
+      <!-- Time axis -->
+      <line x1="50" y1="250" x2="750" y2="250" stroke="var(--muted)" stroke-width="1"/>
+      <text class="svg-label" x="400" y="275">Time -></text>
+
+      <!-- Cache alive phase -->
+      <rect x="50" y="40" width="280" height="30" rx="6" fill="var(--green)" opacity="0.3"/>
+      <text class="svg-text" x="190" y="58" fill="var(--green)" font-size="10">Cache alive - serving 100K RPS</text>
+
+      <!-- Expiry point -->
+      <line x1="340" y1="30" x2="340" y2="250" stroke="var(--red)" stroke-width="2" stroke-dasharray="4 4"/>
+      <text class="svg-text" x="340" y="25" fill="var(--red)" font-size="10">TTL EXPIRES</text>
+
+      <!-- Stampede zone -->
+      <rect x="340" y="40" width="200" height="30" rx="6" fill="var(--red)" opacity="0.3"/>
+      <text class="svg-text" x="440" y="58" fill="var(--red)" font-size="10">100K requests hit DB!</text>
+
+      <!-- DB overload -->
+      <rect class="svg-node" x="370" y="100" width="140" height="50" rx="8" fill="var(--red)" opacity="0.7"/>
+      <text class="svg-text" x="440" y="128" fill="white" font-size="11">DB OVERLOADED</text>
+      <circle class="pulse-ring" cx="440" cy="125" style="stroke: var(--red);"/>
+
+      <!-- Request flood animation -->
+      <circle class="packet red" cx="340" cy="55"><animate attributeName="cx" values="340;440" dur="0.3s" repeatCount="indefinite"/><animate attributeName="cy" values="55;100" dur="0.3s" repeatCount="indefinite"/></circle>
+      <circle class="packet red" cx="350" cy="55"><animate attributeName="cx" values="350;420" dur="0.35s" begin="0.1s" repeatCount="indefinite"/><animate attributeName="cy" values="55;100" dur="0.35s" begin="0.1s" repeatCount="indefinite"/></circle>
+      <circle class="packet red" cx="360" cy="55"><animate attributeName="cx" values="360;460" dur="0.4s" begin="0.05s" repeatCount="indefinite"/><animate attributeName="cy" values="55;100" dur="0.4s" begin="0.05s" repeatCount="indefinite"/></circle>
+
+      <!-- Solution: Probabilistic refresh -->
+      <rect x="550" y="40" width="200" height="30" rx="6" fill="var(--green)" opacity="0.3"/>
+      <text class="svg-text" x="650" y="58" fill="var(--green)" font-size="10">Probabilistic early refresh</text>
+
+      <!-- Gradual refresh dots -->
+      <circle r="3" fill="var(--accent)" opacity="0.3"><animate attributeName="cx" values="570;570" dur="1s" repeatCount="indefinite"/><animate attributeName="cy" values="40;80" dur="1s" repeatCount="indefinite"/></circle>
+      <circle r="3" fill="var(--accent)" opacity="0.5"><animate attributeName="cx" values="620;620" dur="1s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="cy" values="40;80" dur="1s" begin="0.3s" repeatCount="indefinite"/></circle>
+      <circle r="3" fill="var(--accent)" opacity="0.7"><animate attributeName="cx" values="680;680" dur="1s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="cy" values="40;80" dur="1s" begin="0.6s" repeatCount="indefinite"/></circle>
+
+      <rect class="svg-node" x="580" y="100" width="140" height="50" rx="8" fill="var(--green)" opacity="0.5"/>
+      <text class="svg-text" x="650" y="120" fill="black" font-size="10">DB handles 1-2</text>
+      <text class="svg-text" x="650" y="135" fill="black" font-size="10">requests at a time</text>
+
+      <!-- Labels -->
+      <text class="svg-label" x="440" y="175">Problem: all-at-once</text>
+      <text class="svg-label" x="650" y="175" fill="var(--green)">Solution: spread over time</text>
+
+      <!-- Probability curve -->
+      <text class="svg-label" x="650" y="200">Refresh probability:</text>
+      <text class="svg-label" x="650" y="215">Min 50: 1% | Min 55: 5%</text>
+      <text class="svg-label" x="650" y="230">Min 58: 15% | Min 59: 20%</text>
+    </svg>
+    <p class="caption">Left: stampede when TTL expires. Right: probabilistic refresh spreads the load. Most users still get cached data.</p>
+  </div>
+
+  <div class="code">
+    <span class="comment"># Request coalescing - combine duplicate requests</span><br>
+    <span class="kw">class</span> CoalescingCache:<br>
+    &nbsp;&nbsp;<span class="kw">def</span> __init__(self):<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;self.inflight = {}  <span class="comment"># key -> Future</span><br><br>
+    &nbsp;&nbsp;<span class="kw">async def</span> get(self, key):<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> key <span class="kw">in</span> self.inflight:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return await</span> self.inflight[key]<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;future = asyncio.Future()<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;self.inflight[key] = future<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">try</span>:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value = <span class="kw">await</span> fetch_from_backend(key)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;future.set_result(value)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> value<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">finally</span>:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">del</span> self.inflight[key]<br>
+    <span class="comment"># Reduces backend load to N (one per app server)</span>
+  </div>
+</div>
+
+<!-- Panel 8: Cache Versioning -->
+<div class="panel" id="p8">
+  <h1>Cache Versioning: Sidestep Invalidation</h1>
+  <p class="subtitle">Don't delete old cache entries - make them irrelevant by changing the key</p>
+
+  <div class="diagram-box">
+    <svg class="diagram" viewBox="0 0 800 260">
+      <!-- Before update -->
+      <text class="svg-text" x="200" y="25" fill="var(--muted)" font-size="12">Before Update</text>
+      <rect class="svg-node" x="80" y="40" width="100" height="35" rx="6" fill="var(--blue)" opacity="0.7"/>
+      <text class="svg-text" x="130" y="60" fill="white" font-size="10">App reads</text>
+      <line class="flow-line" x1="185" y1="57" x2="235" y2="57"/>
+      <rect class="svg-node" x="240" y="40" width="120" height="35" rx="6" fill="var(--yellow)" opacity="0.7"/>
+      <text class="svg-text" x="300" y="55" fill="black" font-size="9">event:123:v42</text>
+      <text class="svg-label" x="300" y="90">version=42 in DB</text>
+
+      <!-- Update happens -->
+      <line x1="400" y1="30" x2="400" y2="120" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 4"/>
+      <text class="svg-text" x="400" y="20" fill="var(--accent)" font-size="10">UPDATE (v42 -> v43)</text>
+
+      <!-- After update -->
+      <text class="svg-text" x="600" y="25" fill="var(--green)" font-size="12">After Update</text>
+      <rect class="svg-node" x="480" y="40" width="100" height="35" rx="6" fill="var(--blue)" opacity="0.7"/>
+      <text class="svg-text" x="530" y="60" fill="white" font-size="10">App reads</text>
+      <line class="flow-line" x1="585" y1="57" x2="635" y2="57"/>
+      <rect class="svg-node" x="640" y="40" width="120" height="35" rx="6" fill="var(--green)" opacity="0.7"/>
+      <text class="svg-text" x="700" y="55" fill="black" font-size="9">event:123:v43</text>
+      <text class="svg-label" x="700" y="90" fill="var(--green)">version=43 in DB</text>
+
+      <!-- Old key still exists but unreachable -->
+      <rect x="240" y="130" width="120" height="35" rx="6" fill="var(--muted)" opacity="0.2" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4"/>
+      <text class="svg-text" x="300" y="150" fill="var(--muted)" font-size="9">event:123:v42</text>
+      <text class="svg-label" x="300" y="180">Still exists but unreachable</text>
+      <text class="svg-label" x="300" y="195">Expires via TTL naturally</text>
+
+      <!-- Why it works -->
+      <rect x="80" y="210" width="640" height="40" rx="8" fill="rgba(0,255,200,0.06)" stroke="var(--accent)" stroke-width="1"/>
+      <text class="svg-text" x="400" y="225" fill="var(--accent)" font-size="10">No race conditions. No deletion broadcasts. No partial invalidation. Version is atomic in DB.</text>
+      <text class="svg-label" x="400" y="243">Old keys naturally expire via TTL. New key is instantly active.</text>
+    </svg>
+    <p class="caption">Version changes are atomic in the database. Cache keys automatically route to the new version. Old entries expire naturally.</p>
+  </div>
+
+  <div class="code">
+    <span class="comment">-- On write: increment version atomically</span><br>
+    <span class="kw">BEGIN</span>;<br>
+    <span class="kw">UPDATE</span> events <span class="kw">SET</span> venue = <span class="str">'New Location'</span>, version = version + <span class="num">1</span><br>
+    &nbsp;&nbsp;<span class="kw">WHERE</span> id = <span class="num">123</span>;<br>
+    <span class="kw">COMMIT</span>;<br><br>
+    <span class="comment">-- Cache keys before/after:</span><br>
+    <span class="str">event:123:v42</span> <span class="comment">// old - still in cache but no one reads it</span><br>
+    <span class="str">event:123:v43</span> <span class="comment">// new - app reads this now</span>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+function showPanel(idx) {
+  document.querySelectorAll('.panel').forEach((p, i) => {
+    p.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+---
+description: Batch process standards - progress bars, rate limiting, checkpoint/resume
+globs: newsletter/scripts/*.py,newsletter/scripts/*.sh
+alwaysApply: true
+---
+
+# Batch Process Standards
+
+All batch operations must follow these rules. Apply to create_draft.py, batch_publish.py, export_excalidraw.sh, and any new batch scripts.
+
+## 1. Real-time Progress Bars
+
+- Every batch process shows a progress bar for every small step
+- Format: `[N/total] Step name |████████░░| 80% (4/5)`
+- Update after each item — no silent progress
+- Use tqdm if available; fallback to ASCII bar (`progress_bar()` or `_ascii_bar()`)
+- Per-item and overall progress both visible
+
+## 2. Rate Limit Guard (Never Hit 100%)
+
+- At 90% capacity: slow down (2–5x base delay)
+- At 95%+: heavy pause (wait for window to clear)
+- Never hit 100% — preemptive slowdown
+- Use `RateLimitGuard` or `AdaptiveRateLimiter` pattern
+- Log: `[RATE-GUARD] usage=92% — pausing...`
+
+## 3. Checkpoint and Resume
+
+- Save checkpoint after each successful item
+- On failure or pause: stop, save state, exit cleanly
+- `--resume` flag: load checkpoint, skip completed, continue from next
+- Checkpoint path: `~/.openclaw/batch_*_checkpoint.json` or script-specific
+- When task is paused: keep checking, resume where left off on next run
+
+## 4. Batch Delay
+
+- `--batch-delay N` (default 2–3s) between API calls
+- Adaptive: scale delay by usage % (90% → 4x, 75% → 2x)
+- Export/rendering: no API limit, but still show progress
+
+## Scripts
+
+| Script | Progress | Rate guard | Resume |
+|--------|----------|------------|--------|
+| batch_publish.py | ✅ | ✅ | `--resume` |
+| create_draft.py | ✅ | ✅ | checkpoint |
+| export_excalidraw.sh | ✅ (added) | N/A | N/A |

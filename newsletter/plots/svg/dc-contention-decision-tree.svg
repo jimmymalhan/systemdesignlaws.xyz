@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-dt" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="28" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Contention Decision Tree</text>
+
+  <!-- Root -->
+  <rect x="280" y="40" width="340" height="35" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="63" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">All contended data in one DB?</text>
+
+  <!-- Yes branch -->
+  <line x1="350" y1="75" x2="200" y2="100" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-dt)"/>
+  <text x="260" y="88" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">YES</text>
+
+  <!-- No branch -->
+  <line x1="550" y1="75" x2="700" y2="100" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-dt)"/>
+  <text x="630" y="88" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">NO</text>
+
+  <!-- Single DB: Contention high? -->
+  <rect x="60" y="100" width="280" height="32" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="200" y="121" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">High contention on same rows?</text>
+
+  <!-- High contention: Yes -->
+  <line x1="130" y1="132" x2="80" y2="158" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-dt)"/>
+  <text x="92" y="148" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32" font-weight="bold">YES</text>
+
+  <rect x="15" y="160" width="180" height="55" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="105" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Pessimistic Lock</text>
+  <text x="105" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">SELECT FOR UPDATE</text>
+  <text x="105" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Tickets, payments</text>
+
+  <!-- High contention: No -->
+  <line x1="270" y1="132" x2="320" y2="158" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-dt)"/>
+  <text x="308" y="148" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F" font-weight="bold">NO</text>
+
+  <rect x="230" y="160" width="200" height="55" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="330" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">Optimistic (OCC)</text>
+  <text x="330" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Version column + retry</text>
+  <text x="330" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Auctions, reviews, inventory</text>
+
+  <!-- Multi DB: Strict consistency? -->
+  <rect x="560" y="100" width="310" height="32" rx="6" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="715" y="121" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">Need strict atomicity across DBs?</text>
+
+  <!-- Strict: Yes -->
+  <line x1="640" y1="132" x2="590" y2="158" stroke="#2E7D32" stroke-width="2" marker-end="url(#arr-dt)"/>
+  <text x="605" y="148" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32" font-weight="bold">YES</text>
+
+  <rect x="490" y="160" width="200" height="55" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="590" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#E65100" font-weight="bold">2PC</text>
+  <text x="590" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Prepare + Commit phases</text>
+  <text x="590" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Financial, compliance</text>
+
+  <!-- Strict: No -->
+  <line x1="790" y1="132" x2="820" y2="158" stroke="#D32F2F" stroke-width="2" marker-end="url(#arr-dt)"/>
+  <text x="818" y="148" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F" font-weight="bold">NO</text>
+
+  <rect x="720" y="160" width="160" height="55" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="800" y="180" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#E65100" font-weight="bold">Saga</text>
+  <text x="800" y="198" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Compensating txns</text>
+  <text x="800" y="210" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">E-commerce, booking</text>
+
+  <!-- Additional considerations -->
+  <text x="200" y="240" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Hot resource?</text>
+  <line x1="200" y1="248" x2="200" y2="268" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr-dt)"/>
+
+  <rect x="80" y="270" width="240" height="45" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="200" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Queue-based serialization</text>
+  <text x="200" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">Single worker per resource</text>
+
+  <text x="715" y="240" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">User-facing reservation?</text>
+  <line x1="715" y1="248" x2="715" y2="268" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr-dt)"/>
+
+  <rect x="575" y="270" width="280" height="45" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="715" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#7B1FA2" font-weight="bold">Distributed lock with TTL</text>
+  <text x="715" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#7B1FA2">Redis/ZK reservation + timeout</text>
+
+  <!-- Golden rule -->
+  <rect x="80" y="335" width="740" height="70" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="450" y="360" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#E65100" font-weight="bold">Golden Rule: Exhaust single-DB solutions first</text>
+  <text x="450" y="382" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100">Modern databases handle TB+ data and 1000s of connections.</text>
+  <text x="450" y="398" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#E65100">Distributed coordination adds latency and failure modes.</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "name": "newsletter-scripts",
+  "version": "1.0.0",
+  "description": "Newsletter diagram export and Substack publishing scripts",
+  "scripts": {
+    "export-excalidraw": "./export_excalidraw.sh",
+    "export-excalidraw-png": "./export_excalidraw.sh --png"
+  },
+  "devDependencies": {
+    "excalidraw-brute-export-cli": "^0.4.0"
+  }
+}

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-cs" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Cache Stampede Problem</text>
+
+  <!-- Timeline axis -->
+  <text x="450" y="60" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#666">Timeline</text>
+  <path d="M60,75 L850,75" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-cs)"/>
+
+  <!-- Phase 1: Normal (green) -->
+  <rect x="72" y="82" width="218" height="65" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="181" y="104" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">Normal</text>
+  <text x="181" y="122" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">100K RPS cached</text>
+  <text x="181" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#666">DB load: ~100 RPS</text>
+
+  <!-- TTL Expires (yellow flash) -->
+  <path d="M300,68 L340,68 L345,110 L335,110 L340,148 L315,120 L325,120 L300,68 Z" fill="#FFF176" stroke="#F9A825" stroke-width="2"/>
+  <text x="320" y="168" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#F9A825" font-weight="bold">TTL</text>
+  <text x="320" y="182" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#F9A825">Expires!</text>
+
+  <!-- Phase 2: Stampede (red) -->
+  <rect x="355" y="82" width="270" height="65" rx="4" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="490" y="104" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F" font-weight="bold">STAMPEDE</text>
+  <text x="490" y="122" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">100K requests hit DB!</text>
+  <text x="490" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#D32F2F">DB overloaded</text>
+
+  <!-- Phase 3: Crash -->
+  <rect x="640" y="82" width="190" height="65" rx="4" fill="#FFCDD2" stroke="#B71C1C" stroke-width="2.5"/>
+  <text x="735" y="106" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="16" fill="#B71C1C" font-weight="bold">CRASH</text>
+  <text x="735" y="128" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">DB / App down</text>
+
+  <!-- DB load visualization -->
+  <text x="60" y="212" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F" font-weight="bold">DB Load:</text>
+
+  <!-- Low bar (normal) -->
+  <rect x="155" y="200" width="120" height="12" rx="3" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="290" y="212" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">~100 RPS</text>
+
+  <!-- Spike bar (stampede) -->
+  <rect x="370" y="185" width="240" height="28" rx="3" fill="#FFCDD2" stroke="#D32F2F" stroke-width="1.5"/>
+  <text x="625" y="204" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F" font-weight="bold">100,000 RPS!!</text>
+
+  <!-- Divider -->
+  <path d="M60,235" stroke="#E0E0E0" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="60" y1="235" x2="840" y2="235" stroke="#E0E0E0" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- SOLUTION section -->
+  <text x="450" y="260" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="18" fill="#1B1B1F" font-weight="bold">Solution: Distributed Lock</text>
+
+  <!-- Solution timeline -->
+  <path d="M60,280 L850,280" stroke="#1B1B1F" stroke-width="1.5" fill="none" marker-end="url(#arr-cs)"/>
+
+  <!-- TTL expires -->
+  <path d="M200,270 L230,270 L233,292 L227,292 L230,310 L215,298 L221,298 L200,270 Z" fill="#FFF176" stroke="#F9A825" stroke-width="1.5"/>
+  <text x="215" y="328" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#F9A825" font-weight="bold">TTL Expires</text>
+
+  <!-- Lock acquired box -->
+  <rect x="260" y="288" width="230" height="60" rx="4" fill="#E8F4FD" stroke="#1565C0" stroke-width="2"/>
+
+  <!-- Lock icon -->
+  <path d="M280,308 L280,300 Q280,292 290,292 Q300,292 300,300 L300,308" fill="none" stroke="#1565C0" stroke-width="2"/>
+  <rect x="275" y="308" width="30" height="18" rx="3" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+
+  <text x="390" y="312" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1565C0" font-weight="bold">1 request rebuilds</text>
+  <text x="390" y="332" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">cache from DB</text>
+
+  <!-- Waiting requests -->
+  <rect x="510" y="288" width="270" height="60" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="645" y="312" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#2E7D32" font-weight="bold">99,999 requests wait</text>
+  <text x="645" y="332" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">serve stale / queue</text>
+
+  <!-- Result -->
+  <text x="450" y="380" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">DB load stays at ~1 RPS during rebuild</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

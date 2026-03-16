@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-sm" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-sm-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#2E7D32" stroke="#2E7D32" stroke-width="1"/>
+    </marker>
+    <marker id="arr-sm-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#D32F2F" stroke="#D32F2F" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Upload State Machine</text>
+
+  <!-- State: Pending -->
+  <rect x="40" y="100" width="130" height="50" rx="25" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="105" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Pending</text>
+
+  <!-- Arrow to Uploading -->
+  <path d="M170,125 L238,125" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-sm)"/>
+  <text x="204" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">start</text>
+
+  <!-- State: Uploading -->
+  <rect x="242" y="100" width="140" height="50" rx="25" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="312" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Uploading</text>
+
+  <!-- Arrow to Processing -->
+  <path d="M382,125 L458,125" stroke="#1B1B1F" stroke-width="2" fill="none" marker-end="url(#arr-sm)"/>
+  <text x="420" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">complete</text>
+
+  <!-- State: Processing -->
+  <rect x="462" y="100" width="140" height="50" rx="25" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="532" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Processing</text>
+
+  <!-- Arrow to Available -->
+  <path d="M602,125 L678,125" stroke="#2E7D32" stroke-width="2" fill="none" marker-end="url(#arr-sm-g)"/>
+  <text x="640" y="118" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#2E7D32">done</text>
+
+  <!-- State: Available -->
+  <rect x="682" y="100" width="140" height="50" rx="25" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="752" y="130" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">Available</text>
+
+  <!-- Failure paths -->
+  <!-- Uploading to Failed -->
+  <path d="M312,150 L312,220" stroke="#D32F2F" stroke-width="2" fill="none" marker-end="url(#arr-sm-r)"/>
+  <text x="325" y="190" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">timeout/error</text>
+
+  <!-- Processing to Failed -->
+  <path d="M532,150 L440,225" stroke="#D32F2F" stroke-width="2" fill="none" marker-end="url(#arr-sm-r)"/>
+  <text x="500" y="195" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#D32F2F">error</text>
+
+  <!-- State: Failed -->
+  <rect x="310" y="225" width="140" height="50" rx="25" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+  <text x="380" y="255" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#D32F2F" font-weight="bold">Failed</text>
+
+  <!-- Failed to Uploading (retry) -->
+  <path d="M380,225 C380,190 340,170 312,150" stroke="#E65100" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-sm)"/>
+  <text x="355" y="178" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">retry</text>
+
+  <!-- Uploading self-loop (chunk uploaded) -->
+  <path d="M270,100 C260,60 350,60 342,100" stroke="#E65100" stroke-width="2" fill="none" marker-end="url(#arr-sm)"/>
+  <text x="305" y="72" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">chunk OK</text>
+
+  <!-- State details below -->
+  <rect x="40" y="310" width="180" height="80" rx="6" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="55" y="330" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Pending</text>
+  <text x="55" y="346" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Presigned URL generated</text>
+  <text x="55" y="360" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Metadata row created</text>
+  <text x="55" y="374" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Awaiting first chunk</text>
+
+  <rect x="250" y="310" width="180" height="80" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="265" y="330" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Uploading</text>
+  <text x="265" y="346" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Chunks arriving</text>
+  <text x="265" y="360" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Progress tracked</text>
+  <text x="265" y="374" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Partial data in S3</text>
+
+  <rect x="460" y="310" width="180" height="80" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="475" y="330" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Processing</text>
+  <text x="475" y="346" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Virus scan</text>
+  <text x="475" y="360" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Thumbnail generation</text>
+  <text x="475" y="374" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Transcoding (video)</text>
+
+  <rect x="670" y="310" width="180" height="80" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="685" y="330" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#2E7D32" font-weight="bold">Available</text>
+  <text x="685" y="346" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Ready for download</text>
+  <text x="685" y="360" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- CDN can serve</text>
+  <text x="685" y="374" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#666">- Metadata complete</text>
+
+  <!-- Watermark -->
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

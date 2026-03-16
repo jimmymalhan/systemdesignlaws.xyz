@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <rect x="0" y="0" width="900" height="420" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1B1B1F"/>
+    </marker>
+  </defs>
+  <text x="450" y="35" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="22" fill="#1B1B1F" font-weight="bold">Delivery Guarantees</text>
+  <!-- At-most-once -->
+  <rect x="30" y="65" width="260" height="140" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="160" y="90" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">At-Most-Once</text>
+  <text x="160" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">ACK before processing</text>
+  <text x="160" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">If worker crashes: message lost</text>
+  <text x="160" y="165" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Use: logging, metrics</text>
+  <text x="160" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">(loss acceptable)</text>
+  <!-- At-least-once -->
+  <rect x="320" y="65" width="260" height="140" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="450" y="90" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">At-Least-Once</text>
+  <text x="450" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">ACK after processing</text>
+  <text x="450" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">If ACK lost: message redelivered</text>
+  <text x="450" y="165" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">May process duplicates</text>
+  <text x="450" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Most common for task queues</text>
+  <!-- Exactly-once (effectively) -->
+  <rect x="610" y="65" width="260" height="140" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="740" y="90" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Effectively-Once</text>
+  <text x="740" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">At-least-once delivery</text>
+  <text x="740" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">+ idempotent processing</text>
+  <text x="740" y="165" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Duplicates are no-ops</text>
+  <text x="740" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Best for critical tasks</text>
+  <!-- The problem scenario -->
+  <rect x="50" y="240" width="800" height="140" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="450" y="265" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" fill="#1B1B1F" font-weight="bold">Why "Exactly-Once" Is Hard</text>
+  <!-- Timeline -->
+  <rect x="80" y="285" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="140" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Worker processes</text>
+  <line x1="200" y1="302" x2="238" y2="302" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="240" y="285" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="300" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Task completes</text>
+  <line x1="360" y1="302" x2="398" y2="302" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="400" y="285" width="100" height="35" rx="4" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="450" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">ACK fails!</text>
+  <line x1="500" y1="302" x2="538" y2="302" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="540" y="285" width="130" height="35" rx="4" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="605" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Queue redelivers</text>
+  <line x1="670" y1="302" x2="698" y2="302" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="700" y="285" width="120" height="35" rx="4" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="1"/>
+  <text x="760" y="307" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Idempotent skip</text>
+  <text x="450" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" fill="#1B1B1F">Solution: at-least-once delivery + idempotent consumers = effectively exactly-once processing</text>
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

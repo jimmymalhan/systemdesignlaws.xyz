@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+
+<text x="450" y="30" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Temporal: Workflows and Activities</text>
+<rect x="30" y="60" width="400" height="130" rx="10" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="230" y="85" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Workflow (Deterministic)</text>
+<text x="230" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">High-level flow. Same inputs + history = same decisions.</text>
+<text x="230" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">No side effects. Fixed timestamps. Deterministic random.</text>
+<text x="230" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Enables replay-based recovery.</text>
+<text x="230" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Example: OrderFulfillmentWorkflow</text>
+<rect x="470" y="60" width="400" height="130" rx="10" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="670" y="85" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#1B1B1F">Activities (Side Effects)</text>
+<text x="670" y="105" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Individual steps with real-world effects.</text>
+<text x="670" y="125" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Must be idempotent. Can be retried.</text>
+<text x="670" y="148" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Results recorded in history.</text>
+<text x="670" y="175" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" font-weight="bold">Examples: chargePayment, reserveStock</text>
+<rect x="100" y="220" width="700" height="55" rx="10" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="245" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Signals: External Event Integration</text>
+<text x="450" y="263" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Workflows can wait for signals (human pickup, webhook callback). No polling. No resource consumption.</text>
+<rect x="100" y="295" width="340" height="80" rx="10" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="270" y="318" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Worker Pools</text>
+<text x="270" y="338" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Workflow Workers: orchestrate decisions</text>
+<text x="270" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Activity Workers: execute side effects</text>
+<rect x="460" y="295" width="340" height="80" rx="10" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="630" y="318" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Temporal Server</text>
+<text x="630" y="338" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Central orchestration + state tracking</text>
+<text x="630" y="355" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">History DB: append-only log of decisions</text>
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

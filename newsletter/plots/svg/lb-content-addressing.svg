@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#1B1B1F">Content-Addressable Storage</text>
+<text x="450" y="52" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" opacity="0.6">Key = hash of content. Same content = same key = stored once.</text>
+
+<!-- Traditional vs CAS -->
+<text x="225" y="80" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Traditional Storage</text>
+<text x="675" y="80" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">Content-Addressable</text>
+
+<!-- Traditional side -->
+<rect x="40" y="95" width="370" height="120" rx="8" fill="#FFEBEE" stroke="#1B1B1F" stroke-width="2"/>
+<text x="60" y="118" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">user_a/report.pdf    =  key: user_a/report.pdf</text>
+<text x="60" y="138" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">user_b/report.pdf    =  key: user_b/report.pdf</text>
+<text x="60" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">user_c/report.pdf    =  key: user_c/report.pdf</text>
+<text x="60" y="185" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#D32F2F" font-weight="bold">Same file stored 3 times = 3x storage cost</text>
+<text x="60" y="205" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Keys are user-defined paths (arbitrary)</text>
+
+<!-- CAS side -->
+<rect x="490" y="95" width="370" height="120" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="510" y="118" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">user_a/report.pdf  =  SHA: a1b2c3...f8</text>
+<text x="510" y="138" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">user_b/report.pdf  =  SHA: a1b2c3...f8</text>
+<text x="510" y="158" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">user_c/report.pdf  =  SHA: a1b2c3...f8</text>
+<text x="510" y="185" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F" font-weight="bold">Same hash = same content = stored ONCE</text>
+<text x="510" y="205" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Key is deterministic: SHA-256(content)</text>
+
+<!-- How it works -->
+<text x="450" y="245" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#1B1B1F">How Content Addressing Works</text>
+
+<rect x="40" y="260" width="150" height="50" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="115" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">1. Hash File</text>
+<text x="115" y="300" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">SHA-256(content)</text>
+
+<line x1="190" y1="285" x2="230" y2="285" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="235" y="260" width="155" height="50" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="312" y="282" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">2. Check Exists</text>
+<text x="312" y="300" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Hash in storage?</text>
+
+<!-- Branch: exists -->
+<line x1="390" y1="275" x2="450" y2="265" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="420" y="262" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">Yes</text>
+
+<rect x="455" y="250" width="170" height="40" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="540" y="275" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Skip upload. Link ref.</text>
+
+<!-- Branch: not exists -->
+<line x1="390" y1="295" x2="450" y2="305" stroke="#1B1B1F" stroke-width="2" marker-end="url(#arr)"/>
+<text x="420" y="310" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">No</text>
+
+<rect x="455" y="295" width="170" height="40" rx="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="2"/>
+<text x="540" y="320" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Upload content. Store.</text>
+
+<!-- Arrow to final -->
+<line x1="625" y1="270" x2="680" y2="285" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="625" y1="315" x2="680" y2="295" stroke="#1B1B1F" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<rect x="685" y="265" width="170" height="50" rx="8" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+<text x="770" y="287" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1B1B1F">3. Record Ref</text>
+<text x="770" y="305" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#1B1B1F">user -> hash mapping</text>
+
+<!-- Benefits -->
+<rect x="40" y="340" width="820" height="55" rx="8" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+<text x="450" y="362" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#1B1B1F">Benefits</text>
+<text x="60" y="382" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Deduplication: massive storage savings</text>
+<text x="350" y="382" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Integrity: hash verifies content</text>
+<text x="600" y="382" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Immutable: content never changes</text>
+
+<!-- Watermark -->
+<text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

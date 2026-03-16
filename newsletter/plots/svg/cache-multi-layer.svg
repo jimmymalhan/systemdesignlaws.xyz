@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr-ml" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+    <marker id="arr-ml-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#27ae60" stroke="#27ae60" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a1a1a" font-weight="bold">Multi-Layer Cache Hierarchy</text>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">Each miss cascades to the next layer, multiplying latency</text>
+
+  <!-- L1: In-Process -->
+  <rect x="40" y="90" width="150" height="120" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="2.5"/>
+  <text x="115" y="118" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#27ae60" font-weight="bold">L1</text>
+  <text x="115" y="138" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">In-Process</text>
+  <text x="115" y="155" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Guava / Caffeine</text>
+
+  <rect x="55" y="168" width="120" height="28" rx="6" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="115" y="187" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#27ae60" font-weight="bold">~0.1ms</text>
+
+  <!-- Arrow L1 to L2 -->
+  <path d="M190,150 L240,150" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arr-ml)"/>
+  <text x="215" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c0392b">MISS</text>
+
+  <!-- L2: Redis -->
+  <rect x="250" y="90" width="150" height="120" rx="8" fill="#E8F4FD" stroke="#2980b9" stroke-width="2.5"/>
+  <text x="325" y="118" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#2980b9" font-weight="bold">L2</text>
+  <text x="325" y="138" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">External Cache</text>
+  <text x="325" y="155" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">Redis / Memcached</text>
+
+  <rect x="265" y="168" width="120" height="28" rx="6" fill="#E8F4FD" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="325" y="187" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#2980b9" font-weight="bold">~1-5ms</text>
+
+  <!-- Arrow L2 to L3 -->
+  <path d="M400,150 L450,150" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arr-ml)"/>
+  <text x="425" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c0392b">MISS</text>
+
+  <!-- L3: CDN -->
+  <rect x="460" y="90" width="150" height="120" rx="8" fill="#FFF3E0" stroke="#d4a017" stroke-width="2.5"/>
+  <text x="535" y="118" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#d4a017" font-weight="bold">L3</text>
+  <text x="535" y="138" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">CDN Edge</text>
+  <text x="535" y="155" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">CloudFront / Akamai</text>
+
+  <rect x="475" y="168" width="120" height="28" rx="6" fill="#FFF3E0" stroke="#d4a017" stroke-width="1.5"/>
+  <text x="535" y="187" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#d4a017" font-weight="bold">~10-40ms</text>
+
+  <!-- Arrow L3 to Origin -->
+  <path d="M610,150 L650,150" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arr-ml)"/>
+  <text x="630" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c0392b">MISS</text>
+
+  <!-- Origin: Database -->
+  <rect x="660" y="90" width="110" height="120" rx="8" fill="#FFEBEE" stroke="#c0392b" stroke-width="2.5"/>
+  <text x="715" y="118" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b" font-weight="bold">Origin</text>
+  <text x="715" y="138" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Database</text>
+  <text x="715" y="155" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#333333">PostgreSQL</text>
+
+  <rect x="670" y="168" width="90" height="28" rx="6" fill="#FFEBEE" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="715" y="187" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#c0392b" font-weight="bold">5-50ms</text>
+
+  <!-- Effective hit rate calculation -->
+  <rect x="40" y="240" width="730" height="80" rx="8" fill="#E8F5E9" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="400" y="265" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#27ae60" font-weight="bold">Effective Hit Rate with Multi-Layer</text>
+  <text x="60" y="288" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">L1 hits 80% | L2 hits 15% of remaining | L3 hits 4% of remaining | Only 1% reaches DB</text>
+  <text x="60" y="308" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#27ae60" font-weight="bold">Result: 99% of requests never touch the database</text>
+
+  <!-- Latency bars -->
+  <rect x="40" y="340" width="730" height="60" rx="8" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="400" y="358" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">Latency by Layer (log scale)</text>
+
+  <rect x="60" y="370" width="10" height="16" rx="3" fill="#E8F5E9" stroke="#27ae60" stroke-width="1"/>
+  <text x="80" y="383" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#27ae60">L1: 0.1ms</text>
+
+  <rect x="200" y="370" width="50" height="16" rx="3" fill="#E8F4FD" stroke="#2980b9" stroke-width="1"/>
+  <text x="260" y="383" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2980b9">L2: 1-5ms</text>
+
+  <rect x="380" y="370" width="150" height="16" rx="3" fill="#FFF3E0" stroke="#d4a017" stroke-width="1"/>
+  <text x="540" y="383" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#d4a017">L3: 10-40ms</text>
+
+  <rect x="620" y="370" width="130" height="16" rx="3" fill="#FFEBEE" stroke="#c0392b" stroke-width="1"/>
+  <text x="640" y="383" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#c0392b">DB: 5-50ms</text>
+
+  <!-- When to use -->
+  <rect x="40" y="415" width="730" height="45" rx="8" fill="#fff8e8" stroke="#d4a017" stroke-width="1"/>
+  <text x="400" y="435" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">When to Layer</text>
+  <text x="60" y="453" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#333333">Add layers incrementally. Most systems need only L2 (Redis). Add CDN for global users. Add L1 for ultra-hot keys.</text>
+
+  <!-- Watermark -->
+  <text x="778" y="472" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#1a1a1a" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

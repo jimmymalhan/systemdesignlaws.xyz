@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="background:#FFFFFF">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5" fill="#1B1B1F" stroke="#1B1B1F" stroke-width="1"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="20" fill="#1B1B1F" font-weight="bold">Consistent Hashing</text>
+  <circle cx="300" cy="220" r="140" fill="none" stroke="#1B1B1F" stroke-width="2"/>
+  <circle cx="421.24355652982143" cy="290.0" r="14" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="447.2243186433546" y="305.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Node A</text>
+  <circle cx="230.00000000000003" cy="341.24355652982143" r="14" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="215.00000000000003" y="367.2243186433546" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Node B</text>
+  <circle cx="178.7564434701786" cy="150.0" r="14" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="152.77568135664544" y="135.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Node C</text>
+  <circle cx="370.0" cy="98.7564434701786" r="14" fill="#E8F4FD" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="385.0" y="72.77568135664544" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F">Node D</text>
+  <circle cx="370.0" cy="341.2435565298214" r="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="370.0" y="329.2435565298214" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">K1</text>
+  <circle cx="178.75644347017857" cy="290.0" r="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="178.75644347017857" y="278.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">K2</text>
+  <circle cx="275.68925512662975" cy="82.12691457829087" r="8" fill="#FFF3E0" stroke="#1B1B1F" stroke-width="1.5"/>
+  <text x="275.68925512662975" y="70.12691457829087" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="10" fill="#E65100">K3</text>
+  <rect x="520" y="70" width="350" height="150" rx="6" fill="#E8F5E9" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="695.0" y="150.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">How It Works</text>
+  <text x="695" y="115" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Keys map to a position on the ring</text>
+  <text x="695" y="140" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Walk clockwise to find the node</text>
+  <text x="695" y="165" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Add node: only neighbors re-map</text>
+  <text x="695" y="190" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Remove node: only its keys move</text>
+  <rect x="520" y="250" width="350" height="100" rx="6" fill="#F3E5F5" stroke="#1B1B1F" stroke-width="2"/>
+  <text x="695.0" y="305.0" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="14" fill="#1B1B1F" font-weight="bold">Why This Matters for Writes</text>
+  <text x="695" y="290" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Add shard: ~1/N keys re-map</text>
+  <text x="695" y="315" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">vs rehash all: 100% keys re-map</text>
+  <text x="695" y="340" text-anchor="middle" font-family="Virgil, Segoe UI, sans-serif" font-size="12" fill="#1B1B1F">Minimal disruption during scaling</text>
+
+  <text x="878" y="412" text-anchor="end" font-family="Virgil, Segoe UI, sans-serif" font-size="11" fill="#1B1B1F" opacity="0.22">systemdesignlaws.xyz</text>
+</svg>

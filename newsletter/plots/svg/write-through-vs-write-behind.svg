@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <filter id="sh3">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="a3cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+    </marker>
+    <marker id="a3green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3fb950"/>
+    </marker>
+    <marker id="a3yellow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d29922"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg3)"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#e6edf3">Write-Through vs Write-Behind</text>
+  <text x="400" y="56" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">Two strategies for keeping cache and database in sync on writes</text>
+
+  <!-- Divider line -->
+  <line x1="400" y1="70" x2="400" y2="430" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- ===== LEFT: Write-Through ===== -->
+  <text x="200" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#58a6ff">Write-Through</text>
+  <text x="200" y="102" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Synchronous -- both writes must succeed</text>
+
+  <!-- App box -->
+  <rect x="135" y="118" width="130" height="50" rx="10" fill="rgba(88,166,255,0.15)" stroke="#58a6ff" stroke-width="2" filter="url(#sh3)"/>
+  <text x="200" y="148" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#58a6ff">Application</text>
+
+  <!-- Arrow down to cache -->
+  <line x1="200" y1="168" x2="200" y2="195" stroke="#58a6ff" stroke-width="2" marker-end="url(#a3cyan)"/>
+  <text x="215" y="186" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#58a6ff">write</text>
+
+  <!-- Cache box -->
+  <rect x="135" y="198" width="130" height="50" rx="10" fill="rgba(63,185,80,0.15)" stroke="#3fb950" stroke-width="2" filter="url(#sh3)"/>
+  <text x="200" y="228" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#3fb950">Cache</text>
+
+  <!-- Arrow down to DB -->
+  <line x1="200" y1="248" x2="200" y2="275" stroke="#3fb950" stroke-width="2" marker-end="url(#a3green)"/>
+  <text x="215" y="266" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#3fb950">write</text>
+
+  <!-- DB box -->
+  <rect x="135" y="278" width="130" height="50" rx="10" fill="rgba(248,81,73,0.15)" stroke="#f85149" stroke-width="2" filter="url(#sh3)"/>
+  <text x="200" y="308" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f85149">Database</text>
+
+  <!-- Sync bracket -->
+  <path d="M 275 130 L 290 130 L 290 315 L 275 315" stroke="rgba(88,166,255,0.4)" stroke-width="1.5" fill="none"/>
+  <text x="300" y="218" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#58a6ff" transform="rotate(90, 300, 218)">SYNCHRONOUS</text>
+
+  <!-- Trade-offs left -->
+  <rect x="40" y="345" width="320" height="90" rx="8" fill="rgba(88,166,255,0.05)" stroke="rgba(88,166,255,0.15)" stroke-width="1"/>
+  <text x="55" y="366" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#3fb950">+ Strong consistency (cache always fresh)</text>
+  <text x="55" y="384" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#3fb950">+ No stale reads possible</text>
+  <text x="55" y="404" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#f85149">- Higher write latency (2x writes)</text>
+  <text x="55" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#f85149">- Write fails if either store fails</text>
+
+  <!-- ===== RIGHT: Write-Behind ===== -->
+  <text x="600" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#d29922">Write-Behind (Write-Back)</text>
+  <text x="600" y="102" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Asynchronous -- DB write is deferred</text>
+
+  <!-- App box -->
+  <rect x="535" y="118" width="130" height="50" rx="10" fill="rgba(88,166,255,0.15)" stroke="#58a6ff" stroke-width="2" filter="url(#sh3)"/>
+  <text x="600" y="148" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#58a6ff">Application</text>
+
+  <!-- Arrow down to cache -->
+  <line x1="600" y1="168" x2="600" y2="195" stroke="#58a6ff" stroke-width="2" marker-end="url(#a3cyan)"/>
+  <text x="615" y="186" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#58a6ff">write</text>
+
+  <!-- ACK back to app -->
+  <path d="M 534 210 L 510 210 L 510 150 L 534 150" stroke="#3fb950" stroke-width="1.5" fill="none" stroke-dasharray="4,2" marker-end="url(#a3green)"/>
+  <text x="490" y="183" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#3fb950">ACK</text>
+  <text x="490" y="195" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="8" fill="#484f58">(fast return)</text>
+
+  <!-- Cache box -->
+  <rect x="535" y="198" width="130" height="50" rx="10" fill="rgba(63,185,80,0.15)" stroke="#3fb950" stroke-width="2" filter="url(#sh3)"/>
+  <text x="600" y="228" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#3fb950">Cache</text>
+
+  <!-- Async batch arrow -->
+  <line x1="600" y1="248" x2="600" y2="275" stroke="#d29922" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#a3yellow)"/>
+  <text x="624" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#d29922">async</text>
+  <text x="624" y="275" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="8" fill="#484f58">batch</text>
+
+  <!-- DB box -->
+  <rect x="535" y="278" width="130" height="50" rx="10" fill="rgba(248,81,73,0.15)" stroke="#f85149" stroke-width="2" filter="url(#sh3)"/>
+  <text x="600" y="308" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f85149">Database</text>
+
+  <!-- Async bracket -->
+  <path d="M 675 200 L 690 200 L 690 315 L 675 315" stroke="rgba(210,153,34,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  <text x="705" y="260" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#d29922" transform="rotate(90, 705, 260)">ASYNCHRONOUS</text>
+
+  <!-- Trade-offs right -->
+  <rect x="440" y="345" width="320" height="90" rx="8" fill="rgba(210,153,34,0.05)" stroke="rgba(210,153,34,0.15)" stroke-width="1"/>
+  <text x="455" y="366" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#3fb950">+ Low write latency (only cache write)</text>
+  <text x="455" y="384" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#3fb950">+ Batches DB writes for throughput</text>
+  <text x="455" y="404" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#f85149">- Risk of data loss if cache crashes</text>
+  <text x="455" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#f85149">- Eventual consistency only</text>
+</svg>
